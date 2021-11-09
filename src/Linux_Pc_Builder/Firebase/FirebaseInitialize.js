@@ -5,4 +5,4 @@ const FirebaseInitialize = () => {
     initializeApp(firebaseConfig);
 };
 
-export default FirebaseInitialize;
+export default FirebaseInitialize
