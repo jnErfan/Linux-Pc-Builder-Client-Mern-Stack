@@ -40,6 +40,10 @@
 .profileImage {
   cursor: pointer;
 }
+.navbarContainer {
+  background-color: #ffffff !important;
+  transition: 500ms;
+}
 @media only screen and (max-width: 988px) {
   .navbarButton {
     margin-top: 10px;
@@ -62,5 +66,8 @@
     border-bottom: 0px solid #000;
     border-top: 0px solid #000;
     border-radius: 20px;
+  }
+  .navbarContainerRes {
+    background-color: #fff !important;
   }
 }

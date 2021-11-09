@@ -23,10 +23,25 @@ const NavBaar = () => {
     setShow(!show);
     setTarget(event.target);
   };
+  const [scrollChainge, setSrollChainge] = useState(false);
+
+  const onScrollHeader = () => {
+    window.scrollY >= 50 ? setSrollChainge(true) : setSrollChainge(false);
+  };
+
+  window.addEventListener("scroll", onScrollHeader);
 
   return (
     <div>
-      <Navbar fixed="top" bg="transparent" expand="lg">
+      <Navbar
+        fixed="top"
+        className={
+          scrollChainge
+            ? "navbarContainer"
+            : "bg-transparent navbarContainerRes"
+        }
+        expand="lg"
+      >
         <Container fluid>
           <Navbar.Brand href="/home">
             <img
