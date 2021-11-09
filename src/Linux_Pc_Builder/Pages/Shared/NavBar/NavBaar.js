@@ -1,16 +1,32 @@
-import React from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import {
+  Button,
+  Container,
+  Nav,
+  Navbar,
+  Popover,
+  Overlay,
+} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./Navbaar.css";
 
 const NavBaar = () => {
+  const [show, setShow] = useState(false);
+  const [target, setTarget] = useState(null);
+  const ref = useRef(null);
+
+  const defaultUserImage = "https://i.ibb.co/hM9DLXG/avt2.png";
   const activeStyle = {
     borderBottom: "5px solid rgb(45, 45, 45)",
+  };
+  const handleClick = (event) => {
+    setShow(!show);
+    setTarget(event.target);
   };
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar fixed="top" bg="transparent" expand="lg">
         <Container fluid>
           <Navbar.Brand href="/home">
             <img
@@ -60,15 +76,66 @@ const NavBaar = () => {
                 <span className="ms-2">DASHBOARD</span>
               </NavLink>
             </Nav>
-            <div>
+            <div style={{ fontFamily: "'Concert One', cursive" }}>
+              <div className="d-inline me-4 profileImage">
+                <span ref={ref}>
+                  <img
+                    onClick={handleClick}
+                    width="50px"
+                    className="border rounded-circle ms-3"
+                    src={defaultUserImage}
+                    alt=""
+                  />
+                  <Overlay
+                    show={show}
+                    target={target}
+                    placement="bottom"
+                    container={ref}
+                    containerPadding={20}
+                  >
+                    <Popover id="popover-contained">
+                      <Popover.Header className="px-5 border-0 bg-info text-center">
+                        <span
+                          style={{ fontFamily: "'Rubik', sans-serif" }}
+                          className="ms-2 fs-5 text-light"
+                        >
+                          J.N.Erfan
+                        </span>
+                      </Popover.Header>
+                      <Popover.Body>
+                        <div className="text-center">
+                          <img
+                            width="120px"
+                            className="ms-3 mb-4"
+                            src={defaultUserImage}
+                            alt=""
+                          />
+                          <span
+                            style={{ fontFamily: "'Rubik', sans-serif" }}
+                            className="fw-bold fs-6"
+                          >
+                            j.n.erfan420@gmail.com
+                          </span>
+                        </div>
+                      </Popover.Body>
+                    </Popover>
+                  </Overlay>
+                </span>
+              </div>
               <NavLink to="login">
                 <Button
                   variant="outline-dark rounded-pill px-4 me-4"
                   className="loginButton"
                 >
-                  Login
+                  LOGIN
                 </Button>
               </NavLink>
+              <Button
+                variant="outline-danger rounded-pill px-4 me-4"
+                className="loginButton"
+              >
+                LOG OUT
+              </Button>
             </div>
           </Navbar.Collapse>
         </Container>

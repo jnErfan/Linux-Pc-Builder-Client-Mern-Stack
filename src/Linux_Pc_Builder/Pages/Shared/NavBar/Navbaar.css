@@ -11,8 +11,8 @@
 .navbarDashboard:hover {
   transform: scale(1.1);
   transition: 500ms;
-  border-bottom: 4px solid #000;
-  border-top: 4px solid #000;
+  border-bottom: 3px solid #000;
+  border-top: 3px solid #000;
   padding: 5px 15px;
   border-radius: 20px;
 }
@@ -37,8 +37,10 @@
 .navbarButton:hover:after {
   width: 100%;
 }
-
-@media only screen and (max-width: 688px) {
+.profileImage {
+  cursor: pointer;
+}
+@media only screen and (max-width: 988px) {
   .navbarButton {
     margin-top: 10px;
     text-align: center;
@@ -51,6 +53,14 @@
     width: 0%;
   }
   .navbarDashboard {
-    margin-top: 10px;
+    margin-top: 19px;
+    margin-bottom: 10px;
+  }
+  .navbarDashboard:hover {
+    transform: scale(1);
+    transition: 500ms;
+    border-bottom: 0px solid #000;
+    border-top: 0px solid #000;
+    border-radius: 20px;
   }
 }
