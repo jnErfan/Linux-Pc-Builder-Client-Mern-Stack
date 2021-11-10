@@ -12,12 +12,12 @@ const OurPcPackage = () => {
   }, []);
   console.log(products);
   return (
-    <div className="mt-5 container mb-5">
+    <div className="my-5 container">
       <div className="text-center mb-5">
-        <h1 className="borderUnderline">Our Pc Collection</h1>
+        <h1 className="borderUnderline">Our Pc Collections</h1>
       </div>
       <div>
-        <Row sm={1} md={2} lg={3} className="">
+        <Row sm={1} md={2} lg={3} className="mt-5">
           {products.map((product) => (
             <div
               className="col col-12 col-md-6 col-lg-4 text-center mb-5"
@@ -102,6 +102,14 @@ const OurPcPackage = () => {
             </div>
           ))}
         </Row>
+        <div className="text-center">
+          <button
+            style={{ color: "#673d6bf8" }}
+            className="btn fs-5 mt-0 fw-bold"
+          >
+            See All <br /> <i className="fas fa-chevron-down"></i>
+          </button>
+        </div>
       </div>
     </div>
   );

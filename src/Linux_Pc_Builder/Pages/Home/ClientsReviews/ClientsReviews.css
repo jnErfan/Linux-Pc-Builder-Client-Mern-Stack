@@ -1,0 +1,17 @@
+.reviewUnderline {
+  border-bottom: 5px solid #000;
+  color: #000633;
+  padding: 10px;
+  display: inline-block;
+  padding-bottom: 20px;
+  border-radius: 100px;
+  font-family: "Teko", sans-serif;
+}
+.ellipsisReview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  margin-top: 20px;
+}
