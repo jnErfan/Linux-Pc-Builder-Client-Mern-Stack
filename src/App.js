@@ -11,6 +11,7 @@ import Login from "./Linux_Pc_Builder/LoginMethod/Login/Login";
 import SignUp from "./Linux_Pc_Builder/LoginMethod/SignUp/SignUp";
 import AdminLogin from "./Linux_Pc_Builder/LoginMethod/AdminLogin/AdminLogin";
 import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetails/ShippingDetails";
+import OurAllPcCollection from "./Linux_Pc_Builder/Pages/OurAllPcCollection/OurAllPcCollection";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             <ShippingDetails />
           </Route>
           {/*  Our Blogs  */}
+          <Route path="/allPcCollection">
+            <OurAllPcCollection />
+          </Route>
           <Route path="/blogs">
             <OurBlogs />
           </Route>

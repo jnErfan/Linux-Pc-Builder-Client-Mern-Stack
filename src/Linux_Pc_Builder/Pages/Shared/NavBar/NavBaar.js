@@ -73,28 +73,35 @@ const NavBaar = () => {
               navbarScroll
             >
               <NavLink
-                className="fw-bold text-decoration-none mx-4  navbarButton"
+                className="fw-bold text-decoration-none mx-3  navbarButton"
                 to="/home"
                 activeStyle={activeStyle}
               >
                 <i className="fas fa-laptop-house fs-5 me-1"></i> Home
               </NavLink>
               <NavLink
-                className="fw-bold text-decoration-none mx-4  navbarButton"
+                className="fw-bold text-decoration-none mx-3  navbarButton"
+                to="/allPcCollection"
+                activeStyle={activeStyle}
+              >
+                <i className="fas fa-desktop  fs-5 me-1"></i>Desktop
+              </NavLink>
+              <NavLink
+                className="fw-bold text-decoration-none mx-3  navbarButton"
                 to="/Blogs"
                 activeStyle={activeStyle}
               >
                 <i className="fab fa-slack fs-5 me-1"></i> Blogs
               </NavLink>
               <NavLink
-                className="fw-bold text-decoration-none mx-4  navbarButton"
+                className="fw-bold text-decoration-none mx-3  navbarButton"
                 to="/contract"
                 activeStyle={activeStyle}
               >
                 <i className="fas fa-envelope-open-text fs-5 me-1"></i> Contract
               </NavLink>
               <NavLink
-                className="fw-bold text-decoration-none mx-4 text-dark d-flex align-items-center navbarDashboard"
+                className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard"
                 to="/dashboard"
               >
                 <img
