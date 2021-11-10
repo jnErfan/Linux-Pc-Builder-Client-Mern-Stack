@@ -1,6 +1,6 @@
 .bannerContainer {
   background: linear-gradient(0deg, #ffffff1f, #ffffffa8),
-    url("./high-gaming-pc.jpg");
+    url("https://i.ibb.co/m8NG3NT/main.jpg");
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
@@ -32,33 +32,36 @@
   }
 }
 .image1 {
-  background-image: url(./photo-1598550476439-6847785fcea6.jpg);
+  background-image: url(https://i.ibb.co/zZp5cbj/66.jpg);
   height: 50vh;
   background-size: cover;
   position: relative;
-  animation: slide 55s infinite;
+  animation: slide 59s infinite;
   background-position: center;
   border: 3px solid rgb(255, 247, 174);
   border-radius: 10px;
 }
 @keyframes slide {
   0% {
-    background-image: url(./high-gaming-pc.jpg);
+    background-image: url(https://i.ibb.co/m8NG3NT/main.jpg);
   }
   20% {
-    background-image: url(./tai-bui-Q-xGz9NOVOE-unsplash.jpg);
+    background-image: url(https://i.ibb.co/HdRk3zc/Cheerful-Gamer-Playing-First-Person-Shooter-Online-Video-Game-on-His-Powerful-Personal-Computer-Room.jpg);
   }
   40% {
-    background-image: url(./high-gaming-pc.jpg);
+    background-image: url(https://i.ibb.co/6PynPL3/33.jpg);
+  }
+  50% {
+    background-image: url(https://i.ibb.co/vq1CGk8/Top-end-system-unit-for-gaming-computer-close-up-Inside-of-illuminated-cybercafe-Concept-of-modern-t.jpg);
   }
   60% {
-    background-image: url(./istockphoto-1157159364-170667a.jpg);
+    background-image: url(https://i.ibb.co/gj7PfJm/3.jpg);
   }
   80% {
-    background-image: url(./istockphoto-1314343964-170667a.jpg);
+    background-image: url(https://i.ibb.co/FHndbfp/22.jpg);
   }
   100% {
-    background-image: url(./DgTurrqXkAAaIOa.jpg);
+    background-image: url(https://i.ibb.co/zZp5cbj/66.jpg);
   }
 }
 .dreamPc {

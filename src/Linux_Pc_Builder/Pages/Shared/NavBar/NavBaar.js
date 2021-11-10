@@ -9,7 +9,6 @@ import {
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./Navbaar.css";
-import img from "./Screenshot_1.png";
 
 const NavBaar = () => {
   const [show, setShow] = useState(false);
@@ -44,7 +43,7 @@ const NavBaar = () => {
         style={{ cursor: "pointer" }}
         className={!remove ? "clickRemove" : "d-none"}
       >
-        <img width="100%" src={img} alt="" />
+        <img width="100%" src="https://i.ibb.co/6v6wtGR/navbarimg.png" alt="" />
       </div>
       <Navbar
         fixed="top"
