@@ -60,7 +60,7 @@ const OurPcPackage = () => {
                         }
                         fullSymbol={
                           <i
-                            class="fas fa-star fs-5"
+                            className="fas fa-star fs-5"
                             style={{ color: "#FFA500" }}
                           ></i>
                         }
@@ -75,7 +75,7 @@ const OurPcPackage = () => {
                     <div className="d-flex justify-content-between mt-3">
                       {product.stock === "available" ? (
                         <>
-                          <Button variant="outline-success">
+                          <Button variant="outline-secondary">
                             <i className="fas fa-shopping-cart"></i>
                           </Button>
                           <Button className="buttonColor" variant="text-white">

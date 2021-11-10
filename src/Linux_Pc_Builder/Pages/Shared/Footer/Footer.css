@@ -1,0 +1,89 @@
+.footerContainer {
+  background-color: #1a1531;
+  color: #fff;
+}
+.footerContainer2 {
+  background-color: #003f92;
+}
+/* Footar Ancors  */
+.footar-icon a {
+  text-decoration: none;
+  color: rgb(182, 182, 182);
+  font-size: 22px;
+}
+
+/* Footer Social Icon  */
+.fb:hover {
+  transform: scale(1.4);
+  color: blue;
+}
+.ins:hover {
+  transform: scale(1.5);
+  color: rgb(255, 6, 180);
+}
+.twt:hover {
+  transform: scale(1.5);
+  color: rgb(11, 181, 248);
+}
+.yt:hover {
+  transform: scale(1.5);
+  color: red;
+}
+.fontTeko {
+  font-family: "Teko", sans-serif;
+}
+.footer_nav {
+  text-decoration: none;
+  color: #8f8f8f;
+}
+.footer_nav:hover {
+  text-decoration: underline;
+  color: #ef4a23;
+}
+.inputField {
+  background-color: #fff5f5;
+  border-radius: 5px;
+  padding-right: 70px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  border: 1px solid rgb(131, 131, 131);
+}
+.buttonField {
+  margin-left: -135px;
+  margin-top: 8px;
+  padding: 0px 20px;
+  height: 45px;
+  width: 127px;
+  background-color: #ef4a23;
+  color: #fff;
+}
+.buttonMake {
+  outline: 1px solid #6f898d;
+  padding: 10px;
+  border-radius: 50px;
+}
+.buttonMake:hover {
+  outline: 1px solid #ef4a23;
+  transform: scale(0.9);
+  transition: 300ms;
+  cursor: pointer;
+}
+.verticalScrolBar {
+  background-color: #fff;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 50px;
+  right: 50px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  color: #523858;
+  font-size: 25px;
+}
+.verticalScrolBar:hover {
+  transform: scale(1.2);
+  transition: 300ms;
+}
