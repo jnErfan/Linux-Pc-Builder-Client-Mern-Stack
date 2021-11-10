@@ -1,4 +1,4 @@
-.borderUnderline {
+.borderUnderline2 {
   border-bottom: 5px solid #000;
   border-top: 5px solid #000;
   color: #000633;
@@ -37,7 +37,7 @@
   cursor: url(./cursor.png), auto;
   animation: action;
 }
-.rated {
+.rated2 {
   background-color: #ffd4fb;
   padding: 3px 12px;
   border-radius: 20px;
@@ -49,6 +49,6 @@
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
 }

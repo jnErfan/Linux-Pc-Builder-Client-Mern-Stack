@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import Rating from "react-rating";
+import { useHistory } from "react-router";
 import "./OurPcPackage.css";
 
 const OurPcPackage = () => {
   const [products, setProducts] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     fetch("./data.json")
       .then((res) => res.json())
@@ -104,6 +106,7 @@ const OurPcPackage = () => {
         </Row>
         <div className="text-center">
           <button
+            onClick={() => history.push("allPcCollection")}
             style={{ color: "#673d6bf8" }}
             className="btn fs-5 mt-0 fw-bold"
           >

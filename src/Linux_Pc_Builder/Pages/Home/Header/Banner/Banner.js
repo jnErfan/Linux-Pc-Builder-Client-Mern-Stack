@@ -2,8 +2,10 @@ import React from "react";
 import { Button, Row } from "react-bootstrap";
 import "./Banner.css";
 import Typewriter from "typewriter-effect";
+import { useHistory } from "react-router";
 
 const Banner = () => {
+  const history = useHistory();
   return (
     <div className="bannerContainer2">
       <div className="bannerContainer">
@@ -33,6 +35,7 @@ const Banner = () => {
               Build Your Dream PC With Our Online Desktop Shop
             </h3>
             <Button
+              onClick={() => history.push("allPcCollection")}
               style={{ fontFamily: "'Concert One', cursive" }}
               variant="outline-light py-3 px-3 mt-4"
             >
