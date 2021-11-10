@@ -44,6 +44,9 @@
   background-color: #ffffff !important;
   transition: 500ms;
 }
+#displayMargin {
+  margin-top: 100px;
+}
 @media only screen and (max-width: 988px) {
   .navbarButton {
     margin-top: 10px;

@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./Navbaar.css";
+import img from "./Screenshot_1.png";
 
 const NavBaar = () => {
   const [show, setShow] = useState(false);
@@ -26,13 +27,25 @@ const NavBaar = () => {
   const [scrollChainge, setSrollChainge] = useState(false);
 
   const onScrollHeader = () => {
-    window.scrollY >= 50 ? setSrollChainge(true) : setSrollChainge(false);
+    window.scrollY >= 10 ? setSrollChainge(true) : setSrollChainge(false);
   };
 
   window.addEventListener("scroll", onScrollHeader);
 
+  const [remove, setRemove] = useState(false);
+
+  const removeHandler = () => {
+    setRemove(true);
+  };
   return (
     <div>
+      <div
+        onClick={removeHandler}
+        style={{ cursor: "pointer" }}
+        className={!remove ? "clickRemove" : "d-none"}
+      >
+        <img width="100%" src={img} alt="" />
+      </div>
       <Navbar
         fixed="top"
         className={
@@ -40,6 +53,7 @@ const NavBaar = () => {
             ? "navbarContainer"
             : "bg-transparent navbarContainerRes"
         }
+        id={!scrollChainge && !remove && "displayMargin"}
         expand="lg"
       >
         <Container fluid>

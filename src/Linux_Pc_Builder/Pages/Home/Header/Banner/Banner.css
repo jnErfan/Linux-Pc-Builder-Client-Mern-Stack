@@ -1,0 +1,61 @@
+.bannerContainer {
+  background: linear-gradient(0deg, #ffffff1f, #ffffffa8),
+    url("./high-gaming-pc.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+  animation: zoom 20s infinite;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bannerItem {
+  display: flex;
+  align-items: center;
+}
+@keyframes zoom {
+  0% {
+    background-size: 100% auto;
+  }
+  50% {
+    background-size: 135% auto;
+  }
+  100% {
+    background-size: 100% auto;
+  }
+}
+.image1 {
+  background-image: url(./photo-1598550476439-6847785fcea6.jpg);
+  height: 50vh;
+  background-size: cover;
+  position: relative;
+  animation: slide 55s infinite;
+  background-position: center;
+  border: 3px solid rgb(255, 247, 174);
+  border-radius: 10px;
+}
+@keyframes slide {
+  0% {
+    background-image: url(./high-gaming-pc.jpg);
+  }
+  20% {
+    background-image: url(./tai-bui-Q-xGz9NOVOE-unsplash.jpg);
+  }
+  40% {
+    background-image: url(./high-gaming-pc.jpg);
+  }
+  60% {
+    background-image: url(./istockphoto-1157159364-170667a.jpg);
+  }
+  80% {
+    background-image: url(./istockphoto-1314343964-170667a.jpg);
+  }
+  100% {
+    background-image: url(./DgTurrqXkAAaIOa.jpg);
+  }
+}
+.dreamPc {
+  color: rgb(233, 233, 233);
+}

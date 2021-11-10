@@ -1,29 +1,47 @@
 import React from "react";
+import { Button, Row } from "react-bootstrap";
 import "./Banner.css";
+import Typewriter from "typewriter-effect";
 
 const Banner = () => {
   return (
-    <div>
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-        distinctio labore nihil quis doloremque, eaque aspernatur odit, non est
-        a cupiditate laborum tempore fuga nulla nostrum et impedit deleniti
-        quos? Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
-        sed tenetur obcaecati, possimus maiores perferendis culpa consequuntur,
-        necessitatibus magnam rerum eius voluptatum pariatur expedita.
-        Distinctio accusantium amet minus neque ipsum! Lorem ipsum dolor sit
-        amet consectetur adipisicing elit. Libero odit, ut dolor tempore error
-        natus nemo cumque consequuntur fugit, repellendus ipsam beatae dolores
-        quos modi distinctio deleniti impedit magnam aperiam laboriosam maxime
-        corporis hic. Fugit cupiditate exercitationem modi sit eaque sapiente
-        fuga itaque, sint ut deleniti pariatur? Ex, repellendus veniam? Dicta
-        aliquam ut fugit expedita tenetur, repellendus vitae quaerat, rem
-        pariatur temporibus optio quae obcaecati! Iusto harum fuga voluptatibus
-        ea dolorem corporis nisi minima eum et? Est optio similique veniam,
-        provident perspiciatis, obcaecati quos earum ut temporibus voluptates
-        repudiandae iure quaerat modi ad numquam laudantium ipsam molestiae
-        expedita. Et, impedit.
-      </h1>
+    <div className="bannerContainer">
+      <Row sx={1} md={2} lg={2} className="bannerItem container pt-5">
+        <div className="col col-12 col-md-6 col-lg-6">
+          <h1
+            style={{
+              fontSize: "60px",
+              fontFamily: "'Rubik', sans-serif",
+              fontWeight: "bold",
+            }}
+            className=""
+          >
+            <span style={{ color: "orangered" }}> Linux </span>
+            <span style={{ color: "#171E56" }}> Desktop </span>
+            <span className="text-black">
+              <Typewriter
+                options={{
+                  strings: ["Builder", "House", "Online Shop"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </span>
+          </h1>
+          <h3 className="mt-4 dreamPc">
+            Build Your Dream PC With Our Online Desktop Shop
+          </h3>
+          <Button
+            style={{ fontFamily: "'Concert One', cursive" }}
+            variant="outline-light py-3 px-3 mt-4"
+          >
+            See Our All Pc Collection
+          </Button>
+        </div>
+        <div className="col col-12 col-md-6 col-lg-6 image1">
+          {/* Sliding Desktop Image */}
+        </div>
+      </Row>
     </div>
   );
 };
