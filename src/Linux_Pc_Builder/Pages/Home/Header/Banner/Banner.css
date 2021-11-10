@@ -11,6 +11,11 @@
   align-items: center;
   justify-content: center;
 }
+.bannerContainer2 {
+  background-color: #575171;
+  height: 130vh;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 91%);
+}
 .bannerItem {
   display: flex;
   align-items: center;
