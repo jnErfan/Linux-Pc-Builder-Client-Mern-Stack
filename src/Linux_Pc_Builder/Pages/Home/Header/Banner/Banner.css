@@ -43,24 +43,31 @@
 }
 @keyframes slide {
   0% {
+    background-size: 120% auto;
     background-image: url(https://i.ibb.co/m8NG3NT/main.jpg);
   }
   20% {
+    background-size: 120% auto;
     background-image: url(https://i.ibb.co/HdRk3zc/Cheerful-Gamer-Playing-First-Person-Shooter-Online-Video-Game-on-His-Powerful-Personal-Computer-Room.jpg);
   }
   40% {
+    background-size: 120% auto;
     background-image: url(https://i.ibb.co/6PynPL3/33.jpg);
   }
   50% {
+    background-size: 120% auto;
     background-image: url(https://i.ibb.co/vq1CGk8/Top-end-system-unit-for-gaming-computer-close-up-Inside-of-illuminated-cybercafe-Concept-of-modern-t.jpg);
   }
   60% {
+    background-size: 120% auto;
     background-image: url(https://i.ibb.co/gj7PfJm/3.jpg);
   }
   80% {
+    background-size: 120% auto;
     background-image: url(https://i.ibb.co/FHndbfp/22.jpg);
   }
   100% {
+    background-size: 100% auto;
     background-image: url(https://i.ibb.co/zZp5cbj/66.jpg);
   }
 }
