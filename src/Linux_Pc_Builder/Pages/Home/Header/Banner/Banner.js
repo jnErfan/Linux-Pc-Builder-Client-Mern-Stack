@@ -15,7 +15,7 @@ const Banner = () => {
                 fontFamily: "'Rubik', sans-serif",
                 fontWeight: "bold",
               }}
-              className=""
+              className="bannerTitle"
             >
               <span style={{ color: "orangered" }}> Linux </span>
               <span style={{ color: "#171E56" }}> Desktop </span>
@@ -39,7 +39,7 @@ const Banner = () => {
               See Our All Pc Collection
             </Button>
           </div>
-          <div className="col col-12 col-md-6 col-lg-6 image1">
+          <div className="col col-12 col-md-6 col-lg-6 sliderContainer">
             {/* Sliding Desktop Image */}
           </div>
         </Row>

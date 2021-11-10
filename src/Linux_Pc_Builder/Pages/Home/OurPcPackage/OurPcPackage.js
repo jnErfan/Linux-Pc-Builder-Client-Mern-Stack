@@ -45,7 +45,10 @@ const OurPcPackage = () => {
                       <li>
                         Brand: <span className="brand"> {product.Brand}</span>
                       </li>
-                      <li className="mt-2">Total Sell {product.sell}</li>
+                      <li className="mt-2">
+                        Total Sell{" "}
+                        <span className="fw-bold">{product.sell}</span>{" "}
+                      </li>
                     </ul>
                     <div className="text-center my-3">
                       <Rating
