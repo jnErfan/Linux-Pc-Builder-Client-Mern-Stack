@@ -1,5 +1,6 @@
 import React from "react";
 import { FormControl, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -26,7 +27,7 @@ const Login = () => {
               className="py-3 mt-4"
               width="100%"
               type="password"
-              placeholder="Enter Your Email"
+              placeholder="Enter Password"
               required
             />
             <p className="text-danger mt-2">
@@ -42,6 +43,12 @@ const Login = () => {
           <div className="mt-4 text-center">
             <p className="text-secondary my-4">
               ____________________Or____________________
+            </p>
+            <p className="mb-4 text-secondary">
+              You Don't Have An Account ?{" "}
+              <Link to="signup" className="ms-3">
+                Sign Up
+              </Link>
             </p>
             <button
               className="btn btn-outline-info mb-2 mx-3 rounded-circle"
