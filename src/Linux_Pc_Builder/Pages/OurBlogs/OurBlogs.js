@@ -6,7 +6,7 @@ const OurBlogs = () => {
   return (
     <div>
       <div className="blogContainer" />
-      <div className="container" style={{ marginTop: "-500px" }}>
+      <div className="container containerMarginMinus">
         <div className="text-center">
           <h1 className="borderUnderlineBlog">Our Blogs</h1>
         </div>

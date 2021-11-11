@@ -125,13 +125,17 @@ const ManageProducts = () => {
                       <h4 className="my-4">
                         {product.price} <span className="fw-bold">৳</span>{" "}
                       </h4>
-                      <div className="d-flex justify-content-between mt-3">
-                        <Button variant="outline-success rounded-pill px-4">
-                          Edit <i className="far fa-edit"></i>
-                        </Button>
-                        <Button variant="outline-danger rounded-pill px-4">
-                          Delete <i className="far fa-trash-alt fs-5"></i>
-                        </Button>
+                      <div className="row row-cols-2">
+                        <div className="col col-12  col-md-6 col-lg-6 mt-2">
+                          <Button variant="outline-success rounded-pill px-4">
+                            Edit <i className="far fa-edit"></i>
+                          </Button>
+                        </div>
+                        <div className="col col-12 col-md-6 col-lg-6 mt-2">
+                          <Button variant="outline-danger rounded-pill px-4">
+                            Delete <i className="far fa-trash-alt fs-5"></i>
+                          </Button>
+                        </div>
                       </div>
                     </Card.Body>
                   </Card>

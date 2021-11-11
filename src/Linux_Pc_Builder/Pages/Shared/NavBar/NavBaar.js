@@ -23,36 +23,33 @@ const NavBaar = () => {
     setShow(!show);
     setTarget(event.target);
   };
-  const [scrollChainge, setSrollChainge] = useState(false);
+  const [scrollChange, setSrollChainge] = useState(false);
 
   const onScrollHeader = () => {
     window.scrollY >= 10 ? setSrollChainge(true) : setSrollChainge(false);
   };
-
-  window.addEventListener("scroll", onScrollHeader);
-
   const [remove, setRemove] = useState(false);
 
   const removeHandler = () => {
     setRemove(true);
   };
+  window.addEventListener("scroll", onScrollHeader);
+
   return (
     <div>
       <div
         onClick={removeHandler}
         style={{ cursor: "pointer" }}
-        className={!remove ? "clickRemove" : "d-none"}
+        className={!remove ? "clickRemove responsive" : "d-none"}
       >
         <img width="100%" src="https://i.ibb.co/6v6wtGR/navbarimg.png" alt="" />
       </div>
       <Navbar
         fixed="top"
         className={
-          scrollChainge
-            ? "navbarContainer"
-            : "bg-transparent navbarContainerRes"
+          scrollChange ? "navbarContainer" : "bg-transparent navbarContainerRes"
         }
-        id={!scrollChainge && !remove && "displayMargin"}
+        id={!scrollChange && !remove && "displayMargin"}
         expand="lg"
       >
         <Container fluid>

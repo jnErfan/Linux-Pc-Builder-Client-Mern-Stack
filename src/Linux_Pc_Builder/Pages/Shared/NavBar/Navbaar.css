@@ -44,6 +44,12 @@
   margin-top: 100px;
 }
 @media only screen and (max-width: 988px) {
+  .responsive {
+    display: none;
+  }
+  #displayMargin {
+    margin-top: 0px;
+  }
   .navbarButton {
     margin-top: 10px;
     text-align: center;
