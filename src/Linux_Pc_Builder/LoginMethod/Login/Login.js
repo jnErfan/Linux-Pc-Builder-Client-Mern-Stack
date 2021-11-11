@@ -1,8 +1,22 @@
-import React from "react";
-import { FormControl, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { FormControl, Modal, Row } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+  const { register, handleSubmit } = useForm();
+  const [smShow, setSmShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const { emailPasswordLogin, error, resetPassword } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  const onSubmit = (data) => {
+    emailPasswordLogin(data.email, data.password, history, location);
+  };
+  const resetHandler = () => {
+    resetPassword(email);
+  };
   return (
     <div
       style={{ marginTop: "100px", marginBottom: "100px" }}
@@ -15,13 +29,14 @@ const Login = () => {
       </div>
       <Row xs={1} md={2} lg={2}>
         <div className="col col-12 col-md-6 col-lg-6 mt-5">
-          <form onSubmit={"Submited"}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
               className="py-3 my-4"
               width="100%"
               type="email"
               placeholder="Enter Your Email"
               required
+              {...register("email")}
             />
             <FormControl
               className="py-3 mt-4"
@@ -29,11 +44,41 @@ const Login = () => {
               type="password"
               placeholder="Enter Password"
               required
+              {...register("password")}
             />
             <p className="text-danger mt-2">
-              <small>Your Password Is Incorrect</small>
+              <small>{error}</small>
             </p>
-            <button className="btn text-primary my-3">Forget Password ?</button>
+            <button
+              onClick={() => setSmShow(true)}
+              className="btn text-primary my-3"
+            >
+              Forget Password ?
+            </button>
+            <Modal
+              size="sm"
+              show={smShow}
+              onHide={() => setSmShow(false)}
+              aria-labelledby="example-modal-sizes-title-sm"
+              className="mt-5"
+            >
+              <Modal.Body className="p-4 rounded">
+                <h6 className="text-danger my-3">{error}</h6>
+
+                <FormControl
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-100"
+                  type="email"
+                  placeholder="Enter Account Email"
+                />
+                <button
+                  onClick={resetHandler}
+                  className="btn btn-outline-success w-100 mt-4"
+                >
+                  Send Mail
+                </button>
+              </Modal.Body>
+            </Modal>
             <button className="btn btn-danger w-100 py-2" type="submit">
               Login
             </button>

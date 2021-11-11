@@ -8,6 +8,7 @@ import {
   Overlay,
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 import "./Navbaar.css";
 
 const NavBaar = () => {
@@ -15,7 +16,6 @@ const NavBaar = () => {
   const [target, setTarget] = useState(null);
   const ref = useRef(null);
 
-  const defaultUserImage = "https://i.ibb.co/hM9DLXG/avt2.png";
   const activeStyle = {
     borderBottom: "5px solid rgb(45, 45, 45)",
   };
@@ -34,6 +34,8 @@ const NavBaar = () => {
     setRemove(true);
   };
   window.addEventListener("scroll", onScrollHeader);
+
+  const { user, logOutAll } = useAuth();
 
   return (
     <div>
@@ -97,77 +99,87 @@ const NavBaar = () => {
               >
                 <i className="fas fa-envelope-open-text fs-5 me-1"></i> Contract
               </NavLink>
-              <NavLink
-                className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse  animate__slow animate__infinite"
-                to="/dashboard"
-              >
-                <img
-                  src="https://img.icons8.com/material/25/000000/dashboard-layout.png"
-                  alt=""
-                />
-                <span className="ms-2">DASHBOARD</span>
-              </NavLink>
-            </Nav>
-            <div style={{ fontFamily: "'Concert One', cursive" }}>
-              <div className="d-inline me-4 profileImage">
-                <span ref={ref}>
+              {user?.displayName && (
+                <NavLink
+                  className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse  animate__slow animate__infinite"
+                  to="/dashboard"
+                >
                   <img
-                    onClick={handleClick}
-                    width="50px"
-                    className="border rounded-circle ms-3"
-                    src={defaultUserImage}
+                    src="https://img.icons8.com/material/25/000000/dashboard-layout.png"
                     alt=""
                   />
-                  <Overlay
-                    show={show}
-                    target={target}
-                    placement="bottom"
-                    container={ref}
-                    containerPadding={20}
-                  >
-                    <Popover id="popover-contained">
-                      <Popover.Header className="px-5 border-0 bg-info text-center">
-                        <span
-                          style={{ fontFamily: "'Rubik', sans-serif" }}
-                          className="ms-2 fs-5 text-light"
-                        >
-                          J.N.Erfan
-                        </span>
-                      </Popover.Header>
-                      <Popover.Body>
-                        <div className="text-center">
-                          <img
-                            width="120px"
-                            className="ms-3 mb-4"
-                            src={defaultUserImage}
-                            alt=""
-                          />
+                  <span className="ms-2">DASHBOARD</span>
+                </NavLink>
+              )}
+            </Nav>
+            <div style={{ fontFamily: "'Concert One', cursive" }}>
+              {user?.displayName && (
+                <div className="d-inline me-4 profileImage">
+                  <span ref={ref}>
+                    <img
+                      onClick={handleClick}
+                      width="50px"
+                      height="50px"
+                      className="border rounded-circle ms-3"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                    <Overlay
+                      show={show}
+                      target={target}
+                      placement="bottom"
+                      container={ref}
+                      containerPadding={20}
+                    >
+                      <Popover id="popover-contained">
+                        <Popover.Header className="px-5 border-0 bg-info text-center">
                           <span
                             style={{ fontFamily: "'Rubik', sans-serif" }}
-                            className="fw-bold fs-6"
+                            className="ms-2 fs-5 text-light"
                           >
-                            j.n.erfan420@gmail.com
+                            {user?.displayName}
                           </span>
-                        </div>
-                      </Popover.Body>
-                    </Popover>
-                  </Overlay>
-                </span>
-              </div>
-              <NavLink to="login">
+                        </Popover.Header>
+                        <Popover.Body>
+                          <div className="text-center">
+                            <img
+                              width="120px"
+                              className="ms-3 mb-4 rounded-circle"
+                              src={user?.photoURL}
+                              alt=""
+                            />
+                            <span
+                              style={{ fontFamily: "'Rubik', sans-serif" }}
+                              className="fw-bold fs-6"
+                            >
+                              {user?.email}
+                            </span>
+                          </div>
+                        </Popover.Body>
+                      </Popover>
+                    </Overlay>
+                  </span>
+                </div>
+              )}
+              {!user?.displayName && (
+                <NavLink to="/login">
+                  <Button
+                    variant="outline-dark rounded-pill px-4 me-4"
+                    className="loginButton"
+                  >
+                    LOGIN
+                  </Button>
+                </NavLink>
+              )}
+              {user?.displayName && (
                 <Button
-                  variant="outline-dark rounded-pill px-4 me-4"
+                  onClick={logOutAll}
+                  variant="outline-danger rounded-pill px-4 me-4"
                   className="loginButton"
                 >
-                  LOGIN
+                  LOG OUT
                 </Button>
-              </NavLink>
-              <Button
-                variant="outline-danger rounded-pill px-4 me-4"
-                className="loginButton"
-              >
-                LOG OUT
-              </Button>
+              )}
             </div>
           </Navbar.Collapse>
         </Container>

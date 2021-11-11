@@ -14,6 +14,7 @@ import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetails/ShippingDe
 import OurAllPcCollection from "./Linux_Pc_Builder/Pages/OurAllPcCollection/OurAllPcCollection";
 import Dashboard from "./Linux_Pc_Builder/Pages/Dashboard/Dashboard";
 import AuthContext from "./Linux_Pc_Builder/Context/AuthContext";
+import PrivateRoute from "./Linux_Pc_Builder/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -30,20 +31,20 @@ function App() {
             <HomeContainer />
           </Route>
           {/* Shipping Details  */}
-          <Route path="/shippingDetails/:packageId">
+          <PrivateRoute path="/shippingDetails/:packageId">
             <ShippingDetails />
-          </Route>
+          </PrivateRoute>
           {/*  Our Blogs  */}
-          <Route path="/allPcCollection">
+          <PrivateRoute path="/allPcCollection">
             <OurAllPcCollection />
-          </Route>
+          </PrivateRoute>
           <Route path="/blogs">
             <OurBlogs />
           </Route>
           {/* Contract Us  */}
-          <Route path="/contract">
+          <PrivateRoute path="/contract">
             <Contract />
-          </Route>
+          </PrivateRoute>
           {/* Login  */}
           <Route path="/login">
             <Login />
@@ -57,9 +58,9 @@ function App() {
             <AdminLogin />
           </Route>
           {/* Dashboard  */}
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
           {/* Page Not Found  */}
           <Route exact path="*">
             <NotFound />

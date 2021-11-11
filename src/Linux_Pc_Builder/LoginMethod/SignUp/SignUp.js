@@ -1,17 +1,31 @@
 import React from "react";
 import { FormControl, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
+  const { emailPasswordSignUp, error, setError } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+
   const onSubmit = (data) => {
-    /*  if (data.password === data.password2) {
-      alert("Matched");
+    setError("");
+    if (data.password === data.password2) {
+      const fullName = data.firstName + " " + data.lastName;
+      emailPasswordSignUp(
+        data.email,
+        data.password,
+        data.image,
+        fullName,
+        history,
+        location
+      );
     } else {
-      alert("Invalid password");
-    } */
-    console.log(data);
+      const passwordError = "Password Did't Matched";
+      setError(passwordError);
+    }
   };
 
   return (
@@ -77,7 +91,7 @@ const SignUp = () => {
                 {...register("password2")}
               />
               <p className="text-danger mt-2">
-                <small>Your Password Is Incorrect</small>
+                <small>{error}</small>
               </p>
               <button className="btn btn-danger w-100 py-2" type="submit">
                 Sign Up

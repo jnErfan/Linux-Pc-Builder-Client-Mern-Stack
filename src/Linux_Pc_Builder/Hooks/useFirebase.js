@@ -19,15 +19,22 @@ const useFirebase = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const [users, setUsers] = useState({});
   const auth = getAuth();
 
-  const emailPasswordSignUp = (email, password) => {
+  const emailPasswordSignUp = (
+    email,
+    password,
+    image,
+    name,
+    history,
+    location
+  ) => {
     setIsLoading(true);
     setError("");
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        /* const redirect = location?.state?.from || "/";
+        setUser(result?.user);
+        const redirect = location?.state?.from || "/";
         setUser(result?.user);
         history.push(redirect);
         updateProfile(auth.currentUser, {
@@ -35,8 +42,9 @@ const useFirebase = () => {
           photoURL: image,
         })
           .then(() => {})
-          .catch((error) => {});
-       */
+          .catch((error) => {
+            setError(error.message);
+          });
       })
       .catch((error) => {
         setError(error.message);
@@ -44,13 +52,62 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  const emailPasswordLogin = (email, password, history, location) => {
+    setError("");
+    setIsLoading(true);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const redirect = location?.state?.from || "/";
+        setUser(result?.user);
+        console.log(result?.user);
+        history.push(redirect);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+  const resetPassword = (email) => {
+    setError("");
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setError("Password Reset Email Sended, Please Check Email");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+  const logOutAll = () => {
+    signOut(auth)
+      .then(() => {
+        setUser("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser("");
+      }
+      setIsLoading(false);
+    });
+  }, [auth]);
+
   return {
     user,
     error,
     setError,
     emailPasswordSignUp,
+    emailPasswordLogin,
+    resetPassword,
+    logOutAll,
     isLoading,
-    users,
   };
 };
 
