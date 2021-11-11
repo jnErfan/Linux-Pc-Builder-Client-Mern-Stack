@@ -1,0 +1,13 @@
+.contarctUs {
+  border-bottom: 5px solid #4ea9ff;
+  border-radius: 10px;
+  display: inline-block;
+  font-family: "Bebas Neue", cursive;
+}
+.backgroundImage {
+  background: linear-gradient(0deg, #021a475d, #fafafa),
+    url(https://wallpaperaccess.com/full/3124570.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding-bottom: 200px;
+}
