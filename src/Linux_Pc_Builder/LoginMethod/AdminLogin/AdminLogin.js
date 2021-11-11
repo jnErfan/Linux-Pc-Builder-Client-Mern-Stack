@@ -1,8 +1,25 @@
 import React from "react";
 import { FormControl } from "react-bootstrap";
+import { useHistory, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 import "./AdminLogin.css";
+import { useForm } from "react-hook-form";
 
 const AdminLogin = () => {
+  const { register, handleSubmit } = useForm();
+  const { error, googleSignIn, emailPasswordLogin } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+
+  const onSubmit = (data) => {
+    emailPasswordLogin(data.email, data.password, history, location);
+  };
+
+  // Google Login Handler
+  const adminLoginWithGoogle = () => {
+    googleSignIn(history, location);
+  };
+
   return (
     <div className="adminLoginContainer">
       <div className="d-flex justify-content-center container">
@@ -14,13 +31,14 @@ const AdminLogin = () => {
             <span style={{ color: "orangered" }}>ADMIN</span> PANEL
           </h1>
 
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl
               className="py-3 my-4"
               width="100%"
               type="email"
               placeholder="Email"
               required
+              {...register("email")}
             />
             <FormControl
               className="py-3 mt-4"
@@ -28,9 +46,10 @@ const AdminLogin = () => {
               type="password"
               placeholder="Password"
               required
+              {...register("password")}
             />
             <p className="text-danger">
-              <small>Your Password Is Incorrect</small>
+              <small>{error}</small>
             </p>
             <button className="btn text-primary mb-3">Forget Password ?</button>
             <button
@@ -46,6 +65,7 @@ const AdminLogin = () => {
           </form>
           <div className="text-center mt-4">
             <button
+              onClick={adminLoginWithGoogle}
               className="btn btn-outline-info mb-2 mx-3 rounded-circle"
               style={{ height: "70px", width: "70px" }}
             >

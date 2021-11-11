@@ -2,7 +2,9 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import { Route, Switch, useRouteMatch } from "react-router";
 import { NavLink } from "react-router-dom";
+import AdminRoute from "../../AdminRoute/AdminRoute";
 import AdminLogin from "../../LoginMethod/AdminLogin/AdminLogin";
+import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 import AddDesktop from "../AddDesktop/AddDesktop";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import ManageAllOrder from "../ManageAllOrder/ManageAllOrder";
@@ -91,28 +93,28 @@ const Dashboard = () => {
                 <AdminLogin />
                 {/* <ManageAllOrder /> */}
               </Route>
-              <Route path={`${path}/manageOrder`}>
+              <AdminRoute path={`${path}/manageOrder`}>
                 <ManageAllOrder />
-              </Route>
-              <Route path={`${path}/manageProduct`}>
+              </AdminRoute>
+              <AdminRoute path={`${path}/manageProduct`}>
                 <ManageProducts />
-              </Route>
-              <Route path={`${path}/addDesktop`}>
+              </AdminRoute>
+              <AdminRoute path={`${path}/addDesktop`}>
                 <AddDesktop />
-              </Route>
-              <Route path={`${path}/makeAdmin`}>
+              </AdminRoute>
+              <AdminRoute path={`${path}/makeAdmin`}>
                 <MakeAdmin />
-              </Route>
+              </AdminRoute>
               {/* Customer Routs */}
-              <Route path={`${path}/myOrder`}>
+              <PrivateRoute path={`${path}/myOrder`}>
                 <MyOrder />
-              </Route>
-              <Route path={`${path}/pay`}>
+              </PrivateRoute>
+              <PrivateRoute path={`${path}/pay`}>
                 <Pay />
-              </Route>
-              <Route path={`${path}/review`}>
+              </PrivateRoute>
+              <PrivateRoute path={`${path}/review`}>
                 <Review />
-              </Route>
+              </PrivateRoute>
             </Switch>
           </div>
         </div>
