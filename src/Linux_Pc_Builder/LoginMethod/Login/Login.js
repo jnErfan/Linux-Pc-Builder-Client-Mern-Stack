@@ -8,7 +8,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const [smShow, setSmShow] = useState(false);
   const [email, setEmail] = useState("");
-  const { emailPasswordLogin, error, resetPassword } = useAuth();
+  const { emailPasswordLogin, error, resetPassword, googleSignIn } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const onSubmit = (data) => {
@@ -17,6 +17,11 @@ const Login = () => {
   const resetHandler = () => {
     resetPassword(email);
   };
+
+  const loginWithGoogle = () => {
+    googleSignIn(history, location);
+  };
+
   return (
     <div
       style={{ marginTop: "100px", marginBottom: "100px" }}
@@ -96,6 +101,7 @@ const Login = () => {
               </Link>
             </p>
             <button
+              onClick={loginWithGoogle}
               className="btn btn-outline-info mb-2 mx-3 rounded-circle"
               style={{ height: "70px", width: "70px" }}
             >

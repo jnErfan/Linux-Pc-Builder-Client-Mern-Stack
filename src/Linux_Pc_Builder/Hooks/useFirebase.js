@@ -77,6 +77,22 @@ const useFirebase = () => {
         setError(error.message);
       });
   };
+
+  const googleSignIn = (history, location) => {
+    setError("");
+    setIsLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        setUser(result?.user);
+        const redirect = location?.state?.from || "/";
+        history.replace(redirect);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   const logOutAll = () => {
     signOut(auth)
       .then(() => {
@@ -105,6 +121,7 @@ const useFirebase = () => {
     setError,
     emailPasswordSignUp,
     emailPasswordLogin,
+    googleSignIn,
     resetPassword,
     logOutAll,
     isLoading,
