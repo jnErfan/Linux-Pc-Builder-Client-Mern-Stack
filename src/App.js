@@ -52,7 +52,7 @@ function App() {
             <SignUp />
           </Route>
           {/* Admin Login  */}
-          <Route path="/signUp">
+          <Route path="/adminLogin">
             <AdminLogin />
           </Route>
           {/* Dashboard  */}
