@@ -1,44 +1,115 @@
 import React from "react";
+import { Table } from "react-bootstrap";
+import "./ManageAllOrder.css";
 
 const ManageAllOrder = () => {
   return (
     <div>
-      <h1>Manage All Order</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni earum
-        vero vel ullam quos consequatur accusantium nesciunt, dolore ducimus
-        dignissimos! Perferendis soluta accusantium blanditiis ipsa dicta
-        aspernatur natus et est asperiores? Aspernatur laudantium odit
-        consequuntur necessitatibus rem doloremque hic aut molestiae deserunt
-        quasi? Accusantium quibusdam nostrum tenetur provident. Dolorem,
-        consequuntur ducimus commodi sunt eos nobis assumenda voluptas. Vero
-        quis quasi a earum fugiat, voluptas iure nemo? Fugiat quia at dicta quis
-        voluptas quod distinctio illo quos fuga dolore, quam tempora atque
-        eaque. Dolores accusamus optio tempora, excepturi vitae adipisci nemo
-        reiciendis. Aut praesentium magni quasi dolor neque tempore excepturi
-        soluta veniam corporis sint, molestiae, cum consequuntur sit quibusdam
-        voluptate numquam illo ab quis ullam minus tempora et similique
-        voluptatum at. Sequi modi quos, eum in eveniet fugiat necessitatibus
-        facere rerum officia, neque dolorem. Esse, maiores! Maxime quam fugit
-        doloremque in dolore voluptas expedita alias error eius molestiae saepe
-        possimus atque cumque praesentium, reprehenderit dolor sed distinctio
-        odio, omnis nobis. Voluptatibus aliquam esse cupiditate aliquid incidunt
-        ut voluptas. Rem minima, odio modi earum quod at cum odit alias quo
-        magni architecto maxime temporibus pariatur nostrum aliquid minus
-        commodi? Ab cupiditate asperiores eius ducimus eum temporibus nobis
-        possimus commodi aliquam accusamus fuga aspernatur amet, blanditiis
-        optio, quas cum reiciendis voluptatem quasi earum dolorum, cumque quis
-        quae incidunt. Voluptates, modi placeat. Sint, vero blanditiis error
-        vitae id beatae ut quas adipisci quidem dolores nostrum assumenda fugit,
-        tempore, ipsa cum nam eos quisquam amet pariatur quo optio aperiam
-        voluptatibus? Iure nam, labore repudiandae suscipit fugiat maiores
-        facilis ipsa illum perspiciatis eius voluptatibus earum. Dolor et
-        tempore vero quidem saepe iste ab eum laborum dolore deserunt, fuga
-        aliquam harum rem omnis culpa. Nihil quae dolor, neque repellendus
-        temporibus culpa fugit quibusdam obcaecati asperiores quisquam nisi.
-        Laudantium totam earum unde molestias fuga facilis laborum quisquam
-        commodi!
-      </p>
+      <h1 className="text-center mt-5 ms-5 text-muted">Manage All Order</h1>
+      <div className="mt-4">
+        <h4 className="mt-5 mb-3 ms-5">
+          Total Order:{" "}
+          <span className="fw-bold bg-danger text-white rounded-pill p-1">
+            2
+          </span>{" "}
+        </h4>
+        <Table responsive="md" hover className="tableContainer">
+          <thead>
+            <tr className="text-white " style={{ backgroundColor: "#2E2E66" }}>
+              <th className="px-5 py-3 border-0 fw-normal">
+                <small className="textOrder">Order Info</small>
+              </th>
+              <th className="px-5 py-3 border-0 fw-normal">Delivery Info</th>
+              <th className="px-5 py-3 border-0 fw-normal statusRes">Status</th>
+              <th className="px-5 py-3 border-0 fw-normal">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-4 ps-5 border-0">
+                <div className="">
+                  <div className="d-flex">
+                    <div>
+                      <img
+                        width="90%"
+                        className="me-3 image"
+                        src="https://i.ibb.co/XxnXS2X/2.png"
+                        alt=""
+                      />
+                    </div>
+                    <div>
+                      <span
+                        className="text-secondary d-block mb-2"
+                        style={{ fontSize: "12px" }}
+                      >
+                        Order Id:{"  "}
+                        <span className="fw-bold text-dark ms-2">
+                          kddhstin4D4djkk
+                        </span>
+                      </span>
+
+                      <p
+                        className="text-secondary mb-2"
+                        style={{ fontSize: "12px" }}
+                      >
+                        Placed On:{"  "}
+                        <span className="fw-bold text-dark ms-2">
+                          27-08-2021
+                        </span>
+                      </p>
+
+                      <p className="mb-3">
+                        <small style={{ fontSize: "12px" }} className="fw-bold">
+                          Gaming 10th Gen Core i5-101 genaration DesktopOp
+                        </small>
+                      </p>
+                      <span className="fw-bold pt-0">53,400 ৳</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td className="py-4 ps-5 border-0">
+                <p className="mb-1">
+                  <small>J.N.Erfan</small>
+                </p>
+                <p className="mb-1">
+                  <small>j.n.erfan420@gmail.com</small>
+                </p>
+                <p className="mb-1">
+                  <small>01978352135</small>
+                </p>
+                <p className="text-secondary mb-1" style={{ fontSize: "15px" }}>
+                  <small>Purbodhala,netrokona,bangladesh Bangladesh</small>
+                </p>
+                <p className="mb-1 text-secondary">
+                  <small>Payment: Cash On Delivery</small>
+                </p>
+              </td>
+              <td className="py-4 ps-5 border-0 statusRes">
+                <p>
+                  <span className="status1 status px-3 py-1">Pending</span>
+                </p>
+                <p>
+                  <span className="status2 status  px-4 py-1">Reject</span>
+                </p>
+                <p>
+                  <small className="d-flex status3 status ps-2 py-2">
+                    Shipped <i className="fas fa-shipping-fast"></i>
+                  </small>
+                </p>
+              </td>
+              <td className="py-4 ps-5 border-0">
+                <button className="btn btn-outline-success rounded-pill">
+                  Shipped <i className="fas fa-shipping-fast"></i>
+                </button>
+                <button className="btn btn-outline-danger rounded-pill mt-4">
+                  Reject <i className="far fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 };

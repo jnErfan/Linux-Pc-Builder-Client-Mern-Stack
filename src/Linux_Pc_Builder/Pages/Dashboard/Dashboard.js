@@ -26,54 +26,52 @@ const Dashboard = () => {
         >
           <div className="">
             {/* Admin Switching */}
-
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
               to={`${url}/manageOrder`}
             >
               Manage Order
             </NavLink>
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded fw-bold"
               to={`${url}/manageProduct`}
             >
-              Manage Product
+              <small> Manage Product</small>
             </NavLink>
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
               to={`${url}/addDesktop`}
             >
               Add Desktop
             </NavLink>
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
               to={`${url}/makeAdmin`}
             >
               Make Admin
             </NavLink>
-
             {/* Customer Switching */}
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
               to={`${url}/myOrder`}
             >
               My Order
             </NavLink>
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
               to={`${url}/pay`}
             >
-              Pay
+              Payment Here
             </NavLink>
             <NavLink
               activeStyle={activeStyle}
-              className="d-block my-4 text-decoration-none dashboardNev px-2 py-2 rounded"
+              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
               to={`${url}/review`}
             >
               Review
