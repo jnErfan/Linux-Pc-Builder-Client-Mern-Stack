@@ -9,9 +9,15 @@ const MakeAdmin = () => {
   console.log(checked);
   return (
     <div style={{ marginTop: "50px", marginBottom: "100px" }}>
-      <h1 className="text-center ms-5" style={{ color: "#2e2e66" }}>
-        Make <span style={{ color: "orangered" }}>ADMIN</span>
-      </h1>
+      {!checked ? (
+        <h1 className="text-center ms-5" style={{ color: "#2e2e66" }}>
+          Make <span style={{ color: "orangered" }}>ADMIN</span>
+        </h1>
+      ) : (
+        <h1 className="text-center ms-5" style={{ color: "red" }}>
+          Remove <span style={{ color: "orangered" }}>ADMIN</span>
+        </h1>
+      )}
       <form>
         <div className="shadow-lg p-5 rounded mt-4">
           <FormControl
