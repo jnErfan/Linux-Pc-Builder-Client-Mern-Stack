@@ -1,0 +1,28 @@
+.borderUnderlineBlog {
+  border-bottom: 5px solid #000;
+  border-top: 5px solid #000;
+  color: #000633;
+  padding: 10px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  display: inline-block;
+  font-family: "Teko", sans-serif;
+}
+.MainContainer {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.exploreContainer {
+  border-radius: 20px;
+}
+.title {
+  font-family: "Concert One", cursive;
+}
+.carouselImage {
+  border-radius: 20px;
+  height: 40vh;
+}
+.videos {
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
