@@ -17,7 +17,7 @@ const Contract = () => {
           <div className="col col-12 col-md-6 col-lg-5">
             <div
               className="shadow-lg p-3 rounded-3"
-              style={{ backgroundColor: "#ffffff99" }}
+              style={{ backgroundColor: "#fff" }}
             >
               <h3 className="mb-4 mt-4 text-dark">Contract Info</h3>
               <div className="text-start">
@@ -49,7 +49,7 @@ const Contract = () => {
           <div className="col col-12 col-md-6 col-lg-7">
             <div
               className="shadow-lg p-3 pb-4 rounded-3"
-              style={{ backgroundColor: "#a09e9e50" }}
+              style={{ backgroundColor: "#fff" }}
             >
               <h3 className="mb-4 mt-4 text-dark">Send Message</h3>
               <div className="text-start">

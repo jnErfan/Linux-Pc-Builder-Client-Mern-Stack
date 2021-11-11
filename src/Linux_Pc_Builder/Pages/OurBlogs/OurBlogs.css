@@ -1,3 +1,10 @@
+.blogContainer {
+  background: linear-gradient(0deg, #a3a3a356, #f7f7f75e),
+    url(https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RWBzYW?ver=d8d8);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 .borderUnderlineBlog {
   border-bottom: 5px solid #000;
   border-top: 5px solid #000;
