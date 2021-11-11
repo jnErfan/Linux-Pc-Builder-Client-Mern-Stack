@@ -101,7 +101,7 @@ const NavBaar = () => {
                 <i className="fas fa-envelope-open-text fs-5 me-1"></i> Contract
               </NavLink>
               <NavLink
-                className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard"
+                className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse  animate__slow animate__infinite"
                 to="/dashboard"
               >
                 <img

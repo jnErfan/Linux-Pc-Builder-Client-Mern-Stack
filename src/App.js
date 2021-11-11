@@ -12,6 +12,7 @@ import SignUp from "./Linux_Pc_Builder/LoginMethod/SignUp/SignUp";
 import AdminLogin from "./Linux_Pc_Builder/LoginMethod/AdminLogin/AdminLogin";
 import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetails/ShippingDetails";
 import OurAllPcCollection from "./Linux_Pc_Builder/Pages/OurAllPcCollection/OurAllPcCollection";
+import Dashboard from "./Linux_Pc_Builder/Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -53,6 +54,10 @@ function App() {
           {/* Admin Login  */}
           <Route path="/signUp">
             <AdminLogin />
+          </Route>
+          {/* Dashboard  */}
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
           {/* Page Not Found  */}
           <Route exact path="*">
