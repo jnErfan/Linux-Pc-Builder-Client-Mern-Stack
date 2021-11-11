@@ -7,6 +7,7 @@ import {
   updateProfile,
   GoogleAuthProvider,
   GithubAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
 } from "firebase/auth";
@@ -16,6 +17,7 @@ import FirebaseInitialize from "../Firebase/FirebaseInitialize";
 FirebaseInitialize();
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 const useFirebase = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -109,6 +111,21 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  const facebookSignIn = (history, location) => {
+    setError("");
+    setIsLoading(true);
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        setUser(result?.user);
+        const redirect = location?.state?.from || "/";
+        history.replace(redirect);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+  console.log(user);
   const logOutAll = () => {
     signOut(auth)
       .then(() => {
@@ -137,6 +154,7 @@ const useFirebase = () => {
     setError,
     emailPasswordSignUp,
     emailPasswordLogin,
+    facebookSignIn,
     googleSignIn,
     githubSignIn,
     resetPassword,

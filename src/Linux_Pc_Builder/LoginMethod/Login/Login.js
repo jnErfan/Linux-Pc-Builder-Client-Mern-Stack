@@ -14,6 +14,7 @@ const Login = () => {
     resetPassword,
     googleSignIn,
     githubSignIn,
+    facebookSignIn,
   } = useAuth();
   const history = useHistory();
   const location = useLocation();
@@ -32,6 +33,11 @@ const Login = () => {
   // Github Login Handler
   const loginWithGithub = () => {
     githubSignIn(history, location);
+  };
+
+  // Facebook Login Handler
+  const loginWithFacebook = () => {
+    facebookSignIn(history, location);
   };
 
   return (
@@ -133,6 +139,7 @@ const Login = () => {
               />
             </button>
             <button
+              onClick={loginWithFacebook}
               className="btn btn-outline-info mb-2 mx-3 rounded-circle"
               style={{ height: "70px", width: "70px" }}
             >
