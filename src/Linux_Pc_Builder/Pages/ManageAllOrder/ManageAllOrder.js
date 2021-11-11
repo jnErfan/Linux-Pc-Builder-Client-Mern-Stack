@@ -4,8 +4,10 @@ import "./ManageAllOrder.css";
 
 const ManageAllOrder = () => {
   return (
-    <div>
-      <h1 className="text-center mt-5 ms-5 text-muted">Manage All Order</h1>
+    <div style={{ marginBottom: "100px" }}>
+      <h1 className="text-center mt-5 ms-5" style={{ color: "#2e2e66" }}>
+        Manage All Order
+      </h1>
       <div className="mt-4">
         <h4 className="mt-5 mb-3 ms-5">
           Total Order:{" "}
