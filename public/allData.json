@@ -8,7 +8,7 @@
     "rate": "3.6",
     "rated": "122",
     "sell": "147",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/XxnXS2X/2.png",
@@ -19,7 +19,7 @@
     "rate": "4.1",
     "rated": "108",
     "sell": "127",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/nCq7SfK/3.jpg",
@@ -30,7 +30,7 @@
     "rate": "4.3",
     "rated": "155",
     "sell": "197",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/z8Tff73/4.jpg",
@@ -41,7 +41,7 @@
     "rate": "4.1",
     "rated": "144",
     "sell": "177",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/dWPBZC2/5.jpg",
@@ -52,7 +52,7 @@
     "rate": "3.7",
     "rated": "77",
     "sell": "147",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/JWZMTs9/6.jpg",
@@ -63,7 +63,7 @@
     "rate": "3.9",
     "rated": "98",
     "sell": "107",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/2NctKVY/1.png",
@@ -74,7 +74,7 @@
     "rate": "3.6",
     "rated": "122",
     "sell": "147",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/XxnXS2X/2.png",
@@ -85,7 +85,7 @@
     "rate": "4.1",
     "rated": "108",
     "sell": "127",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/nCq7SfK/3.jpg",
@@ -96,7 +96,7 @@
     "rate": "4.3",
     "rated": "155",
     "sell": "197",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/z8Tff73/4.jpg",
@@ -107,7 +107,7 @@
     "rate": "4.1",
     "rated": "144",
     "sell": "177",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/dWPBZC2/5.jpg",
@@ -118,7 +118,7 @@
     "rate": "3.7",
     "rated": "77",
     "sell": "147",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/JWZMTs9/6.jpg",
@@ -129,7 +129,7 @@
     "rate": "3.9",
     "rated": "98",
     "sell": "107",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/j64Myhg/7.jpg",
@@ -140,7 +140,7 @@
     "rate": "4.0",
     "rated": "33",
     "sell": "47",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/1KRnq6q/8.jpg",
@@ -151,7 +151,7 @@
     "rate": "3.5",
     "rated": "78",
     "sell": "117",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/hWM0kFx/9.jpg",
@@ -162,7 +162,7 @@
     "rate": "3.9",
     "rated": "22",
     "sell": "39",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/phXz9XP/10.jpg",
@@ -173,7 +173,7 @@
     "rate": "3.3",
     "rated": "9",
     "sell": "12",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/YWry4wy/11.jpg",
@@ -184,7 +184,7 @@
     "rate": "4.1",
     "rated": "19",
     "sell": "21",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/pdwk50d/12.jpg",
@@ -195,7 +195,7 @@
     "rate": "4.3",
     "rated": "4",
     "sell": "7",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/2nCTSJ6/13.jpg",
@@ -206,7 +206,7 @@
     "rate": "3.3",
     "rated": "5",
     "sell": "8",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/HGNMK4Y/14.jpg",
@@ -217,7 +217,7 @@
     "rate": "4.3",
     "rated": "148",
     "sell": "184",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/xf0gHLK/15.jpg",
@@ -228,7 +228,7 @@
     "rate": "4.1",
     "rated": "116",
     "sell": "144",
-    "stock": "available"
+    "stock": "Available"
   },
   {
     "image": "https://i.ibb.co/N66g6N2/16.jpg",
@@ -239,7 +239,7 @@
     "rate": "4.0",
     "rated": "85",
     "sell": "107",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/6vg40YG/17.jpg",
@@ -250,7 +250,7 @@
     "rate": "3.0",
     "rated": "9",
     "sell": "12",
-    "stock": "stockOut"
+    "stock": "StockOut"
   },
   {
     "image": "https://i.ibb.co/BT9dZW7/18.jpg",
@@ -261,6 +261,6 @@
     "rate": "3.9",
     "rated": "68",
     "sell": "87",
-    "stock": "available"
+    "stock": "Available"
   }
 ]

@@ -1,44 +1,106 @@
 import React from "react";
+import { FloatingLabel, Form, FormControl } from "react-bootstrap";
+import Rating from "react-rating";
 
 const AddDesktop = () => {
   return (
-    <div>
-      <h1>Add Desktop</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error omnis
-        ipsam ipsa reprehenderit voluptas ad possimus commodi tenetur odio at
-        facere, aspernatur qui delectus in nulla perferendis tempora non aperiam
-        itaque voluptatibus obcaecati officia, voluptatum quis? Delectus
-        explicabo enim consequatur! Rerum temporibus debitis culpa rem itaque
-        quod reprehenderit pariatur error? Voluptas omnis iste dolorem
-        perspiciatis. Inventore architecto vitae veritatis voluptatibus pariatur
-        in dignissimos quo officiis perferendis ex! Quaerat eligendi quisquam
-        dignissimos deserunt incidunt autem provident nesciunt accusamus,
-        voluptatum possimus repellendus id quidem facilis eaque magnam fugiat,
-        exercitationem expedita nam. Voluptatibus optio esse, cumque deserunt
-        provident voluptatem repudiandae tenetur atque sit incidunt architecto
-        qui nihil quos, ullam accusantium similique officia vitae ab inventore
-        soluta consequuntur praesentium aspernatur. Reiciendis, exercitationem
-        dolores iusto hic nemo modi eum quod odit non in minima commodi? Aliquid
-        laborum, natus tempore, beatae eos excepturi esse quidem explicabo ab
-        nostrum vel ad ea, id praesentium itaque nulla. Quis tenetur vero sunt
-        animi ipsam exercitationem ullam quos iusto nobis modi, provident dicta
-        aperiam totam. Perferendis rerum delectus sunt nisi non ipsam id
-        obcaecati asperiores adipisci optio aperiam quibusdam explicabo, quasi
-        doloremque ad in reiciendis. Necessitatibus et maiores, eveniet placeat
-        repellendus ipsum vitae dolores, ducimus corrupti dolorum quod fugit
-        aspernatur maxime veniam aperiam reprehenderit voluptatibus! Aut neque
-        ex amet ipsam sed! Id, blanditiis saepe? Corporis explicabo consequatur
-        illo ab rerum, porro, omnis asperiores et nulla inventore atque soluta,
-        facilis error quae accusamus totam. Nobis, iste earum. Amet itaque vel
-        veniam aut nihil tenetur recusandae quisquam, optio nemo beatae hic. Sed
-        alias modi nihil obcaecati fugit, asperiores minima! Cupiditate sit qui
-        deleniti cumque voluptas laborum architecto aliquam pariatur quasi optio
-        sint molestiae ullam natus nam quod, maxime inventore ab ipsa dicta,
-        saepe perspiciatis. Nostrum similique quas ut, labore, consequuntur
-        ducimus doloremque nemo impedit voluptatem deserunt ipsum soluta cumque
-        vero modi consequatur?
-      </p>
+    <div style={{ marginTop: "50px", marginBottom: "100px" }}>
+      <h1 className="text-center mt-5 ms-5" style={{ color: "#2e2e66" }}>
+        Add Desktop Collection
+      </h1>
+      <div>
+        <form>
+          <div className="shadow-lg px-4 pb-5 rounded">
+            <div className="row row-cols-2 mt-5">
+              <div className="col col-12 col-md-12 col-lg-6">
+                <FormControl
+                  className="py-3 my-4"
+                  width="100%"
+                  type="url"
+                  placeholder="Enter Image Url"
+                  required
+                />
+                <FormControl
+                  className="py-3 my-4"
+                  width="100%"
+                  type="text"
+                  placeholder="Desktop Name Name"
+                  required
+                />
+                <FormControl
+                  as="textarea"
+                  className="py-3 my-4"
+                  width="100%"
+                  type="name"
+                  placeholder="Details Configuration"
+                  required
+                />
+              </div>
+              <div className="col col-12 col-md-12 col-lg-6">
+                <div className="d-flex">
+                  <FormControl
+                    className="py-3 my-4 me-3"
+                    width="100%"
+                    type="name"
+                    placeholder="Brand"
+                    required
+                  />
+                  <FormControl
+                    className="py-3 my-4"
+                    width="100%"
+                    type="number"
+                    placeholder="Price ৳"
+                    required
+                  />
+                </div>
+                <div className="d-flex">
+                  <FormControl
+                    className="py-3 my-4 me-3"
+                    width="100%"
+                    type="number"
+                    placeholder="Total Sell"
+                    required
+                  />
+                  <FormControl
+                    className="py-3 my-4"
+                    width="100%"
+                    type="number"
+                    placeholder="Total Rate Count"
+                    required
+                  />
+                </div>
+                <FloatingLabel controlId="floatingSelect" label="Stock">
+                  <Form.Select aria-label="">
+                    <option>Available</option>
+                    <option value="2">StockOut</option>
+                  </Form.Select>
+                </FloatingLabel>
+              </div>
+            </div>
+            <div className="text-center mt-3">
+              <Rating
+                onChange={(rate) => alert(rate)}
+                emptySymbol={
+                  <i
+                    className="far fa-star fs-2"
+                    style={{ color: "#FFA500" }}
+                  ></i>
+                }
+                fullSymbol={
+                  <i
+                    className="fas fa-star fs-2"
+                    style={{ color: "#FFA500" }}
+                  ></i>
+                }
+                fractions={2}
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100 py-3 mt-4">
+              Add To Collection
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
