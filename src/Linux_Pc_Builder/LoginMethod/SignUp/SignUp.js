@@ -1,8 +1,19 @@
 import React from "react";
 import { FormControl, Row } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    /*  if (data.password === data.password2) {
+      alert("Matched");
+    } else {
+      alert("Invalid password");
+    } */
+    console.log(data);
+  };
+
   return (
     <div>
       <div
@@ -16,13 +27,14 @@ const SignUp = () => {
         </div>
         <Row xs={1} md={2} lg={2}>
           <div className="col col-12 col-md-6 col-lg-6 mt-5">
-            <form onSubmit={"Submited"}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl
                 className="py-3 my-4"
                 width="100%"
                 type="url"
                 placeholder="Enter Your Image Url"
                 required
+                {...register("image")}
               />
               <FormControl
                 className="py-3 my-4"
@@ -30,6 +42,7 @@ const SignUp = () => {
                 type="name"
                 placeholder="First Name"
                 required
+                {...register("firstName")}
               />
               <FormControl
                 className="py-3 my-4"
@@ -37,6 +50,7 @@ const SignUp = () => {
                 type="name"
                 placeholder="Last Name"
                 required
+                {...register("lastName")}
               />
               <FormControl
                 className="py-3 my-4"
@@ -44,6 +58,7 @@ const SignUp = () => {
                 type="email"
                 placeholder="Enter Your Email"
                 required
+                {...register("email")}
               />
               <FormControl
                 className="py-3 mt-4"
@@ -51,6 +66,7 @@ const SignUp = () => {
                 type="password"
                 placeholder="Enter New Password"
                 required
+                {...register("password")}
               />
               <FormControl
                 className="py-3 mt-4"
@@ -58,6 +74,7 @@ const SignUp = () => {
                 type="password"
                 placeholder="Confirm Password"
                 required
+                {...register("password2")}
               />
               <p className="text-danger mt-2">
                 <small>Your Password Is Incorrect</small>

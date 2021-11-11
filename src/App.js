@@ -13,10 +13,11 @@ import AdminLogin from "./Linux_Pc_Builder/LoginMethod/AdminLogin/AdminLogin";
 import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetails/ShippingDetails";
 import OurAllPcCollection from "./Linux_Pc_Builder/Pages/OurAllPcCollection/OurAllPcCollection";
 import Dashboard from "./Linux_Pc_Builder/Pages/Dashboard/Dashboard";
+import AuthContext from "./Linux_Pc_Builder/Context/AuthContext";
 
 function App() {
   return (
-    <div>
+    <AuthContext>
       <Router>
         <NavBaar />
         <Switch>
@@ -66,7 +67,7 @@ function App() {
         </Switch>
         <Footer />
       </Router>
-    </div>
+    </AuthContext>
   );
 }
 
