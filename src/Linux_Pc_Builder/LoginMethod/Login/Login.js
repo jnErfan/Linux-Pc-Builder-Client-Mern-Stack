@@ -8,7 +8,13 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const [smShow, setSmShow] = useState(false);
   const [email, setEmail] = useState("");
-  const { emailPasswordLogin, error, resetPassword, googleSignIn } = useAuth();
+  const {
+    emailPasswordLogin,
+    error,
+    resetPassword,
+    googleSignIn,
+    githubSignIn,
+  } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const onSubmit = (data) => {
@@ -21,6 +27,11 @@ const Login = () => {
   // Google Login Handler
   const loginWithGoogle = () => {
     googleSignIn(history, location);
+  };
+
+  // Github Login Handler
+  const loginWithGithub = () => {
+    githubSignIn(history, location);
   };
 
   return (
@@ -112,6 +123,7 @@ const Login = () => {
               />
             </button>
             <button
+              onClick={loginWithGithub}
               className="btn btn-outline-info mb-2 mx-3 rounded-circle"
               style={{ height: "70px", width: "70px" }}
             >

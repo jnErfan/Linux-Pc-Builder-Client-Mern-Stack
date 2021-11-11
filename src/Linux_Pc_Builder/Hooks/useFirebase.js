@@ -6,15 +6,16 @@ import {
   signOut,
   updateProfile,
   GoogleAuthProvider,
+  GithubAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
-  getIdToken,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import FirebaseInitialize from "../Firebase/FirebaseInitialize";
 
 FirebaseInitialize();
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 const useFirebase = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -93,6 +94,21 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
+  const githubSignIn = (history, location) => {
+    setError("");
+    setIsLoading(true);
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        setUser(result?.user);
+        const redirect = location?.state?.from || "/";
+        history.replace(redirect);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   const logOutAll = () => {
     signOut(auth)
       .then(() => {
@@ -122,6 +138,7 @@ const useFirebase = () => {
     emailPasswordSignUp,
     emailPasswordLogin,
     googleSignIn,
+    githubSignIn,
     resetPassword,
     logOutAll,
     isLoading,
