@@ -6,7 +6,14 @@ import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const { emailPasswordSignUp, error, setError } = useAuth();
+  const {
+    emailPasswordSignUp,
+    error,
+    setError,
+    googleSignIn,
+    githubSignIn,
+    facebookSignIn,
+  } = useAuth();
   const history = useHistory();
   const location = useLocation();
 
@@ -26,6 +33,21 @@ const SignUp = () => {
       const passwordError = "Password Did't Matched";
       setError(passwordError);
     }
+  };
+
+  // Google Login Handler
+  const signUpWithGoogle = () => {
+    googleSignIn(history, location);
+  };
+
+  // Github Login Handler
+  const signUpWithGithub = () => {
+    githubSignIn(history, location);
+  };
+
+  // Facebook Login Handler
+  const signUpWithFacebook = () => {
+    facebookSignIn(history, location);
   };
 
   return (
@@ -110,6 +132,7 @@ const SignUp = () => {
                 </Link>
               </p>
               <button
+                onClick={signUpWithGoogle}
                 className="btn btn-outline-info mb-2 mx-3 rounded-circle"
                 style={{ height: "70px", width: "70px" }}
               >
@@ -119,6 +142,7 @@ const SignUp = () => {
                 />
               </button>
               <button
+                onClick={signUpWithGithub}
                 className="btn btn-outline-info mb-2 mx-3 rounded-circle"
                 style={{ height: "70px", width: "70px" }}
               >
@@ -128,6 +152,7 @@ const SignUp = () => {
                 />
               </button>
               <button
+                onClick={signUpWithFacebook}
                 className="btn btn-outline-info mb-2 mx-3 rounded-circle"
                 style={{ height: "70px", width: "70px" }}
               >
