@@ -18,6 +18,7 @@ const Login = () => {
     resetPassword(email);
   };
 
+  // Google Login Handler
   const loginWithGoogle = () => {
     googleSignIn(history, location);
   };
