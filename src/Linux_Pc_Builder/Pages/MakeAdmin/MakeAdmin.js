@@ -8,7 +8,10 @@ const MakeAdmin = () => {
   };
   console.log(checked);
   return (
-    <div style={{ marginTop: "50px", marginBottom: "100px" }}>
+    <div
+      style={{ marginTop: "50px", marginBottom: "100px" }}
+      className="container"
+    >
       {!checked ? (
         <h1 className="text-center ms-5" style={{ color: "#2e2e66" }}>
           Make <span style={{ color: "orangered" }}>ADMIN</span>
@@ -19,7 +22,7 @@ const MakeAdmin = () => {
         </h1>
       )}
       <form>
-        <div className="shadow-lg p-5 rounded mt-4">
+        <div className="shadow-lg p-5  mt-4" style={{ borderRadius: "20px" }}>
           <FormControl
             className="my-3 py-3"
             type="email"

@@ -10,8 +10,8 @@ const AddDesktop = () => {
       </h1>
       <div>
         <form>
-          <div className="shadow-lg px-4 pb-5 rounded">
-            <div className="row row-cols-2 mt-5">
+          <div className="shadow-lg px-5 pb-5" style={{ borderRadius: "20px" }}>
+            <div className="row row-cols-2 mt-5 pt-5">
               <div className="col col-12 col-md-12 col-lg-6">
                 <FormControl
                   className="py-3 my-4"
@@ -95,7 +95,11 @@ const AddDesktop = () => {
                 fractions={2}
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100 py-3 mt-4">
+            <button
+              type="submit"
+              className="btn w-100 py-3 mt-4 text-white"
+              style={{ backgroundColor: "#2e2e66" }}
+            >
               Add To Collection
             </button>
           </div>

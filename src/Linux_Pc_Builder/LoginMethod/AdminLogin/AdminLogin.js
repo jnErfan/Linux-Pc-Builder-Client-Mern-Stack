@@ -6,7 +6,10 @@ const AdminLogin = () => {
   return (
     <div className="adminLoginContainer">
       <div className="d-flex justify-content-center container">
-        <div className="shadow-lg p-5 rounded bg-light">
+        <div
+          className="shadow-lg p-5 bg-light"
+          style={{ borderRadius: "20px" }}
+        >
           <h1 className="text-center mx-5 fw-bold">
             <span style={{ color: "orangered" }}>ADMIN</span> PANEL
           </h1>

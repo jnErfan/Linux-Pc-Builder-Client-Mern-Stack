@@ -18,12 +18,10 @@ const MyOrder = () => {
                   <div className="col-md-4">
                     <img
                       style={{
-                        borderRadius: "100px",
-                        height: "150px",
-                        marginTop: "30px",
+                        borderRadius: "50px",
                       }}
                       src="https://i.ibb.co/XxnXS2X/2.png"
-                      className="img-fluid rounded-start w-100"
+                      className="img-fluid w-100"
                       alt=""
                     />
                   </div>

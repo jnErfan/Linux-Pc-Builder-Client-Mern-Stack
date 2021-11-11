@@ -5,7 +5,7 @@ import "./ManageAllOrder.css";
 const ManageAllOrder = () => {
   return (
     <div style={{ marginBottom: "100px" }}>
-      <h1 className="text-center mt-5 ms-5" style={{ color: "#2e2e66" }}>
+      <h1 className="text-center mt-5" style={{ color: "#2e2e66" }}>
         Manage All Order
       </h1>
       <div className="mt-4">
@@ -17,7 +17,7 @@ const ManageAllOrder = () => {
         </h4>
         <Table responsive="md" hover className="tableContainer">
           <thead>
-            <tr className="text-white " style={{ backgroundColor: "#2E2E66" }}>
+            <tr className="text-white" style={{ backgroundColor: "#2E2E66" }}>
               <th className="px-5 py-3 border-0 fw-normal">
                 <small className="textOrder">Order Info</small>
               </th>
@@ -33,7 +33,7 @@ const ManageAllOrder = () => {
                   <div className="d-flex">
                     <div>
                       <img
-                        width="90%"
+                        width="95%"
                         className="me-3 image"
                         src="https://i.ibb.co/XxnXS2X/2.png"
                         alt=""
@@ -95,16 +95,16 @@ const ManageAllOrder = () => {
                   <span className="status2 status  px-4 py-1">Reject</span>
                 </p>
                 <p>
-                  <small className="d-flex status3 status ps-2 py-2">
+                  <span className="d-flex status3 status ps-2 py-1">
                     Shipped <i className="fas fa-shipping-fast"></i>
-                  </small>
+                  </span>
                 </p>
               </td>
               <td className="py-4 ps-5 border-0">
                 <button className="btn btn-outline-success rounded-pill">
                   Shipped <i className="fas fa-shipping-fast"></i>
                 </button>
-                <button className="btn btn-outline-danger rounded-pill mt-4">
+                <button className="btn btn-outline-danger rounded-pill mt-4 px-3">
                   Reject <i className="far fa-trash-alt"></i>
                 </button>
               </td>

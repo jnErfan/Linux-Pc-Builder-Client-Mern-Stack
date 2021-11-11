@@ -2,10 +2,10 @@
   background: linear-gradient(100deg, #658dd65d, #ffffff);
 }
 .dashboardNev {
-  color: #000;
+  color: #fff;
 }
 .dashboardNev:hover {
   transform: scale(0.9);
+  transition: 300ms;
   color: #fff;
-  background-color: #000;
 }

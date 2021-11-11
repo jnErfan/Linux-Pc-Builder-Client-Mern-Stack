@@ -1,44 +1,93 @@
 import React from "react";
+import { Card, Col, FormControl, Row } from "react-bootstrap";
+import Rating from "react-rating";
 
 const Review = () => {
   return (
-    <div>
-      <h1>Review</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-        praesentium itaque voluptas modi iure consequuntur earum ullam, et
-        soluta, quaerat asperiores, magnam culpa quae aliquid rem. In earum est
-        architecto voluptates harum quaerat qui, animi voluptas tenetur officiis
-        eum assumenda, esse accusamus. Eveniet, provident recusandae quae qui
-        magni maxime modi eaque voluptatibus eos aspernatur architecto quidem
-        magnam itaque voluptate totam hic neque nostrum assumenda, earum sequi
-        ullam? Non odit quaerat aliquid id architecto incidunt! Nostrum
-        laboriosam molestiae obcaecati mollitia illo assumenda quo quia labore,
-        quas, vitae asperiores fugiat laudantium? Commodi aut ratione ab. Nam
-        laborum, necessitatibus ullam adipisci eligendi sit quos illo fugit quas
-        corrupti enim, totam, ad maiores blanditiis cum assumenda consequuntur
-        repudiandae in corporis distinctio soluta rem natus! Aspernatur nam
-        nobis esse voluptas ratione iure minus non distinctio itaque excepturi
-        quos vero veniam placeat quam, accusantium necessitatibus rerum aperiam,
-        ducimus odit. Eaque recusandae perferendis, error repudiandae
-        accusantium quae cum perspiciatis, id porro quia dolores maxime? Est,
-        doloribus dolores accusamus nihil consequatur distinctio quasi possimus?
-        Ipsum itaque odit pariatur neque placeat magnam fugit, amet totam quae
-        alias dolor corrupti veniam minus harum id voluptate, libero adipisci
-        doloremque sit nisi recusandae maxime porro consequatur. Deleniti animi
-        fugiat quaerat, modi quidem at odit aliquam porro cum vitae velit
-        molestiae, commodi, ab obcaecati asperiores nisi repudiandae fugit
-        maxime eum voluptatum saepe. Magnam iure esse ab eum pariatur quibusdam
-        omnis! Fugiat quo esse neque accusantium optio maiores nihil deleniti
-        atque et! Expedita culpa optio, sit dolor praesentium unde tenetur sint
-        minima deleniti reiciendis quam quaerat molestias eligendi sapiente
-        quibusdam debitis veritatis voluptate consectetur cumque rerum impedit
-        exercitationem doloremque nesciunt corrupti. Debitis, possimus pariatur.
-        Minima ad numquam, illum, rem qui assumenda veritatis architecto, neque
-        aspernatur quos ipsa praesentium eius excepturi dolor? Sapiente
-        voluptates vel veritatis? Mollitia totam accusamus sint ullam ducimus
-        cumque aliquid voluptate.
-      </p>
+    <div
+      style={{ marginTop: "50px", marginBottom: "100px" }}
+      className="container"
+    >
+      <h1 className="text-center" style={{ color: "#2e2e66" }}>
+        Review
+        <i className="far fa-grin ms-3" style={{ color: "#FFA500" }}></i>
+      </h1>
+      <form>
+        <Row sm={1} md={1} lg={1} style={{ marginTop: "80px" }}>
+          <Col
+            style={{
+              backgroundColor: "#E6E8EB",
+              borderRadius: "20px",
+              paddingTop: "130px",
+              paddingLeft: "40px",
+              paddingRight: "40px",
+              paddingBottom: "40px",
+            }}
+          >
+            <Card
+              className="border-0  shadow-lg p-3"
+              style={{ borderRadius: "20px" }}
+            >
+              <div className="d-flex justify-content-center pt-4">
+                <Card.Img
+                  style={{
+                    marginTop: "-100px",
+                    border: "5px solid #fff",
+                    borderRadius: "50%",
+                    height: "150px",
+                    width: "150px",
+                  }}
+                  src="https://yt3.ggpht.com/ytc/AKedOLTG3VPjtqAbVGOvEXAgb-9aPeLgDtZScX2hEMao6A=s900-c-k-c0x00ffffff-no-rj"
+                />
+              </div>
+              <Card.Body className="text-center">
+                <Card.Title className="fw-bold">Alia Bhat</Card.Title>
+                <p>
+                  <small className="text-secondary">
+                    Review Are Public And Includes Your Account
+                  </small>
+                </p>
+                <hr />
+                <div className="text-center mt-3">
+                  <p className="text-secondary">Rate Your Experience</p>
+                  <Rating
+                    onChange={(rate) => alert(rate)}
+                    emptySymbol={
+                      <i
+                        className="far fa-star fs-1"
+                        style={{ color: "#FFA500" }}
+                      ></i>
+                    }
+                    fullSymbol={
+                      <i
+                        className="fas fa-star fs-1"
+                        style={{ color: "#FFA500" }}
+                      ></i>
+                    }
+                    fractions={2}
+                  />
+                </div>
+                <FormControl
+                  as="textarea"
+                  className="py-3 my-4"
+                  width="100%"
+                  type="name"
+                  placeholder="Describe Your Experience"
+                  required
+                />
+
+                <button
+                  type="submit"
+                  className="btn w-100 py-3 mt-4 text-white"
+                  style={{ backgroundColor: "#FFA500" }}
+                >
+                  Submit Review
+                </button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </form>
     </div>
   );
 };

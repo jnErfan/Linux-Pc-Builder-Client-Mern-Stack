@@ -2,6 +2,7 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import { Route, Switch, useRouteMatch } from "react-router";
 import { NavLink } from "react-router-dom";
+import AdminLogin from "../../LoginMethod/AdminLogin/AdminLogin";
 import AddDesktop from "../AddDesktop/AddDesktop";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import ManageAllOrder from "../ManageAllOrder/ManageAllOrder";
@@ -19,10 +20,13 @@ const Dashboard = () => {
   };
   return (
     <div style={{ marginTop: "100px" }} className="dashboardContainer">
-      <Row xs={2} md={2} lg={2} className="container">
+      <Row xs={2} md={2} lg={2} className="mx-0">
         <div
           className="col col-4 col-md-2 col-lg-2"
-          style={{ borderRight: "2px solid #000" }}
+          style={{
+            borderRight: "2px solid #171741",
+            backgroundColor: "#2E2E66",
+          }}
         >
           <div className="">
             {/* Admin Switching */}
@@ -83,7 +87,9 @@ const Dashboard = () => {
             <Switch>
               {/* Admin Routes */}
               <Route exact path={path}>
-                <ManageAllOrder />
+                <h1 className="text-center mt-4">Welcome To Dashboard</h1>
+                <AdminLogin />
+                {/* <ManageAllOrder /> */}
               </Route>
               <Route path={`${path}/manageOrder`}>
                 <ManageAllOrder />

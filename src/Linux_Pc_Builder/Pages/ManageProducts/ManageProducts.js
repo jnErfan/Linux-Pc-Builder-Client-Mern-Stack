@@ -64,7 +64,7 @@ const ManageProducts = () => {
       className="container"
       style={{ marginTop: "50px", marginBottom: "100px" }}
     >
-      <h1 className="text-center ms-5" style={{ color: "#2e2e66" }}>
+      <h1 className="text-center" style={{ color: "#2e2e66" }}>
         Manage All Products
       </h1>
       <div>
@@ -129,7 +129,7 @@ const ManageProducts = () => {
                         <Button variant="outline-success rounded-pill px-4">
                           Edit <i className="far fa-edit"></i>
                         </Button>
-                        <Button variant="outline-danger rounded-pill px-3">
+                        <Button variant="outline-danger rounded-pill px-4">
                           Delete <i className="far fa-trash-alt fs-5"></i>
                         </Button>
                       </div>
