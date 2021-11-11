@@ -6,7 +6,6 @@ const MakeAdmin = () => {
   const checkedHandler = (params) => {
     setChecked(params.target.checked);
   };
-  console.log(checked);
   return (
     <div
       style={{ marginTop: "50px", marginBottom: "100px" }}

@@ -12,7 +12,6 @@ const OurPcPackage = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-  console.log(products);
   return (
     <div className="my-5 container">
       <div className="text-center mb-5">
