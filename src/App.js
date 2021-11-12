@@ -10,11 +10,12 @@ import NotFound from "./Linux_Pc_Builder/Pages/NotFound/NotFound";
 import Login from "./Linux_Pc_Builder/LoginMethod/Login/Login";
 import SignUp from "./Linux_Pc_Builder/LoginMethod/SignUp/SignUp";
 import AdminLogin from "./Linux_Pc_Builder/LoginMethod/AdminLogin/AdminLogin";
-import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetails/ShippingDetails";
 import OurAllPcCollection from "./Linux_Pc_Builder/Pages/OurAllPcCollection/OurAllPcCollection";
 import Dashboard from "./Linux_Pc_Builder/Pages/Dashboard/Dashboard";
 import AuthContext from "./Linux_Pc_Builder/Context/AuthContext";
 import PrivateRoute from "./Linux_Pc_Builder/PrivateRoute/PrivateRoute";
+import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetail/ShippingDetails";
+import DesktopDetails from "./Linux_Pc_Builder/Pages/DesktopDetails/DesktopDetails";
 
 function App() {
   return (
@@ -31,7 +32,11 @@ function App() {
             <HomeContainer />
           </Route>
           {/* Shipping Details  */}
-          <PrivateRoute path="/shippingDetails/:desktopId">
+          <PrivateRoute path="/desktopDetails/:desktopId">
+            <DesktopDetails />
+          </PrivateRoute>
+          {/* Shipping Details  */}
+          <PrivateRoute path="/desktopDetails">
             <ShippingDetails />
           </PrivateRoute>
           {/*  Our Blogs  */}

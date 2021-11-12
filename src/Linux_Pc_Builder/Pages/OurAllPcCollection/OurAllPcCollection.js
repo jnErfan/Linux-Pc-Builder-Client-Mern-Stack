@@ -46,7 +46,7 @@ const OurAllPcCollection = () => {
             {products.map((product) => (
               <div
                 className="col col-12 col-md-6 col-lg-4 text-center mb-5"
-                key={product.pcName}
+                key={product._id}
               >
                 <Col>
                   <Card className="shadow-lg cardBody2">
@@ -106,14 +106,12 @@ const OurAllPcCollection = () => {
                             </Button>
                             <Button
                               onClick={() =>
-                                history.push(
-                                  `/shippingDetails/${product.pcName}`
-                                )
+                                history.push(`/desktopDetails/${product._id}`)
                               }
                               className="buttonColor"
                               variant="text-white"
                             >
-                              Buy Now
+                              Details
                             </Button>
                           </>
                         ) : (

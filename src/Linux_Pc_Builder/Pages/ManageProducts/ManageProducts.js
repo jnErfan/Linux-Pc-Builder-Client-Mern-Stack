@@ -32,7 +32,7 @@ const ManageProducts = () => {
             {products.map((product) => (
               <div
                 className="col col-12 col-md-6 col-lg-6 text-center mb-5"
-                key={product.pcName}
+                key={product._id}
               >
                 <Col>
                   <Card className="shadow-lg cardBody3">

@@ -37,8 +37,8 @@ const useFirebase = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setUser(result?.user);
+
         const redirect = location?.state?.from || "/";
-        setUser(result?.user);
         history.push(redirect);
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -48,6 +48,7 @@ const useFirebase = () => {
           .catch((error) => {
             setError(error.message);
           });
+        savedUserInfo(name, email, "POST");
       })
       .catch((error) => {
         setError(error.message);
@@ -87,6 +88,7 @@ const useFirebase = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result?.user);
+        savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         history.replace(redirect);
       })
@@ -102,6 +104,7 @@ const useFirebase = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         setUser(result?.user);
+        savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         history.replace(redirect);
       })
@@ -117,6 +120,7 @@ const useFirebase = () => {
     signInWithPopup(auth, facebookProvider)
       .then((result) => {
         setUser(result?.user);
+        savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         history.replace(redirect);
       })
@@ -125,7 +129,7 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   };
-  console.log(user);
+
   const logOutAll = () => {
     signOut(auth)
       .then(() => {
@@ -135,6 +139,16 @@ const useFirebase = () => {
         setError(error.message);
       })
       .finally(() => setIsLoading(false));
+  };
+
+  const savedUserInfo = (name, email, method) => {
+    const date = new Date();
+    const user = { name, email, date };
+    fetch("http://localhost:5000/users", {
+      method: method,
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(user),
+    });
   };
 
   useEffect(() => {
