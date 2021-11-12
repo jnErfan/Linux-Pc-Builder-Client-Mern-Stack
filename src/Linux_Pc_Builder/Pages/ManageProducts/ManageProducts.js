@@ -1,64 +1,23 @@
+import { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import Rating from "react-rating";
 import "./ManageProducts.css";
 
 const ManageProducts = () => {
-  /*  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(0);
+  const [pageCounts, setPageCount] = useState(0);
+  const size = 4;
+
   useEffect(() => {
-    fetch("./allData.json")
+    fetch(`http://localhost:5000/desktopsPagination?page=${page}&size=${size}`)
       .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []); */
-  const products = [
-    {
-      image: "https://i.ibb.co/2NctKVY/1.png",
-      pcName: "Intel 10th Gen Core i3-10100 Gaming",
-      configuration:
-        "ASRock H470M-HDV 10th and 11th Gen Intel M-ATX,Motherboard,Intel i3-10100 10th Gen Processor,4GB 2400MHz RAM +1TB HDD, Asus GeForce GT 710 2GB DDR5 Graphics Card",
-      Brand: "Intel",
-      price: "36,100",
-      rate: "3.6",
-      rated: "122",
-      sell: "147",
-      stock: "available",
-    },
-    {
-      image: "https://i.ibb.co/XxnXS2X/2.png",
-      pcName: "Gaming 10th Gen Core i5-10400f",
-      configuration:
-        "ASRock B560M-HDV 11th Gen M-ATX Motherboard,Intel,10th Gen i5-10400F Processor,8GB RAM +1TB HDD + 128GB SSD,GT 1030 2GB GDDR5 Graphics Card",
-      Brand: "Intel",
-      price: "53,400",
-      rate: "4.1",
-      rated: "108",
-      sell: "127",
-      stock: "available",
-    },
-    {
-      image: "https://i.ibb.co/nCq7SfK/3.jpg",
-      pcName: "AMD Ryzen 5 3500X Gaming",
-      configuration:
-        "ASROCK B450M-HDV R4.0 AMD B450 Chipset Motherboard,AMD RYZEN 5 3500X Processor,8GB 2400MHz RAM + 128GB SSD,GeForce GTX 1050Ti 4GB Graphics",
-      Brand: "RYZEN",
-      price: "63,500",
-      rate: "4.3",
-      rated: "155",
-      sell: "197",
-      stock: "stockOut",
-    },
-    {
-      image: "https://i.ibb.co/z8Tff73/4.jpg",
-      pcName: "AMD Ryzen 5 3600 Gaming",
-      configuration:
-        "Asrock B450M Pro4-F AMD Motherboard,AMD Ryzen 5 3600 Processor,8GB 3200MHz RAM + 128GB SSD, GeForce GTX 1050Ti 4GB Graphics Card",
-      Brand: "RYZEN",
-      price: "69,230",
-      rate: "4.1",
-      rated: "144",
-      sell: "177",
-      stock: "available",
-    },
-  ];
+      .then((data) => {
+        setProducts(data?.desktopPackage);
+        const count = data?.count;
+        setPageCount(Math.ceil(count / size));
+      });
+  }, [page]);
   return (
     <div
       className="container"
@@ -143,6 +102,24 @@ const ManageProducts = () => {
               </div>
             ))}
           </Row>
+        </div>
+        <div
+          className="mt-5 text-center shadow-lg py-3"
+          style={{ borderRadius: "15px" }}
+        >
+          {[...Array(pageCounts).keys()].map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => setPage(pageNum)}
+              className={
+                pageNum === page
+                  ? "btn btn-info mx-2 fw-bold rounded-circle"
+                  : "btn btn-outline-info fw-bold mx-2 rounded-circle"
+              }
+            >
+              {pageNum + 1}
+            </button>
+          ))}
         </div>
       </div>
     </div>
