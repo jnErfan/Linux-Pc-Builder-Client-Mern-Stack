@@ -1,15 +1,29 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import "./ManageAllOrder.css";
 
 const ManageAllOrder = () => {
   const [orders, setOrders] = useState([]);
+  const [modified, setModified] = useState("");
   useEffect(() => {
     fetch("http://localhost:5000/manageOrders")
       .then((res) => res.json())
-      .then((data) => setOrders(data));
-  }, []);
-  console.log(orders);
+      .then((data) => {
+        setModified(data);
+        setOrders(data);
+      });
+  }, [modified]);
+
+  const shippedHandler = (id) => {
+    const status = { status: "Shipped" };
+    axios.put(`http://localhost:5000/statusUpdate/${id}`, status);
+  };
+  const rejectHandler = (id) => {
+    const status = { status: "Reject" };
+    axios.put(`http://localhost:5000/statusUpdate/${id}`, status);
+  };
+
   return (
     <div style={{ marginBottom: "100px" }}>
       <h1 className="text-center mt-5" style={{ color: "#2e2e66" }}>
@@ -115,10 +129,10 @@ const ManageAllOrder = () => {
                     </p>
                   </td>
                   <td className="py-4 ps-5 border-0 statusRes ">
-                    <div style={{ marginTop: "50%", marginBottom: "50%" }}>
+                    <div style={{ marginTop: "65%" }}>
                       {status === "Pending" && (
                         <p>
-                          <span className="status1 status px-3 py-1">
+                          <span className="status1 status px-3 py-2">
                             Pending
                           </span>
                         </p>
@@ -133,7 +147,7 @@ const ManageAllOrder = () => {
                       )}
                       {status === "Shipped" && (
                         <p>
-                          <span className="d-flex status3 status ps-2 py-1">
+                          <span className="d-flex status3 status px-3 py-1">
                             Shipped <i className="fas fa-shipping-fast"></i>
                           </span>
                         </p>
@@ -142,10 +156,16 @@ const ManageAllOrder = () => {
                   </td>
                   <td className="py-4 ps-5 border-0">
                     <div style={{ marginTop: "25%", marginBottom: "25%" }}>
-                      <button className="btn btn-outline-success rounded-pill">
+                      <button
+                        onClick={() => shippedHandler(_id)}
+                        className="btn btn-outline-success rounded-pill"
+                      >
                         Shipped <i className="fas fa-shipping-fast"></i>
                       </button>
-                      <button className="btn btn-outline-danger rounded-pill mt-4 px-4">
+                      <button
+                        onClick={() => rejectHandler(_id)}
+                        className="btn btn-outline-danger rounded-pill mt-4 px-4"
+                      >
                         Reject <i className="far fa-trash-alt"></i>
                       </button>
                     </div>
