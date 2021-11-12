@@ -16,6 +16,7 @@ import AuthContext from "./Linux_Pc_Builder/Context/AuthContext";
 import PrivateRoute from "./Linux_Pc_Builder/PrivateRoute/PrivateRoute";
 import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetail/ShippingDetails";
 import DesktopDetails from "./Linux_Pc_Builder/Pages/DesktopDetails/DesktopDetails";
+import OrderConfirm from "./Linux_Pc_Builder/Pages/OrderConfirm/OrderConfirm";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
           {/* Shipping Details  */}
           <PrivateRoute path="/shippingDetails/:shippingId">
             <ShippingDetails />
+          </PrivateRoute>
+          {/* Shipping Details  */}
+          <PrivateRoute path="/orderConfirm">
+            <OrderConfirm />
           </PrivateRoute>
           {/*  Our Blogs  */}
           <PrivateRoute path="/allPcCollection">

@@ -19,6 +19,7 @@ const ShippingDetails = () => {
       if (result.data.insertedId) {
         reset();
         alert("Order Successful");
+        history.push("/orderConfirm");
       }
     });
     console.log(data);
