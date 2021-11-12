@@ -25,11 +25,20 @@ const ManageProducts = () => {
   }, [page, pageUpdate]);
 
   const deleteHandler = (id) => {
-    axios.delete(`http://localhost:5000/deleteDesktop/${id}`).then((result) => {
-      if (result.data.deletedCount) {
-        alert("Delete Successful");
-      }
-    });
+    const confirmation = prompt("If You Want To Delete ? Then Write (DELETE)");
+    if (confirmation === "DELETE") {
+      axios
+        .delete(`http://localhost:5000/deleteDesktop/${id}`)
+        .then((result) => {
+          if (result.data.deletedCount) {
+            alert("Delete Successful");
+          }
+        });
+    } else if (confirmation === null) {
+      return;
+    } else {
+      alert("Your Type Is Wrong");
+    }
   };
 
   return (
@@ -113,7 +122,9 @@ const ManageProducts = () => {
                         <div className="row row-cols-2">
                           <div className="col col-12  col-md-6 col-lg-6 mt-2">
                             <Button
-                              onClick={() => history.push("/updateDesktop")}
+                              onClick={() =>
+                                history.push(`/updateDesktop/${product._id}`)
+                              }
                               variant="outline-success rounded-pill px-4"
                             >
                               Edit <i className="far fa-edit"></i>

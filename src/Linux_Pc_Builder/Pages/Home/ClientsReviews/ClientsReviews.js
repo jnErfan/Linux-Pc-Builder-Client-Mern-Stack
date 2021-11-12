@@ -28,7 +28,7 @@ const ClientsReviews = () => {
         </div>
 
         <Row xs={1} md={1} lg={1} className="g-4" style={{ marginTop: "60px" }}>
-          <Carousel variant="dark" interval={700}>
+          <Carousel variant="dark" interval={1500}>
             {reviews.map(({ image, name, rate, describe }) => (
               <Carousel.Item>
                 <Col

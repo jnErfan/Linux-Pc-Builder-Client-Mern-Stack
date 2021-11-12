@@ -16,7 +16,6 @@ const AddDesktop = () => {
       }
     });
   };
-  console.log(rate);
   return (
     <div style={{ marginTop: "50px", marginBottom: "100px" }}>
       <h1 className="text-center mt-5 ms-5" style={{ color: "#2e2e66" }}>

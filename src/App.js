@@ -17,6 +17,7 @@ import PrivateRoute from "./Linux_Pc_Builder/PrivateRoute/PrivateRoute";
 import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetail/ShippingDetails";
 import DesktopDetails from "./Linux_Pc_Builder/Pages/DesktopDetails/DesktopDetails";
 import OrderConfirm from "./Linux_Pc_Builder/Pages/OrderConfirm/OrderConfirm";
+import UpdateDesktop from "./Linux_Pc_Builder/Pages/UpdateDesktop/UpdateDesktop";
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
           {/* Shipping Details  */}
           <PrivateRoute path="/shippingDetails/:shippingId">
             <ShippingDetails />
+          </PrivateRoute>
+          {/* Update Shipping  */}
+          <PrivateRoute path="/updateDesktop/:updateId">
+            <UpdateDesktop />
           </PrivateRoute>
           {/* Shipping Details  */}
           <PrivateRoute path="/orderConfirm">

@@ -98,7 +98,7 @@ const ManageAllOrder = () => {
                 orderDetails,
                 status,
               }) => (
-                <tr>
+                <tr key={_id}>
                   <td className="py-4 ps-5 border-0">
                     <div className="">
                       <div className="d-flex">
