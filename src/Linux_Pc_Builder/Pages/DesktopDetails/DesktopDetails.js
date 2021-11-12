@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import Rating from "react-rating";
 import { useHistory, useParams } from "react-router";
 import "./DesktopDetails.css";
@@ -15,6 +15,7 @@ const DesktopDetails = () => {
       .then((data) => setDesktopDetails(data?.[0]));
   }, [desktopId]);
   const {
+    _id,
     image,
     pcName,
     configuration,
@@ -94,12 +95,18 @@ const DesktopDetails = () => {
                 <h4 className="my-4 text-center mt-5">
                   Total Price: {price} <span className="fw-bold">৳</span>{" "}
                 </h4>
-                <button
-                  onClick={() => history.push("/desktopDetails")}
-                  className="btn btn-info text-white w-100"
-                >
-                  Proceed To Shipping
-                </button>
+                {stock === "Available" ? (
+                  <button
+                    onClick={() => history.push(`/shippingDetails/${_id}`)}
+                    className="btn btn-info text-white w-100"
+                  >
+                    Proceed To Shipping
+                  </button>
+                ) : (
+                  <Button variant="secondary text-white w-100" disabled>
+                    Out Of Stock
+                  </Button>
+                )}
               </Card.Body>
             </Card>
           </Col>

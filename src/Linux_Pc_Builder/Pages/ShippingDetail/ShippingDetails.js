@@ -1,10 +1,28 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Form, FormControl, Row } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useHistory, useParams } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const ShippingDetails = () => {
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("CashOnDelivery");
+  const history = useHistory();
+  const { user } = useAuth();
+  const { shippingId } = useParams();
+  const { register, handleSubmit, reset } = useForm();
 
-  console.log(paymentMethod);
+  const onSubmit = (data) => {
+    data.paymentMethod = paymentMethod;
+    data.orderId = shippingId;
+    axios.post("http://localhost:5000/orderDetails", data).then((result) => {
+      if (result.data.insertedId) {
+        reset();
+        alert("Order Successful");
+      }
+    });
+    console.log(data);
+  };
 
   return (
     <div
@@ -31,13 +49,15 @@ const ShippingDetails = () => {
         <Row xs={1} md={2} lg={2} style={{ marginTop: "80px" }}>
           <div className="col col-12 col-md-12 col-lg-12 text-center mb-5">
             <div className="shadow-lg p-5" style={{ borderRadius: "20px" }}>
-              <form>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl
                   className="py-3 my-4"
                   width="100%"
                   type="name"
                   placeholder="Name"
                   required
+                  defaultValue={user.displayName}
+                  {...register("name")}
                 />
                 <FormControl
                   className="py-3 my-4"
@@ -45,6 +65,8 @@ const ShippingDetails = () => {
                   type="email"
                   placeholder="Email"
                   required
+                  value={user.email}
+                  {...register("email")}
                 />
                 <FormControl
                   className="py-3 mt-4"
@@ -52,6 +74,7 @@ const ShippingDetails = () => {
                   type="number"
                   placeholder="Phone Number"
                   required
+                  {...register("number")}
                 />
 
                 <FormControl
@@ -61,6 +84,7 @@ const ShippingDetails = () => {
                   type="text"
                   placeholder="Shipping Address"
                   required
+                  {...register("address")}
                 />
 
                 <fieldset>
@@ -127,6 +151,14 @@ const ShippingDetails = () => {
             </div>
           </div>
         </Row>
+        <div className="mt-5">
+          <button
+            onClick={() => history.push(`/desktopDetails/${shippingId}`)}
+            className="btn btn-secondary w-100 py-2"
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );

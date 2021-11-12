@@ -87,33 +87,24 @@ const OurPcPackage = () => {
                       </h4>
                       <div className="d-flex justify-content-between mt-3">
                         {product.stock === "Available" ? (
-                          <>
-                            <Button variant="outline-secondary">
-                              <i className="fas fa-shopping-cart"></i>
-                            </Button>
-                            <Button
-                              onClick={() =>
-                                history.push(`/desktopDetails/${product._id}`)
-                              }
-                              className="buttonColor"
-                              variant="text-white"
-                            >
-                              Details
-                            </Button>
-                          </>
+                          <Button variant="outline-secondary">
+                            <i className="fas fa-shopping-cart"></i>
+                          </Button>
                         ) : (
-                          <>
-                            <Button variant="outline-danger" disabled>
-                              <i
-                                className="far fa-heart fs-5"
-                                style={{ color: "red" }}
-                              ></i>
-                            </Button>
-                            <Button variant="secondary text-white" disabled>
-                              Out Of Stock
-                            </Button>
-                          </>
+                          <Button variant="secondary text-white" disabled>
+                            Stock Out
+                          </Button>
                         )}
+
+                        <Button
+                          onClick={() =>
+                            history.push(`/desktopDetails/${product._id}`)
+                          }
+                          className="buttonColor"
+                          variant="text-white"
+                        >
+                          Details
+                        </Button>
                       </div>
                     </Card.Body>
                   </Card>

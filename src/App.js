@@ -36,7 +36,7 @@ function App() {
             <DesktopDetails />
           </PrivateRoute>
           {/* Shipping Details  */}
-          <PrivateRoute path="/desktopDetails">
+          <PrivateRoute path="/shippingDetails/:shippingId">
             <ShippingDetails />
           </PrivateRoute>
           {/*  Our Blogs  */}
