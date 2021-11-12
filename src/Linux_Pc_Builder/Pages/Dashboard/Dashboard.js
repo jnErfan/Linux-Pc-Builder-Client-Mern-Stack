@@ -11,6 +11,7 @@ import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import ManageAllOrder from "../ManageAllOrder/ManageAllOrder";
 import ManageProducts from "../ManageProducts/ManageProducts";
 import MyOrder from "../MyOrder/MyOrder";
+import OrderReview from "../OrderReview/OrderReview";
 import Pay from "../Pay/Pay";
 import Review from "../Review/Review";
 import "./Dashboard.css";
@@ -32,7 +33,7 @@ const Dashboard = () => {
             backgroundColor: "#2E2E66",
           }}
         >
-          <div className="">
+          <div className="my-4">
             {/* Admin Switching */}
             {user?.email === "hypereyegaming@gmail.com" && (
               <>
@@ -73,10 +74,18 @@ const Dashboard = () => {
                 <NavLink
                   activeStyle={activeStyle}
                   className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/reviewOrder`}
+                >
+                  Review Orders
+                </NavLink>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
                   to={`${url}/myOrder`}
                 >
                   My Order
                 </NavLink>
+
                 <NavLink
                   activeStyle={activeStyle}
                   className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
@@ -122,6 +131,9 @@ const Dashboard = () => {
                 <MakeAdmin />
               </AdminRoute>
               {/* Customer Routs */}
+              <PrivateRoute path={`${path}/reviewOrder`}>
+                <OrderReview />
+              </PrivateRoute>
               <PrivateRoute path={`${path}/myOrder`}>
                 <MyOrder />
               </PrivateRoute>

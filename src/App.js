@@ -31,7 +31,7 @@ function App() {
             <HomeContainer />
           </Route>
           {/* Shipping Details  */}
-          <PrivateRoute path="/shippingDetails/:packageId">
+          <PrivateRoute path="/shippingDetails/:desktopId">
             <ShippingDetails />
           </PrivateRoute>
           {/*  Our Blogs  */}

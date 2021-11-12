@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import Rating from "react-rating";
+import { useHistory } from "react-router";
 import "./OurAllPcCollection.css";
 
 const OurAllPcCollection = () => {
   const [products, setProducts] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     fetch("./data.json")
       .then((res) => res.json())
@@ -81,7 +83,13 @@ const OurAllPcCollection = () => {
                           <Button variant="outline-secondary">
                             <i className="fas fa-shopping-cart"></i>
                           </Button>
-                          <Button className="buttonColor" variant="text-white">
+                          <Button
+                            onClick={() =>
+                              history.push(`/shippingDetails/${product.pcName}`)
+                            }
+                            className="buttonColor"
+                            variant="text-white"
+                          >
                             Buy Now
                           </Button>
                         </>

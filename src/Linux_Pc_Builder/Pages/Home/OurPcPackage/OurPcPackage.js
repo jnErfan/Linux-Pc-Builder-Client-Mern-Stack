@@ -79,7 +79,13 @@ const OurPcPackage = () => {
                           <Button variant="outline-secondary">
                             <i className="fas fa-shopping-cart"></i>
                           </Button>
-                          <Button className="buttonColor" variant="text-white">
+                          <Button
+                            onClick={() =>
+                              history.push(`/shippingDetails/${product.pcName}`)
+                            }
+                            className="buttonColor"
+                            variant="text-white"
+                          >
                             Buy Now
                           </Button>
                         </>

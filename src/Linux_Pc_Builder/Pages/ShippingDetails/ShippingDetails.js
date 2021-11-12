@@ -1,11 +1,13 @@
 import React from "react";
 import { Card, Col, Form, FormControl, Row } from "react-bootstrap";
 import Rating from "react-rating";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import "./ShippingDetails.css";
 
 const ShippingDetails = () => {
   const history = useHistory();
+  const { desktopId } = useParams();
+  console.log(desktopId);
   return (
     <div
       className="container textContainer"
@@ -107,7 +109,7 @@ const ShippingDetails = () => {
                       <div className="ms-4">
                         <img
                           width="140px"
-                          src="https://i.dlpng.com/static/png/7196078_preview.png"
+                          src="https://icon-library.com/images/cash-on-delivery-icon/cash-on-delivery-icon-14.jpg"
                           alt=""
                         />
                       </div>
