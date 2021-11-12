@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, FormControl, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
@@ -8,13 +8,24 @@ import useAuth from "../../Hooks/useAuth";
 const ShippingDetails = () => {
   const [paymentMethod, setPaymentMethod] = useState("CashOnDelivery");
   const history = useHistory();
+  const [orderDetails, setOrderDetails] = useState({});
   const { user } = useAuth();
   const { shippingId } = useParams();
   const { register, handleSubmit, reset } = useForm();
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/desktopDetails/${shippingId}`)
+      .then((res) => res.json())
+      .then((data) => setOrderDetails(data?.[0]));
+  }, [shippingId]);
+
   const onSubmit = (data) => {
+    const status = "Pending";
+    const date = new Date();
+    data.status = status;
     data.paymentMethod = paymentMethod;
-    data.orderId = shippingId;
+    data.orderDetails = orderDetails;
+    data.date = date.toDateString();
     axios.post("http://localhost:5000/orderDetails", data).then((result) => {
       if (result.data.insertedId) {
         reset();
