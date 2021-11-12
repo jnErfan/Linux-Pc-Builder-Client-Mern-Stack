@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import Rating from "react-rating";
 import "./ManageProducts.css";
 
@@ -27,82 +27,96 @@ const ManageProducts = () => {
         Manage All Products
       </h1>
       <div>
-        <div>
-          <Row sm={1} md={2} lg={2} className="mt-5">
-            {products.map((product) => (
-              <div
-                className="col col-12 col-md-6 col-lg-6 text-center mb-5"
-                key={product._id}
-              >
-                <Col>
-                  <Card className="shadow-lg cardBody3">
-                    <div className="d-flex justify-content-center">
-                      {" "}
-                      <Card.Img
-                        className="w-75"
-                        variant="top"
-                        src={product.image}
-                      />
-                    </div>
-                    <Card.Body>
-                      <Card.Title className="ellipsis3 fw-bold mb-3">
-                        {product.pcName}
-                      </Card.Title>
-                      <Card.Text className="ellipsis3">
-                        <small>{product.configuration}</small>
-                      </Card.Text>
+        {!products.length ? (
+          <div
+            className="text-center"
+            style={{ marginTop: "70px", marginBottom: "150px" }}
+          >
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        ) : (
+          <div>
+            <Row sm={1} md={2} lg={2} className="mt-5">
+              {products.map((product) => (
+                <div
+                  className="col col-12 col-md-6 col-lg-6 text-center mb-5"
+                  key={product._id}
+                >
+                  <Col>
+                    <Card className="shadow-lg cardBody3">
+                      <div className="d-flex justify-content-center">
+                        {" "}
+                        <Card.Img
+                          className="w-75"
+                          variant="top"
+                          src={product.image}
+                        />
+                      </div>
+                      <Card.Body>
+                        <Card.Title className="ellipsis3 fw-bold mb-3">
+                          {product.pcName}
+                        </Card.Title>
+                        <Card.Text className="ellipsis3">
+                          <small>{product.configuration}</small>
+                        </Card.Text>
 
-                      <ul className="text-start">
-                        <li>
-                          Brand:{" "}
-                          <span className="brand3"> {product.Brand}</span>
-                        </li>
-                        <li className="mt-2">
-                          Total Sell{" "}
-                          <span className="fw-bold">{product.sell}</span>{" "}
-                        </li>
-                      </ul>
-                      <div className="text-center my-3">
-                        <Rating
-                          emptySymbol={
-                            <i
-                              className="far fa-star fs-5"
-                              style={{ color: "#FFA500" }}
-                            ></i>
-                          }
-                          fullSymbol={
-                            <i
-                              className="fas fa-star fs-5"
-                              style={{ color: "#FFA500" }}
-                            ></i>
-                          }
-                          initialRating={product.rate}
-                          readonly
-                        />{" "}
-                        <span className="rated3">{product.rated}</span>
-                      </div>
-                      <h4 className="my-4">
-                        {product.price} <span className="fw-bold">৳</span>{" "}
-                      </h4>
-                      <div className="row row-cols-2">
-                        <div className="col col-12  col-md-6 col-lg-6 mt-2">
-                          <Button variant="outline-success rounded-pill px-4">
-                            Edit <i className="far fa-edit"></i>
-                          </Button>
+                        <ul className="text-start">
+                          <li>
+                            Brand:{" "}
+                            <span className="brand3"> {product.Brand}</span>
+                          </li>
+                          <li className="mt-2">
+                            Total Sell{" "}
+                            <span className="fw-bold">{product.sell}</span>{" "}
+                          </li>
+                        </ul>
+                        <div className="text-center my-3">
+                          <Rating
+                            emptySymbol={
+                              <i
+                                className="far fa-star fs-5"
+                                style={{ color: "#FFA500" }}
+                              ></i>
+                            }
+                            fullSymbol={
+                              <i
+                                className="fas fa-star fs-5"
+                                style={{ color: "#FFA500" }}
+                              ></i>
+                            }
+                            initialRating={product.rate}
+                            readonly
+                          />{" "}
+                          <span className="rated3">{product.rated}</span>
                         </div>
-                        <div className="col col-12 col-md-6 col-lg-6 mt-2">
-                          <Button variant="outline-danger rounded-pill px-4">
-                            Delete <i className="far fa-trash-alt fs-5"></i>
-                          </Button>
+                        <h4 className="my-4">
+                          {product.price} <span className="fw-bold">৳</span>{" "}
+                        </h4>
+                        <div className="row row-cols-2">
+                          <div className="col col-12  col-md-6 col-lg-6 mt-2">
+                            <Button variant="outline-success rounded-pill px-4">
+                              Edit <i className="far fa-edit"></i>
+                            </Button>
+                          </div>
+                          <div className="col col-12 col-md-6 col-lg-6 mt-2">
+                            <Button variant="outline-danger rounded-pill px-4">
+                              Delete <i className="far fa-trash-alt fs-5"></i>
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </div>
-            ))}
-          </Row>
-        </div>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                </div>
+              ))}
+            </Row>
+          </div>
+        )}
+
         <div
           className="mt-5 text-center shadow-lg py-3"
           style={{ borderRadius: "15px" }}
