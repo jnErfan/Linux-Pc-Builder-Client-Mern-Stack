@@ -3,6 +3,7 @@ import { Row } from "react-bootstrap";
 import { Route, Switch, useRouteMatch } from "react-router";
 import { NavLink } from "react-router-dom";
 import AdminRoute from "../../AdminRoute/AdminRoute";
+import useAuth from "../../Hooks/useAuth";
 import AdminLogin from "../../LoginMethod/AdminLogin/AdminLogin";
 import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 import AddDesktop from "../AddDesktop/AddDesktop";
@@ -16,8 +17,9 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
+  const { user } = useAuth();
   const activeStyle = {
-    backgroundColor: "#000",
+    backgroundColor: "#171751",
     color: "#fff",
   };
   return (
@@ -32,56 +34,65 @@ const Dashboard = () => {
         >
           <div className="">
             {/* Admin Switching */}
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
-              to={`${url}/manageOrder`}
-            >
-              Manage Order
-            </NavLink>
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded fw-bold"
-              to={`${url}/manageProduct`}
-            >
-              <small> Manage Product</small>
-            </NavLink>
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
-              to={`${url}/addDesktop`}
-            >
-              Add Desktop
-            </NavLink>
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
-              to={`${url}/makeAdmin`}
-            >
-              Make Admin
-            </NavLink>
+            {user?.email === "hypereyegaming@gmail.com" && (
+              <>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/manageOrder`}
+                >
+                  Manage Order
+                </NavLink>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded fw-bold"
+                  to={`${url}/manageProduct`}
+                >
+                  <small> Manage Product</small>
+                </NavLink>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/addDesktop`}
+                >
+                  Add Desktop
+                </NavLink>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/makeAdmin`}
+                >
+                  Make Admin
+                </NavLink>
+              </>
+            )}
             {/* Customer Switching */}
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
-              to={`${url}/myOrder`}
-            >
-              My Order
-            </NavLink>
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
-              to={`${url}/pay`}
-            >
-              Payment Here
-            </NavLink>
-            <NavLink
-              activeStyle={activeStyle}
-              className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
-              to={`${url}/review`}
-            >
-              Review
-            </NavLink>
+
+            {user?.email !== "hypereyegaming@gmail.com" && (
+              <>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/myOrder`}
+                >
+                  My Order
+                </NavLink>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/review`}
+                >
+                  Review Here
+                </NavLink>
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="d-inline-block my-2 text-decoration-none dashboardNev px-3 py-2 rounded"
+                  to={`${url}/pay`}
+                >
+                  Payment Here
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
         <div className="col col-8 col-md-10 col-lg-10">
@@ -89,9 +100,14 @@ const Dashboard = () => {
             <Switch>
               {/* Admin Routes */}
               <Route exact path={path}>
-                <h1 className="text-center mt-4">Welcome To Dashboard</h1>
-                <AdminLogin />
-                {/* <ManageAllOrder /> */}
+                <h1 className="text-center mt-4 mb-5">
+                  Welcome To <span className="text-primary">Dashboard</span>
+                </h1>
+                {user?.email !== "hypereyegaming@gmail.com" ? (
+                  <AdminLogin />
+                ) : (
+                  <ManageAllOrder />
+                )}
               </Route>
               <AdminRoute path={`${path}/manageOrder`}>
                 <ManageAllOrder />

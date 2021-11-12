@@ -1,5 +1,5 @@
-import React from "react";
-import { FormControl } from "react-bootstrap";
+import React, { useState } from "react";
+import { FormControl, Modal } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import "./AdminLogin.css";
@@ -7,10 +7,11 @@ import { useForm } from "react-hook-form";
 
 const AdminLogin = () => {
   const { register, handleSubmit } = useForm();
-  const { error, googleSignIn, emailPasswordLogin } = useAuth();
+  const [smShow, setSmShow] = useState(false);
+  const { error, googleSignIn, emailPasswordLogin, resetPassword } = useAuth();
   const history = useHistory();
   const location = useLocation();
-
+  const [email, setEmail] = useState("");
   const onSubmit = (data) => {
     emailPasswordLogin(data.email, data.password, history, location);
   };
@@ -18,6 +19,9 @@ const AdminLogin = () => {
   // Google Login Handler
   const adminLoginWithGoogle = () => {
     googleSignIn(history, location);
+  };
+  const resetHandler = () => {
+    resetPassword(email);
   };
 
   return (
@@ -51,7 +55,36 @@ const AdminLogin = () => {
             <p className="text-danger">
               <small>{error}</small>
             </p>
-            <button className="btn text-primary mb-3">Forget Password ?</button>
+            <button
+              onClick={() => setSmShow(true)}
+              className="btn text-primary mb-3"
+            >
+              Forget Password ?
+            </button>
+            <Modal
+              size="sm"
+              show={smShow}
+              onHide={() => setSmShow(false)}
+              aria-labelledby="example-modal-sizes-title-sm"
+              className="mt-5"
+            >
+              <Modal.Body className="p-4 rounded">
+                <h6 className="text-danger my-3">{error}</h6>
+
+                <FormControl
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-100"
+                  type="email"
+                  placeholder="Enter Account Email"
+                />
+                <button
+                  onClick={resetHandler}
+                  className="btn btn-outline-success w-100 mt-4"
+                >
+                  Send Mail
+                </button>
+              </Modal.Body>
+            </Modal>
             <button
               className="btn w-100 text-white"
               style={{ backgroundColor: "orangered" }}

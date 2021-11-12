@@ -72,12 +72,20 @@ const Login = () => {
             <p className="text-danger mt-2">
               <small>{error}</small>
             </p>
-            <button
-              onClick={() => setSmShow(true)}
-              className="btn text-primary my-3"
-            >
-              Forget Password ?
-            </button>
+            <div className="d-flex justify-content-between">
+              <button
+                onClick={() => setSmShow(true)}
+                className="btn text-primary my-3"
+              >
+                Forget Password ?
+              </button>
+              <button
+                onClick={() => history.push("/adminLogin")}
+                className="btn btn-outline-secondary my-3 py-1 rounded-pill"
+              >
+                Admin Login
+              </button>
+            </div>
             <Modal
               size="sm"
               show={smShow}
