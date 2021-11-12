@@ -142,8 +142,9 @@ const useFirebase = () => {
   };
 
   const savedUserInfo = (name, email, method) => {
+    const position = "Customer";
     const date = new Date();
-    const user = { name, email, date };
+    const user = { name, email, date, position };
     fetch("http://localhost:5000/users", {
       method: method,
       headers: { "content-type": "application/json" },
