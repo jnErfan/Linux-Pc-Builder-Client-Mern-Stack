@@ -1,10 +1,14 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import Rating from "react-rating";
+import { useHistory } from "react-router";
 import "./ManageProducts.css";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
+  const [pageUpdate, setPageUpdate] = useState("");
+  const history = useHistory();
   const [page, setPage] = useState(0);
   const [pageCounts, setPageCount] = useState(0);
   const size = 4;
@@ -14,10 +18,20 @@ const ManageProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data?.desktopPackage);
+        setPageUpdate(data?.desktopPackage);
         const count = data?.count;
         setPageCount(Math.ceil(count / size));
       });
-  }, [page]);
+  }, [page, pageUpdate]);
+
+  const deleteHandler = (id) => {
+    axios.delete(`http://localhost:5000/deleteDesktop/${id}`).then((result) => {
+      if (result.data.deletedCount) {
+        alert("Delete Successful");
+      }
+    });
+  };
+
   return (
     <div
       className="container"
@@ -98,12 +112,18 @@ const ManageProducts = () => {
                         </h4>
                         <div className="row row-cols-2">
                           <div className="col col-12  col-md-6 col-lg-6 mt-2">
-                            <Button variant="outline-success rounded-pill px-4">
+                            <Button
+                              onClick={() => history.push("/updateDesktop")}
+                              variant="outline-success rounded-pill px-4"
+                            >
                               Edit <i className="far fa-edit"></i>
                             </Button>
                           </div>
                           <div className="col col-12 col-md-6 col-lg-6 mt-2">
-                            <Button variant="outline-danger rounded-pill px-4">
+                            <Button
+                              onClick={() => deleteHandler(product._id)}
+                              variant="outline-danger rounded-pill px-4"
+                            >
                               Delete <i className="far fa-trash-alt fs-5"></i>
                             </Button>
                           </div>
