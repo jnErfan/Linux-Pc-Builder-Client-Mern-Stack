@@ -1,8 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Card, Col, FormControl, Row } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import Rating from "react-rating";
+import useAuth from "../../Hooks/useAuth";
 
 const Review = () => {
+  const { user } = useAuth();
+  const [rate, setRate] = useState(0);
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    data.image = user.photoURL;
+    data.name = user.displayName;
+    data.rate = rate;
+    axios.post("http://localhost:5000/review", data).then((result) => {
+      if (result.data.insertedId) {
+        reset();
+        alert("Review Successfully");
+      }
+    });
+  };
   return (
     <div
       style={{ marginTop: "50px", marginBottom: "100px" }}
@@ -12,7 +29,7 @@ const Review = () => {
         Review
         <i className="far fa-grin ms-3" style={{ color: "#FFA500" }}></i>
       </h1>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Row sm={1} md={1} lg={1} style={{ marginTop: "80px" }}>
           <Col
             style={{
@@ -37,11 +54,11 @@ const Review = () => {
                     height: "150px",
                     width: "150px",
                   }}
-                  src="https://yt3.ggpht.com/ytc/AKedOLTG3VPjtqAbVGOvEXAgb-9aPeLgDtZScX2hEMao6A=s900-c-k-c0x00ffffff-no-rj"
+                  src={user.photoURL}
                 />
               </div>
               <Card.Body className="text-center">
-                <Card.Title className="fw-bold">Alia Bhat</Card.Title>
+                <Card.Title className="fw-bold">{user.displayName}</Card.Title>
                 <p>
                   <small className="text-secondary">
                     Review Are Public And Includes Your Account
@@ -51,7 +68,7 @@ const Review = () => {
                 <div className="text-center mt-3">
                   <p className="text-secondary">Rate Your Experience</p>
                   <Rating
-                    onChange={(rate) => alert(rate)}
+                    onChange={(rate) => setRate(rate)}
                     emptySymbol={
                       <i
                         className="far fa-star fs-1"
@@ -74,6 +91,7 @@ const Review = () => {
                   type="name"
                   placeholder="Describe Your Experience"
                   required
+                  {...register("describe")}
                 />
 
                 <button
