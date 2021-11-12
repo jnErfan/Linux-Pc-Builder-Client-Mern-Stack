@@ -27,7 +27,7 @@ const MakeAdmin = () => {
         if (!checked) {
           alert("This User Already Admin");
         } else {
-          alert("Already Remove");
+          alert("Already Remove Please Try Another");
         }
       } else {
         if (!checked) {
