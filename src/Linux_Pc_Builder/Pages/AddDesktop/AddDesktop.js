@@ -1,23 +1,91 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { FloatingLabel, Form, FormControl } from "react-bootstrap";
+import {
+  Alert,
+  FloatingLabel,
+  Form,
+  FormControl,
+  Spinner,
+} from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 
 const AddDesktop = () => {
   const { register, handleSubmit, reset } = useForm();
   const [rate, setRate] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   const onSubmit = (data) => {
     data.rate = rate;
     axios.post("http://localhost:5000/addDesktop", data).then((result) => {
       if (result.data.insertedId) {
-        alert("Desktop Add Successful");
-        reset();
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          setAlert(true);
+          setTimeout(() => {
+            setAlert(false);
+            reset();
+          }, 3000);
+        }, 500);
       }
     });
   };
   return (
     <div style={{ marginTop: "50px", marginBottom: "100px" }}>
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div style={{ marginLeft: "190px" }}>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
+              style={{ position: "fixed" }}
+            >
+              Desktop Has Been Added Please Check
+            </Alert>
+          </div>
+        </div>
+      )}
       <h1 className="text-center mt-5 ms-5" style={{ color: "#2e2e66" }}>
         Add Desktop Collection
       </h1>

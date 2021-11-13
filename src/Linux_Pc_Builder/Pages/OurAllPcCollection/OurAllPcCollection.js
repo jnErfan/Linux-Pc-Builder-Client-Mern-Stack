@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
+import { Alert, Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import Rating from "react-rating";
 import { useHistory } from "react-router";
 import useAuth from "../../Hooks/useAuth";
@@ -13,6 +13,9 @@ const OurAllPcCollection = () => {
   const [page, setPage] = useState(0);
   const [pageCounts, setPageCount] = useState(0);
   const [cartProduct, setCartProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alert2, setAlert2] = useState(false);
   const size = 6;
 
   useEffect(() => {
@@ -45,13 +48,27 @@ const OurAllPcCollection = () => {
         .post(`http://localhost:5000/addToCartOrder`, cartDesktopDetails)
         .then((result) => {
           if (result.data.insertedId) {
-            alert("Cart Added");
-          } else {
-            alert("Something Is Wrong");
+            setLoading(true);
+            if (result.data.insertedId) {
+              setTimeout(() => {
+                setLoading(false);
+                setAlert(true);
+                setTimeout(() => {
+                  setAlert(false);
+                }, 3000);
+              }, 500);
+            }
           }
         });
     } else {
-      alert("already Added");
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setAlert2(true);
+        setTimeout(() => {
+          setAlert2(false);
+        }, 3000);
+      }, 500);
     }
   };
   return (
@@ -59,6 +76,81 @@ const OurAllPcCollection = () => {
       className="container"
       style={{ marginTop: "130px", marginBottom: "100px" }}
     >
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div className="d-flex justify-content-center mb-5">
+            <Alert
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
+              style={{ position: "fixed" }}
+            >
+              Desktop Add To Cart Successful
+            </Alert>
+          </div>
+        </div>
+      )}
+      {alert2 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div className="d-flex justify-content-center mb-5">
+            <Alert
+              variant="warning w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
+              style={{ position: "fixed" }}
+            >
+              This Order Is Already Added
+            </Alert>
+          </div>
+        </div>
+      )}
       <div className="text-center mb-5">
         <h1 className="borderUnderline2">Our All Pc Collections</h1>
       </div>

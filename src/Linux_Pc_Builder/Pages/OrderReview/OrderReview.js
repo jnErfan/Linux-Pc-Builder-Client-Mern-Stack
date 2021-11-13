@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Alert, Spinner, Table } from "react-bootstrap";
 import { useHistory } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 
@@ -9,6 +9,9 @@ const OrderReview = () => {
   const [deleteToCart, setDeleteToCart] = useState("");
   const { user } = useAuth();
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alert2, setAlert2] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
@@ -24,20 +27,116 @@ const OrderReview = () => {
     total = Number(cart.price) + total;
   }
   const shippingHandler = () => {
-    alert("SAD TO SAY, I COULDN'T FINISH DUE TO LACK OF TIME");
-    history.push("/orderConfirm");
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setAlert2(true);
+      setTimeout(() => {
+        setAlert2(false);
+        history.push("/orderConfirm");
+      }, 4000);
+    }, 500);
   };
   const cancelHandler = (id) => {
     axios
       .delete(`http://localhost:5000/deleteCartOrder/${id}`)
       .then((result) => {
+        setLoading(true);
         if (result.data.deletedCount) {
-          alert("Delete Successful");
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+            setAlert(true);
+            setTimeout(() => {
+              setAlert(false);
+            }, 3000);
+          }, 500);
         }
       });
   };
   return (
     <div style={{ marginBottom: "100px" }}>
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div style={{ marginLeft: "190px" }}>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="danger w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-1s"
+              style={{ position: "fixed" }}
+            >
+              Your Order Has Been Canceled!
+            </Alert>
+          </div>
+        </div>
+      )}
+      {alert2 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="primary w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-3s"
+              style={{ position: "fixed" }}
+            >
+              SAD TO SAY, I COULDN'T COMPLETE THIS FOR SHORT TIME !!!
+            </Alert>
+          </div>
+        </div>
+      )}
       <h1 className="text-center mt-5">Review Orders</h1>
       <div>
         <div className="row row-cols-2 mt-5">

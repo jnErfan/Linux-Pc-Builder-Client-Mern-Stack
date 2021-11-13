@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
+import { Alert, Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import Rating from "react-rating";
 import { useHistory } from "react-router";
 import "./ManageProducts.css";
@@ -8,6 +8,8 @@ import "./ManageProducts.css";
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
   const [pageUpdate, setPageUpdate] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   const history = useHistory();
   const [page, setPage] = useState(0);
   const [pageCounts, setPageCount] = useState(0);
@@ -31,21 +33,85 @@ const ManageProducts = () => {
         .delete(`http://localhost:5000/deleteDesktop/${id}`)
         .then((result) => {
           if (result.data.deletedCount) {
-            alert("Delete Successful");
+            setLoading(true);
+            setTimeout(() => {
+              setLoading(false);
+              setAlert(true);
+              setTimeout(() => {
+                setAlert(false);
+              }, 3000);
+            }, 500);
           }
         });
-    } else if (confirmation === null) {
-      return;
     } else {
-      alert("Your Type Is Wrong");
+      return;
     }
   };
-
+  const shippingHandler = (id) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      history.push(`/updateDesktop/${id}`);
+    }, 500);
+  };
   return (
     <div
       className="container"
       style={{ marginTop: "50px", marginBottom: "100px" }}
     >
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div style={{ marginLeft: "190px" }}>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="danger w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
+              style={{ position: "fixed" }}
+            >
+              Desktop Has Been Deleted From Database
+            </Alert>
+          </div>
+        </div>
+      )}
       <h1 className="text-center" style={{ color: "#2e2e66" }}>
         Manage All Products
       </h1>
@@ -122,9 +188,7 @@ const ManageProducts = () => {
                         <div className="row row-cols-2">
                           <div className="col col-12  col-md-6 col-lg-6 mt-2">
                             <Button
-                              onClick={() =>
-                                history.push(`/updateDesktop/${product._id}`)
-                              }
+                              onClick={() => shippingHandler(product._id)}
                               variant="outline-success rounded-pill px-4"
                             >
                               Edit <i className="far fa-edit"></i>

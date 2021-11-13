@@ -49,7 +49,7 @@ const Review = () => {
             zIndex: 9999,
           }}
         >
-          <div>
+          <div style={{ marginLeft: "190px" }}>
             <Spinner
               animation="border"
               variant="secondary"
@@ -74,7 +74,6 @@ const Review = () => {
             zIndex: 9999,
           }}
         >
-          {/* animate__animated animate__slow animate__fadeOut animate__delay-2s */}
           <div
             className="d-flex justify-content-center mb-5"
             style={{ marginLeft: "190px" }}

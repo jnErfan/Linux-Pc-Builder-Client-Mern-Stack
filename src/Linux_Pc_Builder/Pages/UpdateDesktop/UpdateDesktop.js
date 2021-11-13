@@ -1,6 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FloatingLabel, Form, FormControl } from "react-bootstrap";
+import {
+  Alert,
+  FloatingLabel,
+  Form,
+  FormControl,
+  Spinner,
+} from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import { useHistory, useParams } from "react-router";
@@ -8,6 +14,9 @@ import { useHistory, useParams } from "react-router";
 const UpdateDesktop = () => {
   const { updateId } = useParams();
   const [updateDetails, setUpdateDetails] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alert2, setAlert2] = useState(false);
 
   const history = useHistory();
   useEffect(() => {
@@ -44,13 +53,23 @@ const UpdateDesktop = () => {
         .put(`http://localhost:5000/updateDesktop/${_id}`, data)
         .then((result) => {
           if (result.data.modifiedCount === 1) {
-            reset();
-            history.push("/dashboard/manageProduct");
-            alert("Update Successful");
+            setLoading(true);
+            setTimeout(() => {
+              setLoading(false);
+              setAlert(true);
+              setTimeout(() => {
+                setAlert(false);
+                reset();
+                history.push("/dashboard/manageProduct");
+              }, 3000);
+            }, 500);
           }
         });
     } else {
-      alert("Please Blur All Text Field. Default Value Will Worked On  OnBlur");
+      setAlert2(true);
+      setTimeout(() => {
+        setAlert2(false);
+      }, 2000);
     }
   };
   return (
@@ -58,6 +77,87 @@ const UpdateDesktop = () => {
       className="container"
       style={{ marginTop: "100px", marginBottom: "100px" }}
     >
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div style={{ marginLeft: "190px" }}>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
+              style={{ position: "fixed" }}
+            >
+              Desktop Information Update Successful
+            </Alert>
+          </div>
+        </div>
+      )}
+      {alert2 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="info w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-1s"
+              style={{ position: "fixed" }}
+            >
+              Please Blur All Text Field. Default Value Will Worked On OnBlur
+            </Alert>
+          </div>
+        </div>
+      )}
       <div className="text-center">
         <h1>Update Desktop Collection</h1>
       </div>

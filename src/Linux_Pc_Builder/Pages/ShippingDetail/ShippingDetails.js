@@ -38,11 +38,10 @@ const ShippingDetails = () => {
           setTimeout(() => {
             setAlert(false);
             history.push("/orderConfirm");
-          }, 2000);
-        }, 500);
+          }, 3000);
+        }, 2000);
       }
     });
-    console.log(data);
   };
 
   return (
@@ -90,10 +89,9 @@ const ShippingDetails = () => {
             zIndex: 9999,
           }}
         >
-          {/* animate__animated animate__slow animate__fadeOut animate__delay-2s */}
           <div className="d-flex justify-content-center mb-5">
             <Alert
-              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-1s"
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
               style={{ position: "fixed" }}
             >
               Your Order Has Been Successful! <br /> Please Wait For Approved.

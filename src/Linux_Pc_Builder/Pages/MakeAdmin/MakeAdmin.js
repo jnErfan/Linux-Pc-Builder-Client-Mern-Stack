@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Form, FormControl } from "react-bootstrap";
+import { Alert, Form, FormControl, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
 const MakeAdmin = () => {
@@ -10,30 +10,48 @@ const MakeAdmin = () => {
   };
   console.log(checked);
   const { register, handleSubmit, reset } = useForm();
+
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alert2, setAlert2] = useState(false);
   const onSubmit = (data) => {
     const adminData = { data, checked };
     axios.put("http://localhost:5000/makeAdmin", adminData).then((result) => {
       if (result.data.modifiedCount === 1) {
         reset();
         if (!checked) {
-          alert("Make Customer To Admin Successful");
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+            setAlert(true);
+            setTimeout(() => {
+              setAlert(false);
+            }, 3000);
+          }, 1000);
         } else {
-          alert("Remove Admin Successful");
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+            setAlert2(true);
+            setTimeout(() => {
+              setAlert2(false);
+            }, 3000);
+          }, 1000);
         }
       } else if (
         result.data.modifiedCount === 0 &&
         result.data.matchedCount === 1
       ) {
         if (!checked) {
-          alert("This User Already Admin");
+          window.alert("This User Already Admin");
         } else {
-          alert("Already Remove Please Try Another");
+          window.alert("Already Remove Please Try Another");
         }
       } else {
         if (!checked) {
-          alert("Make Admin Failed");
+          window.alert("Make Admin Failed");
         } else {
-          alert("Remove Admin Failed");
+          window.alert("Remove Admin Failed");
         }
       }
     });
@@ -45,6 +63,87 @@ const MakeAdmin = () => {
       style={{ marginTop: "50px", marginBottom: "100px" }}
       className="container"
     >
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div style={{ marginLeft: "190px" }}>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-1s"
+              style={{ position: "fixed" }}
+            >
+              Promote Customer To Admin Successful !!!
+            </Alert>
+          </div>
+        </div>
+      )}
+      {alert2 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="danger w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-3s"
+              style={{ position: "fixed" }}
+            >
+              Remove Admin Successful !!
+            </Alert>
+          </div>
+        </div>
+      )}
       {!checked ? (
         <h1 className="text-center ms-5" style={{ color: "#2e2e66" }}>
           Make <span style={{ color: "orangered" }}>ADMIN</span>
@@ -79,7 +178,7 @@ const MakeAdmin = () => {
               type="submit"
               className="btn btn-danger w-100 text-white py-3 mt-4"
             >
-              Demote To Admin
+              Remove To Admin
             </button>
           )}
         </div>

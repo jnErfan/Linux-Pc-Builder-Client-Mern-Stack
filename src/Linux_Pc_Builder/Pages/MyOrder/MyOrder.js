@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Alert, Spinner } from "react-bootstrap";
 import useAuth from "../../Hooks/useAuth";
 
 const MyOrder = () => {
   const [orderPackage, setOrderPackage] = useState([]);
   const [orderCancel, setOrderCancel] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   const { user } = useAuth();
 
   // Get LogIn User All Orders
@@ -22,17 +25,75 @@ const MyOrder = () => {
     if (confirmation === "CANCEL") {
       axios.delete(`http://localhost:5000/deleteOrder/${id}`).then((result) => {
         if (result.data.deletedCount) {
-          alert("Cancel Successful");
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+            setAlert(true);
+            setTimeout(() => {
+              setAlert(false);
+            }, 3000);
+          }, 500);
         }
       });
-    } else if (confirmation === null) {
-      return;
     } else {
-      alert("Your Type Is Wrong");
+      return;
     }
   };
   return (
     <div style={{ marginTop: "50px", marginBottom: "100px" }}>
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div style={{ marginLeft: "190px" }}>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="danger w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-1s"
+              style={{ position: "fixed" }}
+            >
+              Your Order Has Been Canceled!
+            </Alert>
+          </div>
+        </div>
+      )}
       <div className="text-center">
         <h1
           className="text-center pb-3"
