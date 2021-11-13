@@ -50,6 +50,11 @@ const Login = () => {
           LOG<span className="text-danger">IN</span>
         </h1>
       </div>
+      <div className="shadow-lg d-inline-block p-3 rounded">
+        <small className="fw-bold">Default Admin</small> <br />
+        <small>admin@gmail.com</small> <br />
+        <small>asdf1234</small>
+      </div>
       <Row xs={1} md={2} lg={2}>
         <div className="col col-12 col-md-6 col-lg-6 mt-5">
           <form onSubmit={handleSubmit(onSubmit)}>
