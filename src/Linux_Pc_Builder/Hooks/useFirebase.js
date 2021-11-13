@@ -9,6 +9,7 @@ import {
   GithubAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
+  getIdToken,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
@@ -65,7 +66,12 @@ const useFirebase = () => {
         const redirect = location?.state?.from || "/";
         setUser(result?.user);
         console.log(result?.user);
-        history.push(redirect);
+        if (location.pathname !== "/adminLogin") {
+          history.replace(redirect);
+        } else {
+          history.replace("/");
+          window.location.reload();
+        }
       })
       .catch((error) => {
         setError(error.message);
@@ -135,6 +141,9 @@ const useFirebase = () => {
     signOut(auth)
       .then(() => {
         setUser("");
+        getIdToken(user).then((idToken) =>
+          localStorage.setItem("idToken", idToken)
+        );
       })
       .catch((error) => {
         setError(error.message);
@@ -142,13 +151,12 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
   const savedUserInfo = (name, email, method) => {
-    const position = "Customer";
     const date = new Date();
-    const user = { name, email, date, position };
+    const userDetails = { name, email, date };
     fetch("http://localhost:5000/users", {
       method: method,
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(user),
+      body: JSON.stringify(userDetails),
     });
   };
 
@@ -164,7 +172,11 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`http://localhost:5000/users/${user.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("idToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setUsers(data?.[0]));
   }, [user.email]);

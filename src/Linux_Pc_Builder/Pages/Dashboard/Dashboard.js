@@ -4,7 +4,6 @@ import { Route, Switch, useRouteMatch } from "react-router";
 import { NavLink } from "react-router-dom";
 import AdminRoute from "../../AdminRoute/AdminRoute";
 import useAuth from "../../Hooks/useAuth";
-import AdminLogin from "../../LoginMethod/AdminLogin/AdminLogin";
 import PrivateRoute from "../../PrivateRoute/PrivateRoute";
 import AddDesktop from "../AddDesktop/AddDesktop";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
@@ -18,7 +17,7 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
-  const { user, users } = useAuth();
+  const { users } = useAuth();
   const activeStyle = {
     backgroundColor: "#171751",
     color: "#fff",
@@ -71,7 +70,7 @@ const Dashboard = () => {
             )}
             {/* Customer Switching */}
 
-            {users?.position === "Customer" && (
+            {users?.position !== "Admin" && (
               <>
                 <NavLink
                   activeStyle={activeStyle}
@@ -114,11 +113,7 @@ const Dashboard = () => {
                 <h1 className="text-center mt-4 mb-5">
                   Welcome To <span className="text-primary">Dashboard</span>
                 </h1>
-                {!users?.position === "Admin" ? (
-                  <AdminLogin />
-                ) : (
-                  <ManageAllOrder />
-                )}
+                {users?.position === "Admin" && <ManageAllOrder />}
               </Route>
               <AdminRoute path={`${path}/manageOrder`}>
                 <ManageAllOrder />

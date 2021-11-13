@@ -9,7 +9,6 @@ import Contract from "./Linux_Pc_Builder/Pages/Contract/Contract";
 import NotFound from "./Linux_Pc_Builder/Pages/NotFound/NotFound";
 import Login from "./Linux_Pc_Builder/LoginMethod/Login/Login";
 import SignUp from "./Linux_Pc_Builder/LoginMethod/SignUp/SignUp";
-import AdminLogin from "./Linux_Pc_Builder/LoginMethod/AdminLogin/AdminLogin";
 import OurAllPcCollection from "./Linux_Pc_Builder/Pages/OurAllPcCollection/OurAllPcCollection";
 import Dashboard from "./Linux_Pc_Builder/Pages/Dashboard/Dashboard";
 import AuthContext from "./Linux_Pc_Builder/Context/AuthContext";
@@ -18,8 +17,15 @@ import ShippingDetails from "./Linux_Pc_Builder/Pages/ShippingDetail/ShippingDet
 import DesktopDetails from "./Linux_Pc_Builder/Pages/DesktopDetails/DesktopDetails";
 import OrderConfirm from "./Linux_Pc_Builder/Pages/OrderConfirm/OrderConfirm";
 import UpdateDesktop from "./Linux_Pc_Builder/Pages/UpdateDesktop/UpdateDesktop";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [preloader, setPreloader] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/desktopsPagination?page=0&size=6")
+      .then((res) => res.json())
+      .then((data) => setPreloader(data));
+  }, []);
   return (
     <AuthContext>
       <Router>
@@ -67,10 +73,6 @@ function App() {
           {/* Sign Up  */}
           <Route path="/signUp">
             <SignUp />
-          </Route>
-          {/* Admin Login  */}
-          <Route path="/adminLogin">
-            <AdminLogin />
           </Route>
           {/* Dashboard  */}
           <PrivateRoute path="/dashboard">

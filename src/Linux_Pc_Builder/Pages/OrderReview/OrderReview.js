@@ -2,24 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useHistory } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const OrderReview = () => {
   const [carts, setCart] = useState([]);
   const [deleteToCart, setDeleteToCart] = useState("");
+  const { user } = useAuth();
   const history = useHistory();
+
   useEffect(() => {
-    fetch("http://localhost:5000/addToCartOrder")
+    fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data);
         setDeleteToCart(data);
       });
-  }, [deleteToCart]);
+  }, [user.email, deleteToCart]);
+
   let total = 0;
   for (const cart of carts) {
     total = Number(cart.price) + total;
   }
-
+  const shippingHandler = () => {
+    alert("SAD TO SAY, I COULDN'T FINISH DUE TO LACK OF TIME");
+    history.push("/orderConfirm");
+  };
   const cancelHandler = (id) => {
     axios
       .delete(`http://localhost:5000/deleteCartOrder/${id}`)
@@ -123,10 +130,7 @@ const OrderReview = () => {
                   </tr>
                 </tbody>
               </Table>
-              <div
-                onClick={() => history.push("/shippingDetails")}
-                className="text-center"
-              >
+              <div onClick={shippingHandler} className="text-center">
                 <button className="btn btn-dark">Proceed To Shipping</button>
               </div>
             </div>

@@ -12,7 +12,7 @@ const OurAllPcCollection = () => {
   const { user } = useAuth();
   const [page, setPage] = useState(0);
   const [pageCounts, setPageCount] = useState(0);
-  const [cartProduct, setCartProduct] = useState({});
+  const [cartProduct, setCartProduct] = useState([]);
   const size = 6;
 
   useEffect(() => {
@@ -26,24 +26,23 @@ const OurAllPcCollection = () => {
   }, [page]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/addToCartOrder")
+    fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCartProduct(data);
       });
-  }, []);
-
+  }, [user.email]);
   const addToCartHandler = (id) => {
     const matchedIdDesktop = products.filter((cart) => cart._id === id);
-    const addCartDetails = matchedIdDesktop[0];
-    const dontMatched = cartProduct.filter((matched) => matched._id === id);
+    let cartDesktopDetails = matchedIdDesktop?.[0];
 
-    if (dontMatched?.[0]?._id === id) {
-      alert("already Added");
-    } else {
-      addCartDetails.email = user.email;
+    let oldItemMatched = cartProduct.filter(
+      (desktop) => desktop._id === cartDesktopDetails._id
+    );
+    if (!oldItemMatched.length) {
+      cartDesktopDetails.email = user.email;
       axios
-        .post(`http://localhost:5000/addToCartOrder`, addCartDetails)
+        .post(`http://localhost:5000/addToCartOrder`, cartDesktopDetails)
         .then((result) => {
           if (result.data.insertedId) {
             alert("Cart Added");
@@ -51,6 +50,8 @@ const OurAllPcCollection = () => {
             alert("Something Is Wrong");
           }
         });
+    } else {
+      alert("already Added");
     }
   };
   return (

@@ -66,7 +66,7 @@ const MyOrder = () => {
                             style={{
                               borderRadius: "50px",
                             }}
-                            src={orderDetails.image}
+                            src={orderDetails?.image}
                             className="img-fluid w-100"
                             alt=""
                           />
@@ -99,9 +99,11 @@ const MyOrder = () => {
                                 </small>
                               </h6>
                             </div>
-                            <h6 className="text-dark">{orderDetails.pcName}</h6>
+                            <h6 className="text-dark">
+                              {orderDetails?.pcName}
+                            </h6>
                             <h6>
-                              {orderDetails.price}{" "}
+                              {orderDetails?.price}{" "}
                               <span className="fw-bold">৳</span>{" "}
                             </h6>
                             <div className="d-flex justify-content-between">

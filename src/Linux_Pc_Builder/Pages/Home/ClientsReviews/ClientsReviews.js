@@ -29,8 +29,8 @@ const ClientsReviews = () => {
 
         <Row xs={1} md={1} lg={1} className="g-4" style={{ marginTop: "60px" }}>
           <Carousel variant="dark" interval={1500}>
-            {reviews.map(({ image, name, rate, describe }) => (
-              <Carousel.Item>
+            {reviews.map(({ _id, image, name, rate, describe }) => (
+              <Carousel.Item key={_id}>
                 <Col
                   style={{
                     backgroundColor: "#E6E8EB",

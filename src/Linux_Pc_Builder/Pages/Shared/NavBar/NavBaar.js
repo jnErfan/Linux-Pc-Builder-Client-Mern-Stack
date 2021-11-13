@@ -17,14 +17,7 @@ const NavBaar = () => {
   const [cartProduct, setCartProduct] = useState({});
   const [cartUpdate, setCartUpdate] = useState("");
   const ref = useRef(null);
-  useEffect(() => {
-    fetch("http://localhost:5000/addToCartOrder")
-      .then((res) => res.json())
-      .then((data) => {
-        setCartProduct(data);
-        setCartUpdate(data);
-      });
-  }, [cartUpdate]);
+
   const activeStyle = {
     borderBottom: "5px solid rgb(45, 45, 45)",
   };
@@ -44,8 +37,15 @@ const NavBaar = () => {
   };
   window.addEventListener("scroll", onScrollHeader);
 
-  const { user, logOutAll } = useAuth();
-
+  const { user, logOutAll, users } = useAuth();
+  useEffect(() => {
+    fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCartProduct(data);
+        setCartUpdate(data);
+      });
+  }, [cartUpdate, user.email]);
   return (
     <div>
       <div
@@ -120,25 +120,27 @@ const NavBaar = () => {
                     />
                     <span className="ms-2">DASHBOARD</span>
                   </NavLink>
-                  <NavLink
-                    className="fw-bold text-decoration-none mx-3 ms-4 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse   animate__infinite"
-                    to="/dashboard/reviewOrder"
-                  >
-                    <i className="fas fa-cart-arrow-down fs-2"></i>{" "}
-                    <span
-                      className="bg-danger  rounded-circle text-white text-center"
-                      style={{
-                        position: "absolute",
-                        height: "22px",
-                        width: "22px",
-                        marginLeft: "25px",
-                        marginBottom: "25px",
-                      }}
-                    >
-                      {cartProduct.length || 0}
-                    </span>
-                  </NavLink>
                 </>
+              )}
+              {user?.displayName && users?.position !== "Admin" && (
+                <NavLink
+                  className="fw-bold text-decoration-none mx-3 ms-4 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse   animate__infinite"
+                  to="/dashboard/reviewOrder"
+                >
+                  <i className="fas fa-cart-arrow-down fs-2"></i>{" "}
+                  <span
+                    className="bg-danger  rounded-circle text-white text-center"
+                    style={{
+                      position: "absolute",
+                      height: "22px",
+                      width: "22px",
+                      marginLeft: "25px",
+                      marginBottom: "25px",
+                    }}
+                  >
+                    {cartProduct?.length || 0}
+                  </span>
+                </NavLink>
               )}
             </Nav>
             <div style={{ fontFamily: "'Concert One', cursive" }}>
