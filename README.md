@@ -1,8 +1,8 @@
 # Linux Pc Builder
 
-#### Linux Pc Builder `Netlify` Live Site Link [Click To See Live Site]()
+#### Linux Pc Builder `Netlify` Live Site Link [Click To See Live Site](https://linux-pc-builder.netlify.app/)
 
-#### Linux Pc Builder `Firebase` Live Site Link [Click To See Live Site]()
+#### Linux Pc Builder `Firebase` Live Site Link [Click To See Live Site](https://linux-pc-builder.firebaseapp.com/)
 
 ![Banner](https://i.ibb.co/M7p1XSD/Screenshot-1.png)
 
