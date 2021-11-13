@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Card, Col, FormControl, Row } from "react-bootstrap";
+import { Alert, Card, Col, FormControl, Row, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import useAuth from "../../Hooks/useAuth";
@@ -9,14 +9,23 @@ const Review = () => {
   const { user } = useAuth();
   const [rate, setRate] = useState(0);
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
   const onSubmit = (data) => {
     data.image = user.photoURL;
     data.name = user.displayName;
     data.rate = rate;
     axios.post("http://localhost:5000/review", data).then((result) => {
+      setLoading(true);
       if (result.data.insertedId) {
-        reset();
-        alert("Review Successfully");
+        setTimeout(() => {
+          setLoading(false);
+          setAlert(true);
+          setTimeout(() => {
+            reset();
+            setAlert(false);
+          }, 3000);
+        }, 500);
       }
     });
   };
@@ -25,6 +34,62 @@ const Review = () => {
       style={{ marginTop: "50px", marginBottom: "100px" }}
       className="container"
     >
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          {/* animate__animated animate__slow animate__fadeOut animate__delay-2s */}
+          <div
+            className="d-flex justify-content-center mb-5"
+            style={{ marginLeft: "190px" }}
+          >
+            <Alert
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-2s"
+              style={{ position: "fixed" }}
+            >
+              Your Review Has Been Successful ! <br />
+              <br /> Your Review Is Very Valuable To Us. This Review Add In Home
+              Page
+            </Alert>
+          </div>
+        </div>
+      )}
       <h1 className="text-center" style={{ color: "#2e2e66" }}>
         Review
         <i className="far fa-grin ms-3" style={{ color: "#FFA500" }}></i>

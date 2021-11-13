@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Form, FormControl, Row } from "react-bootstrap";
+import { Alert, Form, FormControl, Row, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
@@ -12,6 +12,8 @@ const ShippingDetails = () => {
   const { user } = useAuth();
   const { shippingId } = useParams();
   const { register, handleSubmit, reset } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/desktopDetails/${shippingId}`)
@@ -27,10 +29,17 @@ const ShippingDetails = () => {
     data.orderDetails = orderDetails;
     data.date = date.toDateString();
     axios.post("http://localhost:5000/orderDetails", data).then((result) => {
+      setLoading(true);
       if (result.data.insertedId) {
-        reset();
-        alert("Order Successful");
-        history.push("/orderConfirm");
+        setTimeout(() => {
+          setLoading(false);
+          reset();
+          setAlert(true);
+          setTimeout(() => {
+            setAlert(false);
+            history.push("/orderConfirm");
+          }, 2000);
+        }, 500);
       }
     });
     console.log(data);
@@ -41,6 +50,57 @@ const ShippingDetails = () => {
       className="container"
       style={{ marginTop: "130px", marginBottom: "100px" }}
     >
+      {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            zIndex: 9999,
+          }}
+        >
+          <div>
+            <Spinner
+              animation="border"
+              variant="secondary"
+              style={{ padding: "100px" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {alert && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.373)",
+            zIndex: 9999,
+          }}
+        >
+          {/* animate__animated animate__slow animate__fadeOut animate__delay-2s */}
+          <div className="d-flex justify-content-center mb-5">
+            <Alert
+              variant="success w-50 py-5 fw-bold text-center animate__animated animate__slow animate__fadeOut animate__delay-1s"
+              style={{ position: "fixed" }}
+            >
+              Your Order Has Been Successful! <br /> Please Wait For Approved.
+            </Alert>
+          </div>
+        </div>
+      )}
       <div className="">
         <div className="text-center my-5">
           <h3
