@@ -1,0 +1,7 @@
+.preloader_container {
+  height: 100vh;
+  background: #151a29;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

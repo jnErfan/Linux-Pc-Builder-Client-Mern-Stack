@@ -18,74 +18,82 @@ import DesktopDetails from "./Linux_Pc_Builder/Pages/DesktopDetails/DesktopDetai
 import OrderConfirm from "./Linux_Pc_Builder/Pages/OrderConfirm/OrderConfirm";
 import UpdateDesktop from "./Linux_Pc_Builder/Pages/UpdateDesktop/UpdateDesktop";
 import { useEffect, useState } from "react";
+import Preloader from "./Linux_Pc_Builder/Preloader/Preloader";
 
 function App() {
   const [preloader, setPreloader] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/desktopsPagination?page=0&size=6")
+    fetch("http://localhost:5000/desktopsPagination?page=0&size=12")
       .then((res) => res.json())
-      .then((data) => setPreloader(data));
+      .then((data) => setPreloader(data.desktopPackage));
   }, []);
+  console.log(preloader);
   return (
-    <AuthContext>
-      <Router>
-        <NavBaar />
-        <Switch>
-          {/* Default Path  */}
-          <Route exact path="/">
-            <HomeContainer />
-          </Route>
-          {/* Home  */}
-          <Route path="/home">
-            <HomeContainer />
-          </Route>
-          {/* Shipping Details  */}
-          <PrivateRoute path="/desktopDetails/:desktopId">
-            <DesktopDetails />
-          </PrivateRoute>
-          {/* Shipping Details  */}
-          <PrivateRoute path="/shippingDetails/:shippingId">
-            <ShippingDetails />
-          </PrivateRoute>
-          {/* Update Shipping  */}
-          <PrivateRoute path="/updateDesktop/:updateId">
-            <UpdateDesktop />
-          </PrivateRoute>
-          {/* Shipping Details  */}
-          <PrivateRoute path="/orderConfirm">
-            <OrderConfirm />
-          </PrivateRoute>
-          {/*  Our Blogs  */}
-          <PrivateRoute path="/allPcCollection">
-            <OurAllPcCollection />
-          </PrivateRoute>
-          <Route path="/blogs">
-            <OurBlogs />
-          </Route>
-          {/* Contract Us  */}
-          <PrivateRoute path="/contract">
-            <Contract />
-          </PrivateRoute>
-          {/* Login  */}
-          <Route path="/login">
-            <Login />
-          </Route>
-          {/* Sign Up  */}
-          <Route path="/signUp">
-            <SignUp />
-          </Route>
-          {/* Dashboard  */}
-          <PrivateRoute path="/dashboard">
-            <Dashboard />
-          </PrivateRoute>
-          {/* Page Not Found  */}
-          <Route exact path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
-    </AuthContext>
+    <div>
+      {!preloader.length ? (
+        <Preloader />
+      ) : (
+        <AuthContext>
+          <Router>
+            <NavBaar />
+            <Switch>
+              {/* Default Path  */}
+              <Route exact path="/">
+                <HomeContainer />
+              </Route>
+              {/* Home  */}
+              <Route path="/home">
+                <HomeContainer />
+              </Route>
+              {/* Shipping Details  */}
+              <PrivateRoute path="/desktopDetails/:desktopId">
+                <DesktopDetails />
+              </PrivateRoute>
+              {/* Shipping Details  */}
+              <PrivateRoute path="/shippingDetails/:shippingId">
+                <ShippingDetails />
+              </PrivateRoute>
+              {/* Update Shipping  */}
+              <PrivateRoute path="/updateDesktop/:updateId">
+                <UpdateDesktop />
+              </PrivateRoute>
+              {/* Shipping Details  */}
+              <PrivateRoute path="/orderConfirm">
+                <OrderConfirm />
+              </PrivateRoute>
+              {/*  Our Blogs  */}
+              <PrivateRoute path="/allPcCollection">
+                <OurAllPcCollection />
+              </PrivateRoute>
+              <Route path="/blogs">
+                <OurBlogs />
+              </Route>
+              {/* Contract Us  */}
+              <PrivateRoute path="/contract">
+                <Contract />
+              </PrivateRoute>
+              {/* Login  */}
+              <Route path="/login">
+                <Login />
+              </Route>
+              {/* Sign Up  */}
+              <Route path="/signUp">
+                <SignUp />
+              </Route>
+              {/* Dashboard  */}
+              <PrivateRoute path="/dashboard">
+                <Dashboard />
+              </PrivateRoute>
+              {/* Page Not Found  */}
+              <Route exact path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+            <Footer />
+          </Router>
+        </AuthContext>
+      )}
+    </div>
   );
 }
 
