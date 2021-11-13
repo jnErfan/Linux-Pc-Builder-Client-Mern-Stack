@@ -1,28 +1,28 @@
 # Linux Pc Builder
 
-#### Linux Pc Builder `Netlify` Live Site Link [Click To See Live Site](https://fantasy-kingdom.netlify.app/)
+#### Linux Pc Builder `Netlify` Live Site Link [Click To See Live Site]()
 
-#### Linux Pc Builder `Firebase` Live Site Link [Click To See Live Site](https://fantasy-kingdom-complex.firebaseapp.com/)
+#### Linux Pc Builder `Firebase` Live Site Link [Click To See Live Site]()
 
 ## What To Do With This Website
 
-- This Is Fantasy Kingdom Park Own Website. Here You Will Find Many Types Of Rides Packages.
+- This Is Linux Pc Builder Own Website. Here You Will Find Many Types Of Desktops And Desktop Packages.
 
 ---
 
-- If You Visit Our Website, You Will Understand What Is In Our Theme Park.
+- If You Visiting Our Website Will Give You A Lot Of Ideas About Desktop.
 
 ---
 
-- From This Website You Can Easily Book Tickets From Home. Without The Hassle Of Standing In Line.
+- And Here You Can Get A lot of ideas about Desktop configuration and what would be better to put on PC.
 
 ---
 
-- And You Can Get More Details About Our Park Through Our Contract Page You Can Contact Via Live & Email Or Phone.
+- I Deliver Your Products With A lot Of Security,And if you want you can set up your dream gaming room through us .
 
 ---
 
-- And Payment Is Very Easy Here, All Types Of Payments Are Accepted Here.
+- We have many types of desktops here Gaming Desktops There are many types of professional desktops you can take whatever you want.
 
 <br />
 
