@@ -39,3 +39,15 @@
   margin-left: 10px;
   color: rgb(54, 54, 54);
 }
+.spinnerM {
+  padding: 100px;
+}
+@media only screen and (max-width: 768px) {
+  .cardBody3 {
+    margin-left: -60px;
+    margin-right: -60px;
+  }
+  .spinnerM {
+    padding: 30px;
+  }
+}

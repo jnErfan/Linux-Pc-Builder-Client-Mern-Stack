@@ -38,41 +38,48 @@ const ManageAllOrder = () => {
         Manage All Order
       </h1>
       <div className="mt-4">
-        <div className="d-flex justify-content-around shadow-lg my-4 rounded-3">
-          <h5 className="my-3 ms-5 fw-bold">
-            Total Order:
-            <span
-              className="fw-bold text-white rounded-circle px-2 ms-2"
-              style={{ backgroundColor: "#2e2e66" }}
-            >
-              {orders.length}
-            </span>
-          </h5>
-          <p className="my-3 ms-5 fw-bold">
-            Total Pending:
-            <span
-              className="fw-bold text-white rounded-circle px-2 ms-2"
-              style={{ backgroundColor: "rgba(185, 161, 26, 0.692)" }}
-            >
-              {pending.length}
-            </span>
-          </p>
-          <p className="my-3 ms-5 fw-bold">
-            Total Shipped:
-            <span
-              className="fw-bold text-white rounded-circle px-2 ms-2"
-              style={{ backgroundColor: "rgba(0, 128, 0, 0.863)" }}
-            >
-              {shipped.length}
-            </span>
-          </p>
-
-          <p className="my-3 ms-5 fw-bold">
-            Total Rejected:
-            <span className="fw-bold bg-danger text-white rounded-circle px-2 ms-2">
-              {reject.length}
-            </span>
-          </p>
+        <div className="row row-cols-4 shadow-lg my-4 rounded-3">
+          <div className="col-12 col-md-4 col-lg-3">
+            <h5 className="my-3 ms-5 fw-bold">
+              Total Order:
+              <span
+                className="fw-bold text-white rounded-circle px-2 ms-2"
+                style={{ backgroundColor: "#2e2e66" }}
+              >
+                {orders.length}
+              </span>
+            </h5>
+          </div>
+          <div className="col-12 col-md-4 col-lg-3">
+            <p className="my-3 ms-5 fw-bold">
+              Total Pending:
+              <span
+                className="fw-bold text-white rounded-circle px-2 ms-2"
+                style={{ backgroundColor: "rgba(185, 161, 26, 0.692)" }}
+              >
+                {pending.length}
+              </span>
+            </p>
+          </div>
+          <div className="col-12 col-md-4 col-lg-3">
+            <p className="my-3 ms-5 fw-bold">
+              Total Shipped:
+              <span
+                className="fw-bold text-white rounded-circle px-2 ms-2"
+                style={{ backgroundColor: "rgba(0, 128, 0, 0.863)" }}
+              >
+                {shipped.length}
+              </span>
+            </p>
+          </div>
+          <div className="col-12 col-md-4 col-lg-3">
+            <p className="my-3 ms-5 fw-bold">
+              Total Rejected:
+              <span className="fw-bold bg-danger text-white rounded-circle px-2 ms-2">
+                {reject.length}
+              </span>
+            </p>
+          </div>
         </div>
         <Table responsive="md" hover className="tableContainer">
           <thead>

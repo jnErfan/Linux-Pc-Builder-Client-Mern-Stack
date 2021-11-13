@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
+import "./AddDesktop.css";
 
 const AddDesktop = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -91,7 +92,10 @@ const AddDesktop = () => {
       </h1>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="shadow-lg px-5 pb-5" style={{ borderRadius: "20px" }}>
+          <div
+            className="shadow-lg px-5 pb-5 container1"
+            style={{ borderRadius: "20px" }}
+          >
             <div className="row row-cols-2 mt-5 pt-5">
               <div className="col col-12 col-md-12 col-lg-6">
                 <FormControl

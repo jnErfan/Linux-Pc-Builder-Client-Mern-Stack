@@ -167,44 +167,50 @@ const MyOrder = () => {
                               {orderDetails?.price}{" "}
                               <span className="fw-bold">৳</span>{" "}
                             </h6>
-                            <div className="d-flex justify-content-between">
-                              {status === "Shipped" ? (
-                                <button
-                                  className="btn btn-outline-danger fw-bold rounded-pill py-0 px-3"
-                                  disabled
-                                >
-                                  Cancel
-                                </button>
-                              ) : (
-                                <button
-                                  onClick={() => cancelHandler(_id)}
-                                  className="btn btn-outline-danger fw-bold rounded-pill py-0 px-3"
-                                >
-                                  Cancel
-                                </button>
-                              )}
-                              {status === "Pending" && (
-                                <span
-                                  className="text-white p-3 rounded-pill py-1"
-                                  style={{
-                                    backgroundColor: "rgba(247, 92, 36, 0.842)",
-                                  }}
-                                >
-                                  Pending
-                                </span>
-                              )}
-                              {status === "Reject" && (
-                                <span className="packageStatus2 text-white p-3 rounded-pill py-1 bg-danger">
-                                  Reject
-                                </span>
-                              )}
 
-                              {status === "Shipped" && (
-                                <span className="packageStatus2 text-white p-3 rounded-pill py-1 bg-success">
-                                  Shipped{" "}
-                                  <i className="fas fa-shipping-fast"></i>
-                                </span>
-                              )}
+                            <div className="row row-cols-2 d-flex justify-content-between">
+                              <div className="col col-12  col-md-6 col-lg-6 mt-2">
+                                {status === "Shipped" ? (
+                                  <button
+                                    className="btn btn-outline-danger fw-bold rounded-pill py-0 px-3"
+                                    disabled
+                                  >
+                                    Cancel
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => cancelHandler(_id)}
+                                    className="btn btn-outline-danger fw-bold rounded-pill py-0 px-3"
+                                  >
+                                    Cancel
+                                  </button>
+                                )}
+                              </div>
+                              <div className="col col-12 col-md-6 col-lg-6 mt-2">
+                                {status === "Pending" && (
+                                  <span
+                                    className="text-white p-3 rounded-pill py-1"
+                                    style={{
+                                      backgroundColor:
+                                        "rgba(247, 92, 36, 0.842)",
+                                    }}
+                                  >
+                                    Pending
+                                  </span>
+                                )}
+                                {status === "Reject" && (
+                                  <span className="packageStatus2 text-white p-3 rounded-pill py-1 bg-danger">
+                                    Reject
+                                  </span>
+                                )}
+
+                                {status === "Shipped" && (
+                                  <span className="packageStatus2 text-white p-3 rounded-pill py-1 bg-success">
+                                    Shipped{" "}
+                                    <i className="fas fa-shipping-fast"></i>
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>

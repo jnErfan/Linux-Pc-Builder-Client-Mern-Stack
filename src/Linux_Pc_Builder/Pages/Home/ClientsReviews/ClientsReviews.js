@@ -32,6 +32,7 @@ const ClientsReviews = () => {
             {reviews.map(({ _id, image, name, rate, describe }) => (
               <Carousel.Item key={_id}>
                 <Col
+                  className="reviewContainerHome"
                   style={{
                     backgroundColor: "#E6E8EB",
                     borderRadius: "10px",

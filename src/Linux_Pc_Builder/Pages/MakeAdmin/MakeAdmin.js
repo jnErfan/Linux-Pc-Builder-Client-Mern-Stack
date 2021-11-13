@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Alert, Form, FormControl, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import "./MakeAdmin.css";
 
 const MakeAdmin = () => {
   const [checked, setChecked] = useState(false);
@@ -61,7 +62,7 @@ const MakeAdmin = () => {
   return (
     <div
       style={{ marginTop: "50px", marginBottom: "100px" }}
-      className="container"
+      className="container AdminContainer"
     >
       {loading && (
         <div
@@ -145,7 +146,7 @@ const MakeAdmin = () => {
         </div>
       )}
       {!checked ? (
-        <h1 className="text-center ms-5" style={{ color: "#2e2e66" }}>
+        <h1 className="text-center" style={{ color: "#2e2e66" }}>
           Make <span style={{ color: "orangered" }}>ADMIN</span>
         </h1>
       ) : (
@@ -154,7 +155,10 @@ const MakeAdmin = () => {
         </h1>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="shadow-lg p-5  mt-4" style={{ borderRadius: "20px" }}>
+        <div
+          className="shadow-lg p-5  mt-4 containerMain"
+          style={{ borderRadius: "20px" }}
+        >
           <FormControl
             className="my-3 py-3"
             type="email"

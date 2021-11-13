@@ -4,6 +4,7 @@ import { Alert, Card, Col, FormControl, Row, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import useAuth from "../../Hooks/useAuth";
+import "./Review.css";
 
 const Review = () => {
   const { user } = useAuth();
@@ -106,7 +107,7 @@ const Review = () => {
             }}
           >
             <Card
-              className="border-0  shadow-lg p-3"
+              className="border-0  shadow-lg p-3 reviewContainer"
               style={{ borderRadius: "20px" }}
             >
               <div className="d-flex justify-content-center pt-4">

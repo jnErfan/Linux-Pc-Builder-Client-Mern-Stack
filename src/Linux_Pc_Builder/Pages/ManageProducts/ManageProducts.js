@@ -121,15 +121,11 @@ const ManageProducts = () => {
             className="text-center"
             style={{ marginTop: "70px", marginBottom: "150px" }}
           >
-            <Spinner
-              animation="border"
-              variant="secondary"
-              style={{ padding: "100px" }}
-            />
+            <Spinner animation="border" variant="secondary spinnerM" />
           </div>
         ) : (
           <div>
-            <Row sm={1} md={2} lg={2} className="mt-5">
+            <Row xm={1} md={2} lg={2} className="mt-5">
               {products.map((product) => (
                 <div
                   className="col col-12 col-md-6 col-lg-6 text-center mb-5"
