@@ -1,17 +1,51 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import Rating from "react-rating";
 import { useHistory } from "react-router";
+import useAuth from "../../../Hooks/useAuth";
 import "./OurPcPackage.css";
 
 const OurPcPackage = () => {
   const [products, setProducts] = useState([]);
+  const [cartProduct, setCartProduct] = useState({});
   const history = useHistory();
+  const { user } = useAuth();
   useEffect(() => {
     fetch(`http://localhost:5000/desktopsPagination?page=0&size=6`)
       .then((res) => res.json())
       .then((data) => setProducts(data?.desktopPackage));
   }, []);
+  console.log(user);
+  useEffect(() => {
+    fetch(`http://localhost:5000/addToCartOrder?email=j.n.erfan420@gmail.com`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCartProduct(data);
+      });
+  }, []);
+
+  const addToCartHandler = (id) => {
+    const matchedIdDesktop = products.filter((cart) => cart._id === id);
+    const addCartDetails = matchedIdDesktop[0];
+    const dontMatched = cartProduct.filter((matched) => matched._id === id);
+
+    if (dontMatched?.[0]?._id === id) {
+      alert("already Added");
+    } else {
+      addCartDetails.email = user.email;
+      axios
+        .post(`http://localhost:5000/addToCartOrder`, addCartDetails)
+        .then((result) => {
+          if (result.data.insertedId) {
+            alert("Cart Added");
+          } else {
+            alert("Something Is Wrong");
+          }
+        });
+    }
+  };
+
   return (
     <div className="my-5 container">
       <div className="text-center mb-5">
@@ -87,7 +121,10 @@ const OurPcPackage = () => {
                       </h4>
                       <div className="d-flex justify-content-between mt-3">
                         {product.stock === "Available" ? (
-                          <Button variant="outline-secondary">
+                          <Button
+                            onClick={() => addToCartHandler(product._id)}
+                            variant="outline-secondary"
+                          >
                             <i className="fas fa-shopping-cart"></i>
                           </Button>
                         ) : (

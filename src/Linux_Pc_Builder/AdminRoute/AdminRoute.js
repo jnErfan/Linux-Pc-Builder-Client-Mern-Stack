@@ -4,7 +4,7 @@ import { Redirect, Route } from "react-router";
 import useAuth from "../Hooks/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
-  const { user, isLoading } = useAuth();
+  const { user, users, isLoading } = useAuth();
   if (isLoading) {
     return (
       <div
@@ -23,7 +23,7 @@ const AdminRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        user?.email === "hypereyegaming@gmail.com" ? (
+        user?.email && users?.position === "Admin" ? (
           children
         ) : (
           <Redirect

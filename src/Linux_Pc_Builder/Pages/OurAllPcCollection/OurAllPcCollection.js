@@ -1,14 +1,18 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import Rating from "react-rating";
 import { useHistory } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 import "./OurAllPcCollection.css";
 
 const OurAllPcCollection = () => {
   const [products, setProducts] = useState([]);
   const history = useHistory();
+  const { user } = useAuth();
   const [page, setPage] = useState(0);
   const [pageCounts, setPageCount] = useState(0);
+  const [cartProduct, setCartProduct] = useState({});
   const size = 6;
 
   useEffect(() => {
@@ -21,6 +25,34 @@ const OurAllPcCollection = () => {
       });
   }, [page]);
 
+  useEffect(() => {
+    fetch("http://localhost:5000/addToCartOrder")
+      .then((res) => res.json())
+      .then((data) => {
+        setCartProduct(data);
+      });
+  }, []);
+
+  const addToCartHandler = (id) => {
+    const matchedIdDesktop = products.filter((cart) => cart._id === id);
+    const addCartDetails = matchedIdDesktop[0];
+    const dontMatched = cartProduct.filter((matched) => matched._id === id);
+
+    if (dontMatched?.[0]?._id === id) {
+      alert("already Added");
+    } else {
+      addCartDetails.email = user.email;
+      axios
+        .post(`http://localhost:5000/addToCartOrder`, addCartDetails)
+        .then((result) => {
+          if (result.data.insertedId) {
+            alert("Cart Added");
+          } else {
+            alert("Something Is Wrong");
+          }
+        });
+    }
+  };
   return (
     <div
       className="container"
@@ -100,7 +132,10 @@ const OurAllPcCollection = () => {
                       </h4>
                       <div className="d-flex justify-content-between mt-3">
                         {product.stock === "Available" ? (
-                          <Button variant="outline-secondary">
+                          <Button
+                            onClick={() => addToCartHandler(product._id)}
+                            variant="outline-secondary"
+                          >
                             <i className="fas fa-shopping-cart"></i>
                           </Button>
                         ) : (

@@ -1,9 +1,10 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 
 const MyOrder = () => {
   const [orderPackage, setOrderPackage] = useState([]);
-  const [orderCancel, setOrderCancel] = useState("");
+  const [orderCancel, setOrderCancel] = useState({});
   const { user } = useAuth();
 
   // Get LogIn User All Orders
@@ -14,7 +15,22 @@ const MyOrder = () => {
         setOrderPackage(data);
         setOrderCancel(data);
       });
-  }, [orderCancel]);
+  }, [user.email, orderCancel]);
+
+  const cancelHandler = (id) => {
+    const confirmation = prompt("If You Want To Cancel ? Then Write (CANCEL)");
+    if (confirmation === "CANCEL") {
+      axios.delete(`http://localhost:5000/deleteOrder/${id}`).then((result) => {
+        if (result.data.deletedCount) {
+          alert("Cancel Successful");
+        }
+      });
+    } else if (confirmation === null) {
+      return;
+    } else {
+      alert("Your Type Is Wrong");
+    }
+  };
   return (
     <div style={{ marginTop: "50px", marginBottom: "100px" }}>
       <div className="text-center">
@@ -97,7 +113,10 @@ const MyOrder = () => {
                                   Cancel
                                 </button>
                               ) : (
-                                <button className="btn btn-outline-danger fw-bold rounded-pill py-0 px-3">
+                                <button
+                                  onClick={() => cancelHandler(_id)}
+                                  className="btn btn-outline-danger fw-bold rounded-pill py-0 px-3"
+                                >
                                   Cancel
                                 </button>
                               )}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Container,
@@ -14,8 +14,17 @@ import "./Navbaar.css";
 const NavBaar = () => {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
+  const [cartProduct, setCartProduct] = useState({});
+  const [cartUpdate, setCartUpdate] = useState("");
   const ref = useRef(null);
-
+  useEffect(() => {
+    fetch("http://localhost:5000/addToCartOrder")
+      .then((res) => res.json())
+      .then((data) => {
+        setCartProduct(data);
+        setCartUpdate(data);
+      });
+  }, [cartUpdate]);
   const activeStyle = {
     borderBottom: "5px solid rgb(45, 45, 45)",
   };
@@ -100,16 +109,36 @@ const NavBaar = () => {
                 <i className="fas fa-envelope-open-text fs-5 me-1"></i> Contract
               </NavLink>
               {user?.displayName && (
-                <NavLink
-                  className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse  animate__slow animate__infinite"
-                  to="/dashboard"
-                >
-                  <img
-                    src="https://img.icons8.com/material/25/000000/dashboard-layout.png"
-                    alt=""
-                  />
-                  <span className="ms-2">DASHBOARD</span>
-                </NavLink>
+                <>
+                  <NavLink
+                    className="fw-bold text-decoration-none mx-3 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse  animate__slow animate__infinite"
+                    to="/dashboard"
+                  >
+                    <img
+                      src="https://img.icons8.com/material/25/000000/dashboard-layout.png"
+                      alt=""
+                    />
+                    <span className="ms-2">DASHBOARD</span>
+                  </NavLink>
+                  <NavLink
+                    className="fw-bold text-decoration-none mx-3 ms-4 text-dark d-flex align-items-center navbarDashboard animate__animated animate__pulse   animate__infinite"
+                    to="/dashboard/reviewOrder"
+                  >
+                    <i className="fas fa-cart-arrow-down fs-2"></i>{" "}
+                    <span
+                      className="bg-danger  rounded-circle text-white text-center"
+                      style={{
+                        position: "absolute",
+                        height: "22px",
+                        width: "22px",
+                        marginLeft: "25px",
+                        marginBottom: "25px",
+                      }}
+                    >
+                      {cartProduct.length || 0}
+                    </span>
+                  </NavLink>
+                </>
               )}
             </Nav>
             <div style={{ fontFamily: "'Concert One', cursive" }}>

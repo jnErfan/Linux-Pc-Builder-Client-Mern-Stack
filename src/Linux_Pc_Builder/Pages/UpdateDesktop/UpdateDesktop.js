@@ -40,7 +40,6 @@ const UpdateDesktop = () => {
       data.sell
     ) {
       data.rate = userRate;
-      console.log(data);
       axios
         .put(`http://localhost:5000/updateDesktop/${_id}`, data)
         .then((result) => {
@@ -51,7 +50,7 @@ const UpdateDesktop = () => {
           }
         });
     } else {
-      alert("Please Blur All Text Field. Default Value Will Worked In  OnBlur");
+      alert("Please Blur All Text Field. Default Value Will Worked On  OnBlur");
     }
   };
   return (
@@ -175,6 +174,14 @@ const UpdateDesktop = () => {
           </button>
         </div>
       </form>
+      <div className="text-center">
+        <button
+          className="btn btn-secondary py-2 mt-5 w-25"
+          onClick={() => history.push("/dashboard/manageProduct")}
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 };

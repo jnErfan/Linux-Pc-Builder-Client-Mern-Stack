@@ -20,6 +20,7 @@ const githubProvider = new GithubAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const useFirebase = () => {
   const [user, setUser] = useState("");
+  const [users, setUsers] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const auth = getAuth();
@@ -140,7 +141,6 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   };
-
   const savedUserInfo = (name, email, method) => {
     const position = "Customer";
     const date = new Date();
@@ -163,9 +163,15 @@ const useFirebase = () => {
     });
   }, [auth]);
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setUsers(data?.[0]));
+  }, [user.email]);
   return {
     user,
     error,
+    users,
     setError,
     emailPasswordSignUp,
     emailPasswordLogin,

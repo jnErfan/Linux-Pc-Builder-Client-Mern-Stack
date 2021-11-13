@@ -18,11 +18,13 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
-  const { user } = useAuth();
+  const { user, users } = useAuth();
   const activeStyle = {
     backgroundColor: "#171751",
     color: "#fff",
   };
+
+  console.log(users?.position);
   return (
     <div style={{ marginTop: "100px" }} className="dashboardContainer">
       <Row xs={2} md={2} lg={2} className="mx-0">
@@ -35,7 +37,7 @@ const Dashboard = () => {
         >
           <div className="my-4">
             {/* Admin Switching */}
-            {user?.email === "hypereyegaming@gmail.com" && (
+            {users?.position === "Admin" && (
               <>
                 <NavLink
                   activeStyle={activeStyle}
@@ -69,7 +71,7 @@ const Dashboard = () => {
             )}
             {/* Customer Switching */}
 
-            {user?.email !== "hypereyegaming@gmail.com" && (
+            {users?.position === "Customer" && (
               <>
                 <NavLink
                   activeStyle={activeStyle}
@@ -112,7 +114,7 @@ const Dashboard = () => {
                 <h1 className="text-center mt-4 mb-5">
                   Welcome To <span className="text-primary">Dashboard</span>
                 </h1>
-                {user?.email !== "hypereyegaming@gmail.com" ? (
+                {!users?.position === "Admin" ? (
                   <AdminLogin />
                 ) : (
                   <ManageAllOrder />
