@@ -18,8 +18,9 @@ const OurAllPcCollection = () => {
   const [alert2, setAlert2] = useState(false);
   const size = 6;
 
+  //  Pagination All Desktop Data 
   useEffect(() => {
-    fetch(`http://localhost:5000/desktopsPagination?page=${page}&size=${size}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/desktopsPagination?page=${page}&size=${size}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data?.desktopPackage);
@@ -28,13 +29,15 @@ const OurAllPcCollection = () => {
       });
   }, [page]);
 
+  //  Get Cart Orders Data With Login User Email
   useEffect(() => {
-    fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/addToCartOrder?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCartProduct(data);
       });
   }, [user.email]);
+  //  Add To Cart Handler
   const addToCartHandler = (id) => {
     const matchedIdDesktop = products.filter((cart) => cart._id === id);
     let cartDesktopDetails = matchedIdDesktop?.[0];
@@ -45,7 +48,7 @@ const OurAllPcCollection = () => {
     if (!oldItemMatched.length) {
       cartDesktopDetails.email = user.email;
       axios
-        .post(`http://localhost:5000/addToCartOrder`, cartDesktopDetails)
+        .post(`https://linux-pc-builder-backend.herokuapp.com/addToCartOrder`, cartDesktopDetails)
         .then((result) => {
           if (result.data.insertedId) {
             setLoading(true);

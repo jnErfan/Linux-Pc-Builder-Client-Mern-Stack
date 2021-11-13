@@ -38,8 +38,10 @@ const NavBaar = () => {
   window.addEventListener("scroll", onScrollHeader);
 
   const { user, logOutAll, users } = useAuth();
+
+  //  Get Cart Length For Navbar Showing
   useEffect(() => {
-    fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/addToCartOrder?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCartProduct(data);

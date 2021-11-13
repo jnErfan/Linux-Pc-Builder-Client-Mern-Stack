@@ -6,8 +6,10 @@ import "./ManageAllOrder.css";
 const ManageAllOrder = () => {
   const [orders, setOrders] = useState([]);
   const [modified, setModified] = useState("");
+
+  //  Get All Order Data
   useEffect(() => {
-    fetch("http://localhost:5000/manageOrders")
+    fetch("https://linux-pc-builder-backend.herokuapp.com/manageOrders")
       .then((res) => res.json())
       .then((data) => {
         setModified(data);
@@ -15,19 +17,23 @@ const ManageAllOrder = () => {
       });
   }, [modified]);
 
+  // Order Shipped Handler 
   const shippedHandler = (id) => {
     const status = { status: "Shipped" };
-    axios.put(`http://localhost:5000/statusUpdate/${id}`, status);
+    axios.put(`https://linux-pc-builder-backend.herokuapp.com/statusUpdate/${id}`, status);
   };
+
+  //  Order Reject Handler
   const rejectHandler = (id) => {
     const reason = prompt("Why You Want To Reject This Order");
     if (reason === null) {
       return;
     } else {
       const status = { status: "Reject", reason: reason };
-      axios.put(`http://localhost:5000/statusUpdate/${id}`, status);
+      axios.put(`https://linux-pc-builder-backend.herokuapp.com/statusUpdate/${id}`, status);
     }
   };
+  //  Filtering All Status
   const pending = orders.filter((order) => order.status === "Pending");
   const reject = orders.filter((order) => order.status === "Reject");
   const shipped = orders.filter((order) => order.status === "Shipped");

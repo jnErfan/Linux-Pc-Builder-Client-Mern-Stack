@@ -15,12 +15,14 @@ const ShippingDetails = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
 
+  //  Get Order Desktop Details
   useEffect(() => {
-    fetch(`http://localhost:5000/desktopDetails/${shippingId}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/desktopDetails/${shippingId}`)
       .then((res) => res.json())
       .then((data) => setOrderDetails(data?.[0]));
   }, [shippingId]);
 
+  //  Send Order Information And Shipping Information
   const onSubmit = (data) => {
     const status = "Pending";
     const date = new Date();
@@ -28,7 +30,7 @@ const ShippingDetails = () => {
     data.paymentMethod = paymentMethod;
     data.orderDetails = orderDetails;
     data.date = date.toDateString();
-    axios.post("http://localhost:5000/orderDetails", data).then((result) => {
+    axios.post("https://linux-pc-builder-backend.herokuapp.com/orderDetails", data).then((result) => {
       setLoading(true);
       if (result.data.insertedId) {
         setTimeout(() => {

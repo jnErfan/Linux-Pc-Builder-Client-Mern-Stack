@@ -17,6 +17,7 @@ const SignUp = () => {
   const history = useHistory();
   const location = useLocation();
 
+  // Send All Login Information 
   const onSubmit = (data) => {
     setError("");
     if (data.password === data.password2) {

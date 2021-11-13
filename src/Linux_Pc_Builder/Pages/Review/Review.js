@@ -12,11 +12,13 @@ const Review = () => {
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
+
+  // Send Review In Database
   const onSubmit = (data) => {
     data.image = user.photoURL;
     data.name = user.displayName;
     data.rate = rate;
-    axios.post("http://localhost:5000/review", data).then((result) => {
+    axios.post("https://linux-pc-builder-backend.herokuapp.com/review", data).then((result) => {
       setLoading(true);
       if (result.data.insertedId) {
         setTimeout(() => {

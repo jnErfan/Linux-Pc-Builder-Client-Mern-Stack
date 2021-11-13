@@ -13,8 +13,9 @@ const OrderReview = () => {
   const [alert, setAlert] = useState(false);
   const [alert2, setAlert2] = useState(false);
 
+  // Get Cart Added All Data From Database
   useEffect(() => {
-    fetch(`http://localhost:5000/addToCartOrder?email=${user.email}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/addToCartOrder?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCart(data);
@@ -26,6 +27,7 @@ const OrderReview = () => {
   for (const cart of carts) {
     total = Number(cart.price) + total;
   }
+  //  Shipping Handler
   const shippingHandler = () => {
     setLoading(true);
     setTimeout(() => {
@@ -37,9 +39,10 @@ const OrderReview = () => {
       }, 4000);
     }, 500);
   };
+  //  Delete Cart Order
   const cancelHandler = (id) => {
     axios
-      .delete(`http://localhost:5000/deleteCartOrder/${id}`)
+      .delete(`https://linux-pc-builder-backend.herokuapp.com/deleteCartOrder/${id}`)
       .then((result) => {
         setLoading(true);
         if (result.data.deletedCount) {

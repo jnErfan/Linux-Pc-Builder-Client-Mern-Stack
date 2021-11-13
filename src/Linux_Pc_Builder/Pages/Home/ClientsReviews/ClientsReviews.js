@@ -5,8 +5,9 @@ import Rating from "react-rating";
 
 const ClientsReviews = () => {
   const [reviews, setReviews] = useState([]);
+  //  Get Review From Database
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch("https://linux-pc-builder-backend.herokuapp.com/review")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

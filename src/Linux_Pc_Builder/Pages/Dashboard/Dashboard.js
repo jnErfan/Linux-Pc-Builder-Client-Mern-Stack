@@ -22,8 +22,7 @@ const Dashboard = () => {
     backgroundColor: "#171751",
     color: "#fff",
   };
-
-  console.log(users?.position);
+// Nested Routing
   return (
     <div style={{ marginTop: "100px" }} className="dashboardContainer">
       <Row xs={2} md={2} lg={2} className="mx-0">
@@ -113,7 +112,7 @@ const Dashboard = () => {
                 <h1 className="text-center mt-4 mb-5">
                   Welcome To <span className="text-primary">Dashboard</span>
                 </h1>
-                {users?.position === "Admin" && <ManageAllOrder />}
+                {users?.position === "Admin" && <ManageProducts />}
               </Route>
               <AdminRoute path={`${path}/manageOrder`}>
                 <ManageAllOrder />

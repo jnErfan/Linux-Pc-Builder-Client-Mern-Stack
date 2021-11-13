@@ -15,8 +15,9 @@ const ManageProducts = () => {
   const [pageCounts, setPageCount] = useState(0);
   const size = 4;
 
+  //  Pagination All Desktop Collection 
   useEffect(() => {
-    fetch(`http://localhost:5000/desktopsPagination?page=${page}&size=${size}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/desktopsPagination?page=${page}&size=${size}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data?.desktopPackage);
@@ -26,11 +27,12 @@ const ManageProducts = () => {
       });
   }, [page, pageUpdate]);
 
+  //  Order Delete Handler
   const deleteHandler = (id) => {
     const confirmation = prompt("If You Want To Delete ? Then Write (DELETE)");
     if (confirmation === "DELETE") {
       axios
-        .delete(`http://localhost:5000/deleteDesktop/${id}`)
+        .delete(`https://linux-pc-builder-backend.herokuapp.com/deleteDesktop/${id}`)
         .then((result) => {
           if (result.data.deletedCount) {
             setLoading(true);
@@ -47,6 +49,7 @@ const ManageProducts = () => {
       return;
     }
   };
+  // Shipping Handler
   const shippingHandler = (id) => {
     setLoading(true);
     setTimeout(() => {

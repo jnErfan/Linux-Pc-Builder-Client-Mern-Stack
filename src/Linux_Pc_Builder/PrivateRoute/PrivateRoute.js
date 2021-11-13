@@ -19,6 +19,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       </div>
     );
   }
+  //  This Route Only Customers
   return (
     <Route
       {...rest}

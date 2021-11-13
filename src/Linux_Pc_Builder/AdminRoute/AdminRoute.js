@@ -19,6 +19,7 @@ const AdminRoute = ({ children, ...rest }) => {
       </div>
     );
   }
+  // Admin Route 
   return (
     <Route
       {...rest}

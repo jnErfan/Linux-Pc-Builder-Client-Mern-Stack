@@ -9,9 +9,9 @@ const DesktopDetails = () => {
   const { desktopId } = useParams();
   const [desktopDetails, setDesktopDetails] = useState([]);
   const [loading, setLoading] = useState(false);
-
+//  Get Specific Desktop Details With Params
   useEffect(() => {
-    fetch(`http://localhost:5000/desktopDetails/${desktopId}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/desktopDetails/${desktopId}`)
       .then((res) => res.json())
       .then((data) => setDesktopDetails(data?.[0]));
   }, [desktopId]);

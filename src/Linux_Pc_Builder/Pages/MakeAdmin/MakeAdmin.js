@@ -15,9 +15,11 @@ const MakeAdmin = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   const [alert2, setAlert2] = useState(false);
+  
+  // Make Admin With Send Admin Status
   const onSubmit = (data) => {
     const adminData = { data, checked };
-    axios.put("http://localhost:5000/makeAdmin", adminData).then((result) => {
+    axios.put("https://linux-pc-builder-backend.herokuapp.com/makeAdmin", adminData).then((result) => {
       if (result.data.modifiedCount === 1) {
         reset();
         if (!checked) {

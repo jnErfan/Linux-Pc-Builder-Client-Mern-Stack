@@ -21,6 +21,7 @@ const Login = () => {
   const onSubmit = (data) => {
     emailPasswordLogin(data.email, data.password, history, location);
   };
+  //  Reset Password
   const resetHandler = () => {
     resetPassword(email);
   };

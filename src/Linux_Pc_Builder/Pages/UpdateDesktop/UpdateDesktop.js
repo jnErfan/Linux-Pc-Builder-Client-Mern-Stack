@@ -17,10 +17,11 @@ const UpdateDesktop = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   const [alert2, setAlert2] = useState(false);
-
   const history = useHistory();
+
+  // Update Desktop Configuration 
   useEffect(() => {
-    fetch(`http://localhost:5000/desktopDetails/${updateId}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/desktopDetails/${updateId}`)
       .then((res) => res.json())
       .then((data) => setUpdateDetails(data?.[0]));
   }, [updateId]);
@@ -50,7 +51,7 @@ const UpdateDesktop = () => {
     ) {
       data.rate = userRate;
       axios
-        .put(`http://localhost:5000/updateDesktop/${_id}`, data)
+        .put(`https://linux-pc-builder-backend.herokuapp.com/updateDesktop/${_id}`, data)
         .then((result) => {
           if (result.data.modifiedCount === 1) {
             setLoading(true);

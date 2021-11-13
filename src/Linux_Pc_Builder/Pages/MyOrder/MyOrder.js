@@ -10,9 +10,9 @@ const MyOrder = () => {
   const [alert, setAlert] = useState(false);
   const { user } = useAuth();
 
-  // Get LogIn User All Orders
+  // Get LogIn User All Orders 
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrder/${user.email}`)
+    fetch(`https://linux-pc-builder-backend.herokuapp.com/myOrder/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setOrderPackage(data);
@@ -20,10 +20,11 @@ const MyOrder = () => {
       });
   }, [user.email, orderCancel]);
 
+  //  Order Cancel
   const cancelHandler = (id) => {
     const confirmation = prompt("If You Want To Cancel ? Then Write (CANCEL)");
     if (confirmation === "CANCEL") {
-      axios.delete(`http://localhost:5000/deleteOrder/${id}`).then((result) => {
+      axios.delete(`https://linux-pc-builder-backend.herokuapp.com/deleteOrder/${id}`).then((result) => {
         if (result.data.deletedCount) {
           setLoading(true);
           setTimeout(() => {

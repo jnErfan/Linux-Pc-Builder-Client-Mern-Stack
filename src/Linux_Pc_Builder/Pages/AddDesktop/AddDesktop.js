@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import Rating from "react-rating";
 import "./AddDesktop.css";
 
+//  Add Desktop Information In Database And Successful Message
 const AddDesktop = () => {
   const { register, handleSubmit, reset } = useForm();
   const [rate, setRate] = useState(0);
@@ -18,7 +19,7 @@ const AddDesktop = () => {
   const [alert, setAlert] = useState(false);
   const onSubmit = (data) => {
     data.rate = rate;
-    axios.post("http://localhost:5000/addDesktop", data).then((result) => {
+    axios.post("https://linux-pc-builder-backend.herokuapp.com/addDesktop", data).then((result) => {
       if (result.data.insertedId) {
         setLoading(true);
         setTimeout(() => {
