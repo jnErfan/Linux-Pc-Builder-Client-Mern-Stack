@@ -1,0 +1,4 @@
+.featured:hover {
+  color: rgb(42, 5, 71);
+  transform: scale(0.9);
+}
