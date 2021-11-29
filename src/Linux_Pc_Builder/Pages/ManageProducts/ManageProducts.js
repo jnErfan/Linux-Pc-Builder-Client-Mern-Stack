@@ -141,7 +141,7 @@ const ManageProducts = () => {
                         <Card.Img
                           className="w-75"
                           variant="top"
-                          src={product.image}
+                          src={`data:image/png;base64,${product.image}`}
                         />
                       </div>
                       <Card.Body>

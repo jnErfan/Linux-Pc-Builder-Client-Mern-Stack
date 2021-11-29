@@ -28,7 +28,6 @@ function App() {
       .then((res) => res.json())
       .then((data) => setPreloader(data.desktopPackage));
   }, []);
-  console.log(preloader);
   return (
     <div>
       {!preloader.length ? (

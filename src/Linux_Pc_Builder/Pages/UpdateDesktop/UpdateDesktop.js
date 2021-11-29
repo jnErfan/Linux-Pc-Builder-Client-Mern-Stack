@@ -8,7 +8,6 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import Rating from "react-rating";
 import { useHistory, useParams } from "react-router";
 
 const UpdateDesktop = () => {
@@ -18,6 +17,12 @@ const UpdateDesktop = () => {
   const [alert, setAlert] = useState(false);
   const [alert2, setAlert2] = useState(false);
   const history = useHistory();
+  const [images, setImage] = useState(null);
+  const [checked, setChecked] = useState(false);
+  const checkedHandler = (params) => {
+    setChecked(params.target.checked);
+  };
+  console.log(checked);
 
   // Update Desktop Configuration 
   useEffect(() => {
@@ -27,8 +32,8 @@ const UpdateDesktop = () => {
   }, [updateId]);
   const {
     _id,
-    image,
     pcName,
+    image,
     configuration,
     Brand,
     price,
@@ -37,35 +42,60 @@ const UpdateDesktop = () => {
     stock,
     rate,
   } = updateDetails;
-  const [userRate, setRate] = useState(rate);
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
+    let formAllData;
+    if(!checked){
+    data.rate = rate;
+    } 
+    else{
+      if (!images) {
+        return;
+     }
+      const formData = new FormData();
+      formData.append('image', images);
+      formData.append('pcName', data.pcName);
+      formData.append('configuration', data.configuration);
+      formData.append('Brand', data.Brand);
+      formData.append('price', data.price);
+      formData.append('sell', data.sell);
+      formData.append('rated', data.rated);
+      formData.append('stock', data.stock);
+      formData.append('rate', rate)
+      formAllData = formData
+    }
+   const updateData = !checked ? data : formAllData;
     if (
-      data.image !== "" &&
       data.pcName !== "" &&
       data.configuration !== "" &&
       data.Brand !== "" &&
       data.price !== "" &&
       data.rated !== "" &&
-      data.sell
+      data.sell !== ""
     ) {
-      data.rate = userRate;
+     if(checked || data.image !== "") {
       axios
-        .put(`https://linux-pc-builder-backend.herokuapp.com/updateDesktop/${_id}`, data)
-        .then((result) => {
-          if (result.data.modifiedCount === 1) {
-            setLoading(true);
+      .put(`https://linux-pc-builder-backend.herokuapp.com/updateDesktop/${_id}`, updateData)
+      .then((result) => {
+        if (result.data.modifiedCount === 1) {
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+            setAlert(true);
             setTimeout(() => {
-              setLoading(false);
-              setAlert(true);
-              setTimeout(() => {
-                setAlert(false);
-                reset();
-                history.push("/dashboard/manageProduct");
-              }, 3000);
-            }, 500);
-          }
-        });
+              setAlert(false);
+              reset();
+              history.push("/dashboard/manageProduct");
+            }, 3000);
+          }, 500);
+        }
+      });
+     }else{
+      setAlert2(true);
+      setTimeout(() => {
+        setAlert2(false);
+      }, 2000);
+     }
     } else {
       setAlert2(true);
       setTimeout(() => {
@@ -166,15 +196,31 @@ const UpdateDesktop = () => {
         <div className="shadow-lg px-5 pb-5" style={{ borderRadius: "20px" }}>
           <div className="row row-cols-2 mt-5 pt-5">
             <div className="col col-12 col-md-12 col-lg-6">
-              <FormControl
-                className="py-3 my-4"
-                width="100%"
-                type="url"
-                placeholder="Enter Image Url"
-                required
-                defaultValue={image || ""}
-                {...register("image")}
-              />
+            {!checked ? (
+       <FormControl
+       className="py-3 my-4"
+       width="100%"
+       type="text"
+       placeholder="Enter Image Url"
+       required
+       defaultValue={image || ""}
+       {...register("image")}
+     />
+      ) : (
+        <FormControl
+        className="py-3 mt-4 mb-2"
+        type="file"
+        accept="image/*"
+        required
+        defaultValue={image || ""}
+        onChange={e => setImage(e.target.files[0])}
+      />
+      )}
+           
+              <Form.Group controlId="formHorizontalCheck">
+            <Form.Check  onChange={checkedHandler}  label="Update Image ?" />
+          </Form.Group>
+
               <FormControl
                 className="py-3 my-4"
                 width="100%"
@@ -247,24 +293,6 @@ const UpdateDesktop = () => {
                 </Form.Select>
               </FloatingLabel>
             </div>
-          </div>
-          <div className="text-center mt-3">
-            <Rating
-              onChange={(rate) => setRate(rate)}
-              emptySymbol={
-                <i
-                  className="far fa-star fs-2"
-                  style={{ color: "#FFA500" }}
-                ></i>
-              }
-              fullSymbol={
-                <i
-                  className="fas fa-star fs-2"
-                  style={{ color: "#FFA500" }}
-                ></i>
-              }
-              fractions={2}
-            />
           </div>
           <button
             type="submit"

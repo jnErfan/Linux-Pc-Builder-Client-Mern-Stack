@@ -17,9 +17,24 @@ const AddDesktop = () => {
   const [rate, setRate] = useState(0);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
+  const [image, setImage] = useState(null);
   const onSubmit = (data) => {
-    data.rate = rate;
-    axios.post("https://linux-pc-builder-backend.herokuapp.com/addDesktop", data).then((result) => {
+    console.log(data);
+    if (!image) {
+        return;
+    }
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('pcName', data.pcName);
+    formData.append('configuration', data.configuration);
+    formData.append('Brand', data.Brand);
+    formData.append('price', data.price);
+    formData.append('sell', data.sell);
+    formData.append('rated', data.rated);
+    formData.append('stock', data.stock);
+    formData.append('rate', rate)
+    
+    axios.post("https://linux-pc-builder-backend.herokuapp.com/addDesktop", formData).then((result) => {
       if (result.data.insertedId) {
         setLoading(true);
         setTimeout(() => {
@@ -101,11 +116,10 @@ const AddDesktop = () => {
               <div className="col col-12 col-md-12 col-lg-6">
                 <FormControl
                   className="py-3 my-4"
-                  width="100%"
-                  type="url"
-                  placeholder="Enter Image Url"
+                  type="file"
+                  accept="image/*"
                   required
-                  {...register("image")}
+                  onChange={e => setImage(e.target.files[0])}
                 />
                 <FormControl
                   className="py-3 my-4"

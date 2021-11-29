@@ -183,8 +183,9 @@ const OurAllPcCollection = () => {
                       <Card.Img
                         className="w-75"
                         variant="top"
-                        src={product.image}
+                        src={`data:image/png;base64,${product.image}`}
                       />
+                      {/* `data:image/png;base64,${product.image}` */}
                     </div>
                     <Card.Body>
                       <Card.Title className="ellipsis2 fw-bold mb-3">
